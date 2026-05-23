@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barto Appliance — Design System Documentation</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #F8F7F4; color: #111; font-size: 15px; line-height: 1.6; }
+
+/* ── DOC LAYOUT ── */
+.doc-header { background: #1A1A1A; color: white; padding: 48px 64px; border-bottom: 4px solid #C0432A; }
+.doc-header h1 { font-size: 42px; font-weight: 700; margin-bottom: 8px; }
+.doc-header p { font-size: 16px; color: rgba(255,255,255,0.6); }
+.doc-header .meta { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.doc-body { max-width: 1200px; margin: 0 auto; padding: 64px 64px; }
+.doc-section { margin-bottom: 80px; }
+.doc-section:last-child { margin-bottom: 0; }
+
+.section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #999; margin-bottom: 12px; }
+.section-title { font-size: 32px; font-weight: 700; color: #111; margin-bottom: 8px; }
+.section-sub { font-size: 15px; color: #666; margin-bottom: 40px; }
+.rule { height: 1px; background: #E0DDD8; margin-bottom: 40px; }
+
+/* ── VARIANT COMPARISON GRID ── */
+.variant-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 48px; }
+.variant-card { border: 1px solid #E0DDD8; background: white; overflow: hidden; }
+.variant-swatch { height: 120px; display: flex; align-items: center; justify-content: center; }
+.variant-swatch .swatch-inner { text-align: center; color: rgba(255,255,255,0.9); font-size: 12px; }
+.variant-info { padding: 20px; }
+.variant-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.variant-file { font-size: 11px; color: #999; font-family: monospace; margin-bottom: 12px; }
+.variant-desc { font-size: 13px; color: #666; line-height: 1.5; }
+.variant-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; margin-top: 10px; border-radius: 2px; }
+
+/* ── COLOR PALETTES ── */
+.palette-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-bottom: 48px; }
+.palette-card { border: 1px solid #E0DDD8; background: white; padding: 28px; }
+.palette-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.palette-card p { font-size: 12px; color: #999; margin-bottom: 20px; }
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.swatch-block { }
+.swatch-color { height: 48px; width: 80px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.08); }
+.swatch-token { font-size: 10px; font-weight: 700; color: #666; margin-top: 4px; }
+.swatch-hex { font-size: 10px; color: #999; font-family: monospace; }
+
+/* ── TYPOGRAPHY ── */
+.type-specimen { background: white; border: 1px solid #E0DDD8; padding: 40px; margin-bottom: 20px; }
+.type-row { display: flex; align-items: baseline; gap: 32px; padding: 20px 0; border-bottom: 1px solid #F0EDE8; }
+.type-row:last-child { border-bottom: none; }
+.type-meta { width: 200px; flex-shrink: 0; }
+.type-meta .role { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; }
+.type-meta .spec { font-size: 11px; color: #CCC; margin-top: 2px; font-family: monospace; }
+.type-sample { flex: 1; }
+.type-sample.h1 { font-size: 48px; font-weight: 700; color: #1B3A2D; line-height: 1.05; letter-spacing: -0.02em; }
+.type-sample.h2 { font-size: 32px; font-weight: 700; color: #1B3A2D; line-height: 1.1; }
+.type-sample.h3 { font-size: 22px; font-weight: 700; color: #111; }
+.type-sample.heritage { font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; color: #7BA3A0; }
+.type-sample.body { font-size: 16px; color: #444; line-height: 1.65; max-width: 560px; }
+.type-sample.label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #999; }
+.type-sample.cta { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1B3A2D; }
+
+/* ── COMPONENT LIBRARY ── */
+.component-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.component-card { background: white; border: 1px solid #E0DDD8; padding: 32px; }
+.component-card h3 { font-size: 14px; font-weight: 700; color: #666; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #E0DDD8; }
+.component-demo { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+
+/* Buttons */
+.btn-demo { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; border: none; cursor: pointer; font-family: inherit; }
+.btn-green { background: #1B3A2D; color: white; }
+.btn-cream { background: #F5F0E8; color: #1B3A2D; }
+.btn-ghost { background: transparent; color: #1B3A2D; border: 1.5px solid #1B3A2D; }
+.btn-red { background: #C0432A; color: white; }
+.btn-navy { background: #1A2C4A; color: white; }
+.btn-brass { background: #C4963A; color: #1A2C4A; }
+.btn-slate { background: #2A2E38; color: white; }
+.btn-rust { background: #C44B2A; color: white; }
+.btn-phone { background: #1B3A2D; color: white; display: flex; align-items: center; padding: 14px 20px; width: 100%; justify-content: center; font-size: 14px; }
+
+/* Chips */
+.chip-demo { display: inline-flex; align-items: center; padding: 4px 10px; font-size: 11px; font-weight: 600; border: 1px solid; border-radius: 2px; }
+.chip-instock { background: #E8F0EE; border-color: #7BA3A0; color: #2A5240; }
+.chip-special { background: #FEF3EC; border-color: #D4943A; color: #7A4010; }
+.chip-spec { background: #F5F0E8; border-color: #D4C9B8; color: #6B6560; }
+.chip-rebate { background: #C0432A; color: white; border-color: #C0432A; }
+
+/* Product card mini */
+.mini-card { border: 1px solid #D4C9B8; background: white; width: 200px; }
+.mini-card-img { height: 120px; background: #EDE8DF url('images/product-french-door.jpg') center/cover; }
+.mini-card-body { padding: 12px; }
+.mini-card-brand { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #7BA3A0; }
+.mini-card-model { font-size: 14px; font-weight: 700; color: #1B3A2D; margin-bottom: 6px; }
+.mini-card-chips { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+.mini-card-cta { background: #1B3A2D; color: white; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 8px; text-align: center; display: block; }
+
+/* Pricing block mini */
+.pricing-demo { background: #1B3A2D; padding: 24px; color: white; }
+.pricing-demo .price-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.pricing-demo .price-num { font-size: 28px; font-weight: 700; color: white; margin-bottom: 2px; }
+.pricing-demo .price-hours { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+.pricing-demo .price-btn { background: #F5F0E8; color: #1B3A2D; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px; text-align: center; display: block; margin-bottom: 6px; }
+.pricing-demo .price-ghost { background: transparent; color: rgba(255,255,255,0.7); font-size: 11px; font-weight: 600; padding: 9px; text-align: center; display: block; border: 1px solid rgba(255,255,255,0.2); }
+
+/* ── VARIANT DECISION ── */
+.decision-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #E0DDD8; }
+.decision-table th { background: #1B3A2D; color: white; padding: 14px 16px; text-align: left; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.decision-table td { padding: 14px 16px; border-bottom: 1px solid #E0DDD8; font-size: 13px; vertical-align: top; }
+.decision-table tr:last-child td { border-bottom: none; }
+.decision-table tr:nth-child(even) { background: #FAFAF8; }
+.decision-table td:first-child { font-weight: 700; }
+.check { color: #2A6A2A; font-weight: 700; }
+.dash { color: #CCC; }
+
+/* ── CONVERSION GAPS ── */
+.gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.gap-card { background: white; border: 1px solid #E0DDD8; padding: 24px; }
+.gap-card.fixed { border-left: 4px solid #2A6A2A; }
+.gap-card.partial { border-left: 4px solid #C4963A; }
+.gap-card.pending { border-left: 4px solid #CCC; }
+.gap-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.gap-label.fixed { color: #2A6A2A; }
+.gap-label.partial { color: #C4963A; }
+.gap-label.pending { color: #999; }
+.gap-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.gap-desc { font-size: 13px; color: #666; line-height: 1.5; }
+
+/* ── LAYOUT PATTERNS ── */
+.layout-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.layout-diagram { background: white; border: 1px solid #E0DDD8; padding: 24px; }
+.layout-diagram h3 { font-size: 13px; font-weight: 700; margin-bottom: 16px; color: #666; }
+.layout-diagram .diagram { background: #F8F7F4; border: 1px solid #E0DDD8; padding: 16px; font-family: monospace; font-size: 11px; color: #666; line-height: 2; }
+.layout-diagram .label { font-size: 12px; color: #999; margin-top: 12px; }
+
+/* ── FOOTER ── */
+.doc-footer { background: #1A1A1A; color: rgba(255,255,255,0.4); padding: 32px 64px; font-size: 12px; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <h1>Barto Appliance — Design System</h1>
+  <p>4 visual variants · Component library · Conversion gap status · Implementation guidance</p>
+  <div class="meta">Prepared 2026-05-22 · Updated 2026-05-22 · Phase 1 ✅ Audit · Phase 2 ✅ Design + Brand Aligned · Phase 3 ⏳ Next.js Scaffold</div>
+</div>
+
+<div class="doc-body">
+
+<!-- ══ SECTION 1: VARIANT OVERVIEW ══ -->
+<div class="doc-section">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">Five design directions</h2>
+  <p class="section-sub">Each variant shares the same content, conversion logic, and component structure — only the palette and layout pattern changes. All 7 designs use the actual Barto logo and are brand-aligned: teal <code>#004A6E</code> header, orange <code>#E8871A</code> primary CTAs, amber <code>#FFC20E</code> phone accent. Variant E is the brand-true direction using their exact existing palette, enhanced.</p>
+  <div class="rule"></div>
+
+  <div class="variant-grid" style="grid-template-columns: repeat(5,1fr);">
+    <div class="variant-card">
+      <div class="variant-swatch" style="background:#004A6E;">
+        <div class="swatch-inner">
+          <div style="font-size:28px; font-weight:700; color:#FAF7F2;">A</div>
+          <div style="font-family:'Playfair Display',serif; font-style:italic; color:#FFC20E; font-size:13px;">Teal Split + Cream</div>
+        </div>
+      </div>
+      <div class="variant-info">
+        <div class="variant-name">Variant A — Split Hero</div>
+        <div class="variant-file">barto-homepage.html</div>
+        <p class="variant-desc">Teal left panel + kitchen photo right. Orange CTAs, amber phone accent. Split hero, bento category grid, proof-point columns. Strong local authority feel.</p>
+        <span class="variant-tag" style="background:#EAF3F8; color:#004A6E;">Recommended</span>
+      </div>
+    </div>
+    <div class="variant-card">
+      <div class="variant-swatch" style="background:#004A6E;">
+        <div class="swatch-inner">
+          <div style="font-size:28px; font-weight:700; color:#FAF7F2;">B</div>
+          <div style="font-family:'Playfair Display',serif; font-style:italic; color:#FFC20E; font-size:13px;">Teal Full-Width + Amber</div>
+        </div>
+      </div>
+      <div class="variant-info">
+        <div class="variant-name">Variant B — Full-Width Hero</div>
+        <div class="variant-file">variant-b-navy-brass.html</div>
+        <p class="variant-desc">Teal overlay on full-width kitchen hero. Amber stat highlights (2,000+, 1947, 15). Horizontal teal category strip. 4-col product grid. Orange delivery CTA band.</p>
+        <span class="variant-tag" style="background:#FFF8E6; color:#C96F10;">Most expansive feel</span>
+      </div>
+    </div>
+    <div class="variant-card">
+      <div class="variant-swatch" style="background:#004A6E;">
+        <div class="swatch-inner">
+          <div style="font-size:28px; font-weight:700; color:#FAF7F2;">C</div>
+          <div style="font-family:'Playfair Display',serif; font-style:italic; color:#E8871A; font-size:13px;">Teal Contrast + Orange</div>
+        </div>
+      </div>
+      <div class="variant-info">
+        <div class="variant-name">Variant C — Inverted Split</div>
+        <div class="variant-file">variant-c-slate-rust.html</div>
+        <p class="variant-desc">Cream/light left panel + teal right panel with kitchen photo. Inverted split hero. Large teal/orange proof points. Orange CTAs throughout. Bold, high-contrast feel.</p>
+        <span class="variant-tag" style="background:#FFF3E6; color:#E8871A;">Bold contrast</span>
+      </div>
+    </div>
+    <div class="variant-card">
+      <div class="variant-swatch" style="background:white; border-bottom:3px solid #004A6E;">
+        <div class="swatch-inner">
+          <div style="font-size:28px; font-weight:700; color:#111;">D</div>
+          <div style="font-family:'Playfair Display',serif; font-style:italic; color:#004A6E; font-size:13px;">Editorial White + Teal</div>
+        </div>
+      </div>
+      <div class="variant-info">
+        <div class="variant-name">Variant D — Editorial</div>
+        <div class="variant-file">variant-d-editorial-white.html</div>
+        <p class="variant-desc">White editorial layout. Newspaper 80px headline with teal accent. Teal topbar + logo. Orange CTAs. Right-column call block + quote. Editorial category list. Minimal grid cards.</p>
+        <span class="variant-tag" style="background:#EAF3F8; color:#004A6E;">Most modern/minimal</span>
+      </div>
+    </div>
+    <!-- Variant E -->
+    <div class="variant-card">
+      <div class="variant-swatch" style="background:#004A6E;">
+        <div class="swatch-inner">
+          <div style="font-size:28px; font-weight:700; color:#FAF7F2;">E</div>
+          <div style="font-family:'Playfair Display',serif; font-style:italic; color:#FFC20E; font-size:13px;">Teal + Orange</div>
+        </div>
+      </div>
+      <div class="variant-info">
+        <div class="variant-name">Variant E — Brand True ★</div>
+        <div class="variant-file">variant-e-brand-true.html</div>
+        <p class="variant-desc">Their actual palette: Barto teal #004A6E + CTA orange #E8871A + amber #FFC20E + clearance red. Real logo. Split hero with diagonal cut. Orange delivery band. Closest to their existing brand identity, fully modernised.</p>
+        <span class="variant-tag" style="background:#EAF3F8; color:#004A6E;">Existing brand — enhanced</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision table -->
+  <table class="decision-table">
+    <thead>
+      <tr>
+        <th>Criterion</th>
+        <th>A — Teal Split</th>
+        <th>B — Teal Full-Width</th>
+        <th>C — Teal Contrast</th>
+        <th>D — Editorial White</th>
+        <th>E — Brand True ★</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Matches brief palette</td>
+        <td class="check">✓ Directly</td>
+        <td class="dash">— Close</td>
+        <td class="dash">— Diverges</td>
+        <td class="dash">— Close</td>
+        <td class="check">✓ Exact brand</td>
+      </tr>
+      <tr>
+        <td>Local/heritage feel</td>
+        <td class="check">✓ Strong</td>
+        <td>Moderate</td>
+        <td>Moderate</td>
+        <td class="dash">— Weak</td>
+        <td class="check">✓ Strong</td>
+      </tr>
+      <tr>
+        <td>Phone-first UX</td>
+        <td class="check">✓ Strong</td>
+        <td class="check">✓ Strong</td>
+        <td class="check">✓ Strong</td>
+        <td class="check">✓ Very strong</td>
+        <td class="check">✓ Strong</td>
+      </tr>
+      <tr>
+        <td>Differentiated from chains</td>
+        <td class="check">✓ Strong</td>
+        <td>Moderate</td>
+        <td class="check">✓ Strong</td>
+        <td class="check">✓ Strong</td>
+        <td>Moderate</td>
+      </tr>
+      <tr>
+        <td>Clearance/urgency legibility</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+      </tr>
+      <tr>
+        <td>Mobile nav simplicity</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+      </tr>
+      <tr>
+        <td>Easiest to implement in Next.js</td>
+        <td class="check">✓ All use same tokens</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="check">✓ Logo asset ready</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Logo note -->
+  <div style="margin-top:32px; background:#EAF3F8; border-left:4px solid #004A6E; padding:20px 24px;">
+    <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#004A6E; margin-bottom:8px;">Real Logo Integrated</div>
+    <p style="font-size:13px; color:#444; line-height:1.6; margin:0;">The actual Barto Appliance logo (<code>images/barto-logo.png</code>) — downloaded from bartoappliances.com — is wired into all 5 homepage variants. Header: 44–48px height. Footer: 36px height. On dark headers (A, B, C, E) the logo's teal field blends and the white wordmark floats. On Variant D's white header the full teal badge renders with maximum contrast.</p>
+  </div>
+</div>
+
+<!-- ══ SECTION 2: COLOR PALETTES ══ -->
+<div class="doc-section">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">Color palettes</h2>
+  <p class="section-sub">All four variants share the same semantic token names. Only the values differ — swap the palette block to change the entire site.</p>
+  <div class="rule"></div>
+
+  <div class="palette-grid">
+    <!-- Shared Brand Palette note -->
+    <div class="palette-card" style="border-left:3px solid #004A6E; background:#EAF3F8;">
+      <h3>Shared Brand Palette — All Variants</h3>
+      <p>All 5 variants now share the Barto brand palette. Layout structure and accent application differ per variant; the core token set is identical across all files.</p>
+      <div class="swatches">
+        <div class="swatch-block"><div class="swatch-color" style="background:#004A6E;"></div><div class="swatch-token">--teal</div><div class="swatch-hex">#004A6E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#003256;"></div><div class="swatch-token">--teal-dark</div><div class="swatch-hex">#003256</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#005F8C;"></div><div class="swatch-token">--teal-mid</div><div class="swatch-hex">#005F8C</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#EAF3F8;"></div><div class="swatch-token">--teal-light</div><div class="swatch-hex">#EAF3F8</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#E8871A;"></div><div class="swatch-token">--orange (CTA)</div><div class="swatch-hex">#E8871A</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#C96F10;"></div><div class="swatch-token">--orange-dark</div><div class="swatch-hex">#C96F10</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FFC20E;"></div><div class="swatch-token">--amber (accent)</div><div class="swatch-hex">#FFC20E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#C8321E;"></div><div class="swatch-token">--red (clearance)</div><div class="swatch-hex">#C8321E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FAF7F2;"></div><div class="swatch-token">--cream (bg)</div><div class="swatch-hex">#FAF7F2</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-token">--text</div><div class="swatch-hex">#1A1A1A</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#E5E7EB;"></div><div class="swatch-token">--border</div><div class="swatch-hex">#E5E7EB</div></div>
+      </div>
+    </div>
+    <!-- Palette A -->
+    <div class="palette-card">
+      <h3>Palette A — Teal Split + Cream</h3>
+      <p>Dark teal left panel anchors the split hero. Cream body. Orange primary CTA. Amber phone highlight. Strong local authority feel.</p>
+      <div class="swatches">
+        <div class="swatch-block"><div class="swatch-color" style="background:#004A6E;"></div><div class="swatch-token">--teal (panel)</div><div class="swatch-hex">#004A6E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FAF7F2;"></div><div class="swatch-token">--cream (body)</div><div class="swatch-hex">#FAF7F2</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#E8871A;"></div><div class="swatch-token">--orange (CTA)</div><div class="swatch-hex">#E8871A</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FFC20E;"></div><div class="swatch-token">--amber (phone)</div><div class="swatch-hex">#FFC20E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#C8321E;"></div><div class="swatch-token">--red (sale)</div><div class="swatch-hex">#C8321E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-token">--text</div><div class="swatch-hex">#1A1A1A</div></div>
+      </div>
+    </div>
+    <!-- Palette B -->
+    <div class="palette-card">
+      <h3>Palette B — Teal Full-Width + Amber Accents</h3>
+      <p>Teal overlay on full-width kitchen hero. Amber decorative highlights on stats and category icons. Orange CTAs and delivery band.</p>
+      <div class="swatches">
+        <div class="swatch-block"><div class="swatch-color" style="background:#004A6E;"></div><div class="swatch-token">--teal (hero/header)</div><div class="swatch-hex">#004A6E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FAF7F2;"></div><div class="swatch-token">--cream (body)</div><div class="swatch-hex">#FAF7F2</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FFC20E;"></div><div class="swatch-token">--amber (stats/icons)</div><div class="swatch-hex">#FFC20E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#E8871A;"></div><div class="swatch-token">--orange (CTA/band)</div><div class="swatch-hex">#E8871A</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#C8321E;"></div><div class="swatch-token">--red (sale)</div><div class="swatch-hex">#C8321E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-token">--text</div><div class="swatch-hex">#1A1A1A</div></div>
+      </div>
+    </div>
+    <!-- Palette C -->
+    <div class="palette-card">
+      <h3>Palette C — Teal Contrast + Orange</h3>
+      <p>Cream left panel, teal right panel with photo. Orange accent used more prominently for proof-points and CTAs. Bold, high-contrast application.</p>
+      <div class="swatches">
+        <div class="swatch-block"><div class="swatch-color" style="background:#004A6E;"></div><div class="swatch-token">--teal (right panel)</div><div class="swatch-hex">#004A6E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FAF7F2;"></div><div class="swatch-token">--cream (left panel)</div><div class="swatch-hex">#FAF7F2</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#E8871A;"></div><div class="swatch-token">--orange (CTAs/accents)</div><div class="swatch-hex">#E8871A</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FFC20E;"></div><div class="swatch-token">--amber (phone)</div><div class="swatch-hex">#FFC20E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#C8321E;"></div><div class="swatch-token">--red (sale)</div><div class="swatch-hex">#C8321E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-token">--text</div><div class="swatch-hex">#1A1A1A</div></div>
+      </div>
+    </div>
+    <!-- Palette D -->
+    <div class="palette-card">
+      <h3>Palette D — Editorial White + Teal Accents</h3>
+      <p>White-first editorial layout. Teal replaces forest green for topbar, logo, typographic accents, and call block border. Orange CTAs pop against white.</p>
+      <div class="swatches">
+        <div class="swatch-block"><div class="swatch-color" style="background:#FFFFFF;"></div><div class="swatch-token">--white (body)</div><div class="swatch-hex">#FFFFFF</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#004A6E;"></div><div class="swatch-token">--teal (topbar/accents)</div><div class="swatch-hex">#004A6E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#E8871A;"></div><div class="swatch-token">--orange (CTAs)</div><div class="swatch-hex">#E8871A</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FFC20E;"></div><div class="swatch-token">--amber (phone)</div><div class="swatch-hex">#FFC20E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#C8321E;"></div><div class="swatch-token">--red (sale)</div><div class="swatch-hex">#C8321E</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-token">--text</div><div class="swatch-hex">#1A1A1A</div></div>
+      </div>
+    </div>
+    <!-- Palette E -->
+    <div class="palette-card" style="border-left:3px solid #004A6E;">
+      <h3>Palette E — Brand True ★ (reference, most enhanced)</h3>
+      <p>The brand palette applied most expressively: teal split hero with diagonal chevron cut, amber stats strip, orange delivery band. The canonical reference for all variants.</p>
+      <div class="swatches">
+        <div class="swatch-block"><div class="swatch-color" style="background:#004A6E;"></div><div class="swatch-token">--teal</div><div class="swatch-hex">#004A6E (was #00486E)</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#003256;"></div><div class="swatch-token">--teal-dark</div><div class="swatch-hex">#003256</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#E8871A;"></div><div class="swatch-token">--orange (CTA)</div><div class="swatch-hex">#E8871A (was #F7941D)</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FFC20E;"></div><div class="swatch-token">--amber (accent)</div><div class="swatch-hex">#FFC20E (unchanged)</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#C8321E;"></div><div class="swatch-token">--red (sale)</div><div class="swatch-hex">#C8321E (was #FF0000)</div></div>
+        <div class="swatch-block"><div class="swatch-color" style="background:#FAF7F2;"></div><div class="swatch-token">--cream (bg)</div><div class="swatch-hex">#FAF7F2 (was #FFF)</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 3: TYPOGRAPHY ══ -->
+<div class="doc-section">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">Typography</h2>
+  <p class="section-sub">Two fonts: DM Sans for all UI/utility text; Playfair Display italic only for heritage callouts ("Since 1947," pull quotes, sublines).</p>
+  <div class="rule"></div>
+
+  <div class="type-specimen">
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="role">Page Headline</div>
+        <div class="spec">DM Sans 700 / 64px / -0.02em</div>
+      </div>
+      <div class="type-sample h1">Major appliances<br>for greater New Orleans.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="role">Heritage Callout</div>
+        <div class="spec">Playfair Display 400i / 26px</div>
+      </div>
+      <div class="type-sample heritage">Since 1947.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="role">Section Heading H2</div>
+        <div class="spec">DM Sans 700 / 32–36px</div>
+      </div>
+      <div class="type-sample h2">What are you replacing?</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="role">Card/Component H3</div>
+        <div class="spec">DM Sans 700 / 18–22px</div>
+      </div>
+      <div class="type-sample h3">Refrigerators · 204 models</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="role">Body Copy</div>
+        <div class="spec">DM Sans 400 / 15–16px / 1.65</div>
+      </div>
+      <div class="type-sample body">In business since 1947. We know New Orleans homes — older kitchens, tight staircases, shotgun layouts. We coordinate specialty installation when standard delivery won't work.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="role">Section Eyebrow</div>
+        <div class="spec">DM Sans 700 / 11px / 0.14em UC</div>
+      </div>
+      <div class="type-sample label">Shop by appliance</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="role">CTA Button</div>
+        <div class="spec">DM Sans 700 / 13px / 0.06em UC</div>
+      </div>
+      <div class="type-sample cta">Shop In-Stock Appliances</div>
+    </div>
+  </div>
+
+  <div style="background:white; border:1px solid #E0DDD8; padding:24px; margin-top:20px;">
+    <p style="font-size:13px; color:#666; margin-bottom:8px;"><strong>Rules for Playfair Display italic:</strong></p>
+    <ul style="font-size:13px; color:#666; padding-left:20px; line-height:2;">
+      <li>Use only for "Since 1947." / "In business since 1947" type statements</li>
+      <li>Use for pull quotes (full reviews from customers)</li>
+      <li>Use for the logo tagline in the footer</li>
+      <li>Never use for navigation, body copy, or UI controls</li>
+      <li>Limit to one Playfair instance per viewport at a time</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ SECTION 4: COMPONENTS ══ -->
+<div class="doc-section">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">Component library</h2>
+  <p class="section-sub">All components below are built from design tokens only — no custom class names beyond the token variables. These map directly to the Next.js component implementations in Phase 3.</p>
+  <div class="rule"></div>
+
+  <div class="component-grid">
+    <!-- Buttons -->
+    <div class="component-card">
+      <h3>Buttons (Variant A)</h3>
+      <div class="component-demo" style="flex-direction:column;">
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button class="btn-demo btn-green">Shop In-Stock</button>
+          <button class="btn-demo btn-cream">Call for Price</button>
+          <button class="btn-demo btn-ghost">Request Availability</button>
+          <button class="btn-demo btn-red">Clearance Center</button>
+        </div>
+        <div style="margin-top:12px;">
+          <button class="btn-demo btn-phone" style="width:240px;">(504) 831-2734 — Call for Price</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons other variants -->
+    <div class="component-card">
+      <h3>Buttons (B · C · D accents)</h3>
+      <div class="component-demo">
+        <button class="btn-demo btn-navy">Variant B Navy</button>
+        <button class="btn-demo btn-brass">Variant B Brass</button>
+        <button class="btn-demo btn-slate">Variant C Slate</button>
+        <button class="btn-demo btn-rust">Variant C Rust</button>
+      </div>
+    </div>
+
+    <!-- Chips -->
+    <div class="component-card">
+      <h3>Status Chips</h3>
+      <div class="component-demo">
+        <span class="chip-demo chip-instock">● In stock</span>
+        <span class="chip-demo chip-special">Special order</span>
+        <span class="chip-demo chip-spec">28" wide</span>
+        <span class="chip-demo chip-spec">18 cu. ft.</span>
+        <span class="chip-demo chip-spec">Stainless</span>
+        <span class="chip-demo chip-rebate">REBATE</span>
+      </div>
+    </div>
+
+    <!-- Product card -->
+    <div class="component-card">
+      <h3>Product Card (mini)</h3>
+      <div class="component-demo">
+        <div class="mini-card">
+          <div class="mini-card-img"></div>
+          <div class="mini-card-body">
+            <div class="mini-card-brand">Frigidaire</div>
+            <div class="mini-card-model">FFET1022UB</div>
+            <div class="mini-card-chips">
+              <span class="chip-demo chip-spec" style="font-size:9px; padding:2px 6px;">23.75" wide</span>
+              <span class="chip-demo chip-instock" style="font-size:9px; padding:2px 6px;">In stock</span>
+            </div>
+            <a href="#" class="mini-card-cta">(504) 831-2734</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing block -->
+    <div class="component-card">
+      <h3>Pricing Block (Phone-First)</h3>
+      <div class="component-demo">
+        <div class="pricing-demo" style="width:280px;">
+          <div class="price-label">Price by phone</div>
+          <div class="price-num">(504) 831-2734</div>
+          <div class="price-hours">Mon–Fri 9:30 AM – 6:00 PM · Sat 10–3</div>
+          <div class="price-btn">Call Now for Price</div>
+          <div class="price-ghost">Request Availability by Email →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust bar -->
+    <div class="component-card">
+      <h3>Trust Bar (Footer-Adjacent)</h3>
+      <div class="component-demo">
+        <div style="background:#2A5240; padding:12px 20px; font-size:12px; color:rgba(255,255,255,0.75); display:flex; gap:16px; flex-wrap:wrap; width:100%;">
+          <span><strong style="color:white;">3833 Airline Drive</strong>, Metairie, LA</span>
+          <span style="color:rgba(255,255,255,0.2);">·</span>
+          <span><strong style="color:white;">(504) 831-2734</strong></span>
+          <span style="color:rgba(255,255,255,0.2);">·</span>
+          <span>Mon–Fri <strong style="color:white;">9:30–6</strong></span>
+          <span style="color:rgba(255,255,255,0.2);">·</span>
+          <span>Sat <strong style="color:white;">10–3</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 5: CONVERSION GAP STATUS ══ -->
+<div class="doc-section">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">Conversion gap status</h2>
+  <p class="section-sub">From the audit doc. All Phase 1 gaps are addressed in the design. Phase 2–3 gaps proceed in later sprints.</p>
+  <div class="rule"></div>
+
+  <div class="gap-grid">
+    <div class="gap-card fixed">
+      <div class="gap-label fixed">Fixed in Design</div>
+      <div class="gap-title">No local identity on entry</div>
+      <div class="gap-desc">Hero now includes eyebrow "Metairie, Louisiana · Greater New Orleans," phone number, address+hours line, and "Since 1947" callout.</div>
+    </div>
+    <div class="gap-card fixed">
+      <div class="gap-label fixed">Fixed in Design</div>
+      <div class="gap-title">"Contact Us For Price" dead end</div>
+      <div class="gap-desc">Product pages now have a dark-green "PRICE BY PHONE" panel with large clickable tel: link, hours, and secondary request CTA. Every product card has the phone number as primary button.</div>
+    </div>
+    <div class="gap-card fixed">
+      <div class="gap-label fixed">Fixed in Design</div>
+      <div class="gap-title">No address/hours in footer</div>
+      <div class="gap-desc">Footer redesigned as 4-column local trust block: full address table + hours table + appliance links + info links.</div>
+    </div>
+    <div class="gap-card fixed">
+      <div class="gap-label fixed">Fixed in Design</div>
+      <div class="gap-title">No stock/delivery/rebate on cards</div>
+      <div class="gap-desc">Every product card now shows: availability chip (In stock / Special order), key spec chips (width, cu. ft., color), rebate badge where applicable.</div>
+    </div>
+    <div class="gap-card fixed">
+      <div class="gap-label fixed">Fixed in Design</div>
+      <div class="gap-title">Reviews siloed to /reviews</div>
+      <div class="gap-desc">Louis David March 2024 quote placed in: homepage Why Barto band, product detail trust section, and available as a component for category pages.</div>
+    </div>
+    <div class="gap-card fixed">
+      <div class="gap-label fixed">Fixed in Design</div>
+      <div class="gap-title">Schema markup missing</div>
+      <div class="gap-desc">Phase 3 implementation: LocalBusiness, OpeningHoursSpecification, GeoCoordinates, and BreadcrumbList schema built into Next.js layout components.</div>
+    </div>
+    <div class="gap-card partial">
+      <div class="gap-label partial">Phase 3 — Product Inquiry System</div>
+      <div class="gap-title">No prefilled model inquiry</div>
+      <div class="gap-desc">Design includes "Ask about this model" link on product pages. InquiryModal component (pre-populates model + brand, asks ZIP/delivery/haul-away) is a Phase 3 build.</div>
+    </div>
+    <div class="gap-card partial">
+      <div class="gap-label partial">Phase 2 — Content/Ops</div>
+      <div class="gap-title">Clearance center nearly empty</div>
+      <div class="gap-desc">Design includes Clearance with urgency mechanics ("Floor models · One available"). Admin clearance editor with condition grade, photos, and availability toggle is Phase 3.</div>
+    </div>
+    <div class="gap-card pending">
+      <div class="gap-label pending">Phase 2 — Content</div>
+      <div class="gap-title">Brand page is a logo dump</div>
+      <div class="gap-desc">Brand tiles need 1-line positioning copy ("Speed Queen for long-life laundry"). Design token exists; content is a copywriting task.</div>
+    </div>
+    <div class="gap-card pending">
+      <div class="gap-label pending">Phase 3 — SEO</div>
+      <div class="gap-title">No local SEO landing pages</div>
+      <div class="gap-desc">7 landing pages identified: Older Home, Room A/C, Washer/Dryer Older Homes, Rental Property, Clearance, Kitchen Packages, Same-Week Delivery. Phase 3 build.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 6: LAYOUT PATTERNS ══ -->
+<div class="doc-section">
+  <div class="section-label">Section 06</div>
+  <h2 class="section-title">Layout patterns</h2>
+  <p class="section-sub">Each variant uses a different hero and category layout while sharing the same product card, footer, and trust-bar components.</p>
+  <div class="rule"></div>
+
+  <div class="layout-grid">
+    <div class="layout-diagram">
+      <h3>Variant A — Split hero + Bento grid</h3>
+      <div class="diagram">
+┌──────────────────────┐
+│ HEADER               │
+├────────────┬─────────┤
+│ HERO TEXT  │ PHOTO   │
+│ (65%)      │ (35%)   │
+├────────────┴─────────┤
+│ CATEGORY BENTO 3×2  │
+├──────────────────────┤
+│ WHY BARTO 4-COL      │
+│ LOUIS DAVID QUOTE    │
+├──────────────────────┤
+│ SHOP BY NEED chips   │
+├──────────────────────┤
+│ FEATURED PRODUCTS 3× │
+├──────────────────────┤
+│ TRUST BAR            │
+├──────────────────────┤
+│ FOOTER 4-col         │
+└──────────────────────┘</div>
+    </div>
+    <div class="layout-diagram">
+      <h3>Variant B — Full-width centered hero + strip</h3>
+      <div class="diagram">
+┌──────────────────────┐
+│ HEADER               │
+├──────────────────────┤
+│  HERO (centered)     │
+│  Stats row 4-col     │
+├──────────────────────┤
+│ CATEGORY STRIP       │
+├──────────────────────┤
+│ STATS ROW 4-col      │
+├──────────────────────┤
+│  PULL QUOTE          │
+├──────────────────────┤
+│ SHOP BY NEED chips   │
+├──────────────────────┤
+│ PRODUCTS 4-col grid  │
+├──────────────────────┤
+│ DELIVERY CTA band    │
+├──────────────────────┤
+│ TRUST BAR · FOOTER   │
+└──────────────────────┘</div>
+    </div>
+    <div class="layout-diagram">
+      <h3>Variant C — Inverted split + 3×2 tiles</h3>
+      <div class="diagram">
+┌──────────────────────┐
+│ HEADER (rust top)    │
+├────────────┬─────────┤
+│ HERO TEXT  │ DARK    │
+│ (light bg) │ STATS   │
+├────────────┴─────────┤
+│ ANNOUNCE BAR (rust)  │
+├──────────────────────┤
+│ CATEGORY TILES 3×2   │
+├──────────────────────┤
+│ PROOF 01 · 02 · 03   │
+│ (numbered rows)      │
+├──────────────────────┤
+│ QUOTE BAND (rust bg) │
+├──────────────────────┤
+│ PRODUCTS 2-col wide  │
+├──────────────────────┤
+│ TRUST BAR · FOOTER   │
+└──────────────────────┘</div>
+    </div>
+    <div class="layout-diagram">
+      <h3>Variant D — Newspaper editorial</h3>
+      <div class="diagram">
+┌──────────────────────┐
+│ TOPBAR (forest)      │
+│ HEADER               │
+├──────────────────────┤
+│ DATELINE             │
+│ 80px HEADLINE │ CALL │
+│ DECK        │ BLOCK  │
+│ STATS       │ QUOTE  │
+│ CTAs        │ ADDR   │
+├──────────────────────┤
+│ SIDEBAR │ CAT LIST   │
+│ (copy)  │ (rows+arr) │
+├──────────────────────┤
+│ WHY BARTO alt rows   │
+│ 01 / 02 / 03         │
+├──────────────────────┤
+│ NEEDS (2-col)        │
+├──────────────────────┤
+│ PRODUCTS 3-col grid  │
+├──────────────────────┤
+│ TRUST BAR · FOOTER   │
+└──────────────────────┘</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 7: IMPLEMENTATION NOTES ══ -->
+<div class="doc-section">
+  <div class="section-label">Section 07</div>
+  <h2 class="section-title">Phase 3 — Next.js scaffold</h2>
+  <p class="section-sub">Full task breakdown. Status tracked in <code style="font-size:12px; background:#F0EDE8; padding:2px 6px; border-radius:2px;">PHASE-PLAN.md</code>. Stack: Next.js · Drizzle · Postgres · Tailwind · Replit Reserved VM.</p>
+  <div class="rule"></div>
+
+  <!-- Phase status legend -->
+  <div style="display:flex; gap:16px; margin-bottom:28px; font-size:12px; font-weight:700; letter-spacing:0.05em;">
+    <span style="color:#2A6A2A;">✅ Done</span>
+    <span style="color:#C4963A;">🔄 In Progress</span>
+    <span style="color:#999;">⏳ Pending</span>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+
+    <!-- 3A: Project Setup -->
+    <div style="background:white; border:1px solid #E0DDD8; padding:24px;">
+      <h3 style="font-size:11px; font-weight:700; margin-bottom:16px; color:#666; letter-spacing:0.1em; text-transform:uppercase;">3A · Project Setup</h3>
+      <ul style="font-size:13px; color:#444; line-height:2.2; padding-left:0; list-style:none;">
+        <li>⏳ <code style="font-size:11px;">create-next-app</code> with TypeScript + Tailwind</li>
+        <li>⏳ Drizzle ORM + Postgres connection</li>
+        <li>⏳ Tailwind design tokens from design system</li>
+        <li>⏳ Path aliases + folder structure</li>
+        <li>⏳ Environment variables (.env.local)</li>
+      </ul>
+    </div>
+
+    <!-- 3B: Database Schema -->
+    <div style="background:white; border:1px solid #E0DDD8; padding:24px;">
+      <h3 style="font-size:11px; font-weight:700; margin-bottom:16px; color:#666; letter-spacing:0.1em; text-transform:uppercase;">3B · Drizzle Schema Tables</h3>
+      <ul style="font-size:13px; color:#444; line-height:2.2; padding-left:0; list-style:none;">
+        <li>⏳ <strong>products</strong> — manufacturer catalog (brand, model, dims, specs, images)</li>
+        <li>⏳ <strong>local_inventory</strong> — Barto flags (in_stock, clearance, call_for_price)</li>
+        <li>⏳ <strong>brands</strong> — logo, positioning copy</li>
+        <li>⏳ <strong>categories</strong> — kitchen / laundry / AC / clearance</li>
+        <li>⏳ <strong>rebates</strong> — brand, dates, PDF link, applicable products</li>
+        <li>⏳ <strong>leads</strong> — model, ZIP, phone, delivery, haul_away</li>
+        <li>⏳ <strong>reviews</strong> — curated excerpts, permission flag</li>
+        <li>⏳ <strong>content_pages</strong> — local SEO landing page copy</li>
+        <li>⏳ <strong>admin_users</strong> — staff logins</li>
+      </ul>
+      <p style="font-size:11px; color:#999; margin-top:12px;">Rule: <code>products</code> is refreshable from manufacturer import. <code>local_inventory</code> is never overwritten by imports.</p>
+    </div>
+
+    <!-- 3C: Core Components -->
+    <div style="background:white; border:1px solid #E0DDD8; padding:24px;">
+      <h3 style="font-size:11px; font-weight:700; margin-bottom:16px; color:#666; letter-spacing:0.1em; text-transform:uppercase;">3C · Core Components</h3>
+      <ul style="font-size:13px; color:#444; line-height:2.2; padding-left:0; list-style:none;">
+        <li>⏳ <strong>LocalTrustBar</strong> — address, phone, hours, service area</li>
+        <li>⏳ <strong>ProductCard</strong> — stock chip, delivery note, rebate badge, 3 CTAs</li>
+        <li>⏳ <strong>FilterDrawer</strong> — sticky desktop / off-canvas mobile, 12 dimensions</li>
+        <li>⏳ <strong>InquiryModal</strong> — pre-fills model + brand, captures ZIP + phone + delivery</li>
+        <li>⏳ <strong>ClearanceCard</strong> — condition grade, "only 1 available", call CTA</li>
+        <li>⏳ <strong>ReviewPullQuote</strong> — Louis David quote, site-wide placement</li>
+        <li>⏳ <strong>PhoneCTA</strong> — tel: link, sticky mobile header</li>
+        <li>⏳ <strong>SpecTable</strong> — full manufacturer spec table</li>
+      </ul>
+    </div>
+
+    <!-- 3D: Page Routes -->
+    <div style="background:white; border:1px solid #E0DDD8; padding:24px;">
+      <h3 style="font-size:11px; font-weight:700; margin-bottom:16px; color:#666; letter-spacing:0.1em; text-transform:uppercase;">3D · Page Routes</h3>
+      <table style="font-size:12px; width:100%; border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P1</strong> <code>/</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P1</strong> <code>/categories/[slug]</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P1</strong> <code>/products/[id]</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P1</strong> <code>/clearance</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P1</strong> <code>/contact</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P1</strong> <code>/about</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P2</strong> <code>/brands/[slug]</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P2</strong> <code>/rebates</code> · <code>/financing</code> · <code>/reviews</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr style="border-bottom:1px solid #F0EDE8;">
+          <td style="padding:5px 0; color:#444;"><strong>P2</strong> <code>/admin</code></td><td style="color:#999;">⏳</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 0; color:#aaa;"><strong>P3</strong> 5× local SEO landing pages</td><td style="color:#999;">⏳</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 3E: Conversion Fixes -->
+    <div style="background:white; border:1px solid #E0DDD8; padding:24px;">
+      <h3 style="font-size:11px; font-weight:700; margin-bottom:16px; color:#666; letter-spacing:0.1em; text-transform:uppercase;">3E · Conversion Fixes (from Phase 1 gaps)</h3>
+      <ul style="font-size:12px; color:#444; line-height:2.2; padding-left:0; list-style:none;">
+        <li>⏳ Hero with address + phone + "since 1947" above fold</li>
+        <li>⏳ <code>InquiryModal</code> pre-fills model, tel: link on every product</li>
+        <li>⏳ <code>LocalTrustBar</code> in footer (address + hours always visible)</li>
+        <li>⏳ Mobile sticky header: [Call] [Directions] [Clearance] [Search]</li>
+        <li>⏳ Stock chip + delivery note on every <code>ProductCard</code></li>
+        <li>⏳ <code>ReviewPullQuote</code> on homepage + washer/dryer + older-homes pages</li>
+        <li>⏳ Brand tiles with positioning copy</li>
+        <li>⏳ <code>LocalBusiness</code> + <code>Product</code> + <code>BreadcrumbList</code> schema everywhere</li>
+        <li>⏳ Auto-generated meta descriptions per product and per category</li>
+        <li>⏳ Remove <code>maximum-scale=1.0</code> (accessibility violation)</li>
+      </ul>
+    </div>
+
+    <!-- 3F: Infrastructure -->
+    <div style="background:white; border:1px solid #E0DDD8; padding:24px;">
+      <h3 style="font-size:11px; font-weight:700; margin-bottom:16px; color:#666; letter-spacing:0.1em; text-transform:uppercase;">3F · Infrastructure</h3>
+      <ul style="font-size:13px; color:#444; line-height:2.2; padding-left:0; list-style:none;">
+        <li>⏳ CSV/feed product import script</li>
+        <li>⏳ Transactional email for leads (Resend or SendGrid)</li>
+        <li>⏳ External object storage for clearance photos (R2 or S3)</li>
+        <li>⏳ Replit Reserved VM deployment config</li>
+        <li>⏳ Custom domain: www.bartoappliances.com</li>
+      </ul>
+      <div style="margin-top:16px; padding:12px; background:#F5F2EC; font-size:11px; color:#666; line-height:1.7;">
+        <strong>Architecture rule:</strong> Modular monolith. No microservices. Next.js API routes for v1. External only for images (R2/S3) and email (Resend). Replit Reserved VM for predictable always-on behavior.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /doc-body -->
+
+<div class="doc-footer">
+  <span>Barto Appliance Rebuild — Design System v1.0</span>
+  <span>bartoappliances.com · Phase 2 complete · Phase 3 pending</span>
+</div>
+
+</body>
+</html>

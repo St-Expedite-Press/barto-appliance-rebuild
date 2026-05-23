@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barto Appliance — Variant D: Editorial White + Forest</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --teal:        #004A6E;
+  --teal-dark:   #003256;
+  --teal-mid:    #005F8C;
+  --teal-light:  #EAF3F8;
+  --orange:      #E8871A;
+  --orange-dark: #C96F10;
+  --amber:       #FFC20E;
+  --amber-dark:  #E0A800;
+  --red:         #C8321E;
+  --red-bg:      #FFF0EE;
+  --cream:       #FAF7F2;
+  --white:       #FFFFFF;
+  --text:        #1A1A1A;
+  --muted:       #6B7280;
+  --border:      #E5E7EB;
+  --border-dk:   #C8CDD4;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); font-size: 16px; line-height: 1.5; }
+
+/* ── ANNOUNCEMENT ── */
+.topbar { background: var(--teal); color: rgba(255,255,255,0.8); }
+.topbar-inner { max-width: 1280px; margin: 0 auto; padding: 8px 32px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+.topbar a { color: rgba(255,255,255,0.9); font-weight: 600; margin-left: 4px; }
+
+/* ── HEADER ── */
+.header { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.header-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 32px; height: 64px; }
+.logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; color: var(--teal); text-decoration: none; margin-right: auto; }
+.logo-mark { width: 36px; height: 36px; background: var(--teal); color: var(--white); font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+.logo-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; font-weight: 400; color: var(--muted); border-left: 1px solid var(--border); padding-left: 12px; margin-left: 4px; }
+nav { display: flex; gap: 32px; }
+nav a { font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; opacity: 0.7; }
+nav a:hover { opacity: 1; }
+.header-phone { font-size: 14px; font-weight: 600; color: var(--teal); text-decoration: none; }
+.clearance-btn { background: var(--red); color: var(--white); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 16px; text-decoration: none; white-space: nowrap; }
+
+/* ── HERO: NEWSPAPER EDITORIAL ── */
+.hero { border-bottom: 2px solid var(--text); background: var(--white); }
+.hero-inner { max-width: 1280px; margin: 0 auto; padding: 64px 32px; display: grid; grid-template-columns: 1fr 360px; gap: 64px; align-items: start; }
+.hero-left { border-right: 1px solid var(--border); padding-right: 64px; }
+.hero-dateline { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.hero h1 { font-size: 80px; font-weight: 700; color: var(--text); line-height: 0.95; margin-bottom: 24px; letter-spacing: -0.02em; }
+.hero h1 span { color: var(--teal); }
+.hero-deck { font-size: 21px; color: var(--muted); line-height: 1.45; margin-bottom: 32px; font-weight: 400; max-width: 600px; }
+.hero-deck em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--text); }
+.hero-divider { height: 1px; background: var(--border); margin: 32px 0; }
+.hero-meta-row { display: flex; gap: 40px; align-items: center; margin-bottom: 32px; }
+.hero-meta-num { }
+.hero-meta-num .n { font-size: 36px; font-weight: 700; color: var(--teal); }
+.hero-meta-num .l { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.hero-meta-sep { width: 1px; height: 40px; background: var(--border); }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-forest { background: #E8871A; color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 14px 28px; text-decoration: none; display: inline-block; border-radius: 2px; }
+.btn-forest:hover { background: #C96F10; }
+.btn-outline { background: transparent; color: var(--text); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 28px; border: 1.5px solid var(--border-dk); text-decoration: none; display: inline-block; border-radius: 2px; }
+.btn-outline:hover { border-color: var(--text); }
+
+.hero-right { }
+.hero-call-block { border: 1.5px solid var(--teal); padding: 28px; margin-bottom: 24px; }
+.hero-call-block .label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.hero-call-block .phone { font-size: 32px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+.hero-call-block .hours { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+.hero-call-block a { display: block; background: #E8871A; color: var(--white); text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px; text-decoration: none; border-radius: 2px; }
+
+.hero-quote-block { border-left: 3px solid var(--teal); padding: 16px 20px; }
+.hero-quote-block blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; line-height: 1.55; color: var(--text); margin-bottom: 10px; }
+.hero-quote-block cite { font-size: 11px; color: var(--muted); font-style: normal; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.hero-address-row { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); line-height: 1.7; }
+.hero-address-row strong { color: var(--text); }
+
+/* ── CATEGORY: EDITORIAL LIST ── */
+.categories { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.categories-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 240px 1fr; }
+.cat-sidebar { border-right: 1px solid var(--border); padding: 48px 32px 48px 0; }
+.cat-sidebar h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.cat-sidebar p { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+.cat-sidebar a { display: block; font-size: 13px; font-weight: 700; color: var(--teal); text-decoration: none; }
+.cat-list { padding: 48px 0 48px 48px; }
+.cat-item { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.cat-item:first-child { padding-top: 0; }
+.cat-item-left { display: flex; align-items: center; gap: 16px; }
+.cat-item-icon { width: 36px; height: 36px; color: var(--teal); opacity: 0.6; }
+.cat-item-text h3 { font-size: 17px; font-weight: 700; color: var(--text); }
+.cat-item-text p { font-size: 13px; color: var(--muted); }
+.cat-item-right { display: flex; align-items: center; gap: 16px; }
+.cat-count { font-size: 13px; color: var(--muted); }
+.cat-arrow-link { font-size: 13px; font-weight: 600; color: var(--teal); text-decoration: none; }
+.cat-item.clearance .cat-item-text h3 { color: var(--red); }
+.cat-item.clearance .cat-arrow-link { color: var(--red); }
+
+/* ── WHY BARTO (alternating) ── */
+.why { background: var(--cream); }
+.why-inner { max-width: 1280px; margin: 0 auto; padding: 80px 32px; }
+.why-header { margin-bottom: 64px; display: flex; align-items: flex-end; justify-content: space-between; }
+.why-header h2 { font-size: 40px; font-weight: 700; color: var(--text); }
+.why-header p { font-size: 14px; color: var(--muted); max-width: 320px; text-align: right; }
+.why-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--border-dk); }
+.why-row:last-child { border-bottom: 1px solid var(--border-dk); }
+.why-row-num { padding: 48px 48px 48px 0; border-right: 1px solid var(--border-dk); display: flex; flex-direction: column; align-items: flex-start; }
+.why-row-num .n { font-size: 72px; font-weight: 700; color: var(--border-dk); line-height: 1; }
+.why-row-num h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-top: 12px; }
+.why-row-content { padding: 48px 0 48px 48px; display: flex; flex-direction: column; justify-content: center; }
+.why-row-content p { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 480px; }
+.why-row.flipped .why-row-num { order: 2; padding: 48px 0 48px 48px; border-right: none; border-left: 1px solid var(--border-dk); }
+.why-row.flipped .why-row-content { order: 1; padding: 48px 48px 48px 0; }
+
+/* ── NEEDS ── */
+.needs { padding: 80px 32px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.needs-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: start; }
+.needs-left h2 { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.needs-left p { font-size: 14px; color: var(--muted); }
+.need-list { display: flex; flex-direction: column; gap: 0; }
+.need-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.need-item:first-child { border-top: 1px solid var(--border); }
+.need-item-text { font-size: 15px; font-weight: 500; color: var(--text); }
+.need-item-arrow { font-size: 18px; color: var(--teal); }
+
+/* ── PRODUCTS ── */
+.products { padding: 80px 32px; background: var(--white); }
+.products-inner { max-width: 1280px; margin: 0 auto; }
+.products-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid var(--text); }
+.products-top h2 { font-size: 32px; font-weight: 700; color: var(--text); }
+.products-top p { font-size: 13px; color: var(--muted); max-width: 300px; text-align: right; }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.product-card { background: var(--white); }
+.card-img { background: var(--cream) center/cover no-repeat; height: 220px; display: flex; align-items: center; justify-content: center; color: transparent; font-size: 12px; position: relative; border-bottom: 1px solid var(--border); }
+.card-badge { position: absolute; top: 12px; left: 0; background: var(--red); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; }
+.card-body { padding: 20px; }
+.card-brand { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+.card-model { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.card-desc { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.card-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.chip { font-size: 11px; padding: 3px 8px; border: 1px solid var(--border); color: var(--text); border-radius: 2px; }
+.chip.avail { background: var(--teal-lt); border-color: #A8CCCC; color: #1A4A4A; }
+.card-rebate { font-size: 11px; color: var(--red); font-weight: 600; margin-bottom: 14px; }
+.card-cta { background: #E8871A; color: var(--white); font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px; text-align: center; border: none; cursor: pointer; width: 100%; display: block; text-decoration: none; border-radius: 2px; }
+.card-cta:hover { background: #C96F10; }
+.card-cta2 { display: block; text-align: center; font-size: 12px; color: var(--text); font-weight: 600; padding: 10px; border: 1px solid var(--border); margin-top: 6px; text-decoration: none; border-radius: 2px; }
+.card-cta2:hover { background: var(--cream); }
+
+/* ── TRUST BAR ── */
+.trust-bar { background: var(--teal); }
+.trust-bar-inner { max-width: 1280px; margin: 0 auto; padding: 14px 32px; display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+.trust-item { font-size: 13px; color: rgba(255,255,255,0.7); }
+.trust-item strong { color: var(--white); }
+.trust-sep { color: rgba(255,255,255,0.2); }
+
+/* ── FOOTER ── */
+footer { background: var(--cream); border-top: 1px solid var(--border); color: var(--muted); }
+.footer-main { max-width: 1280px; margin: 0 auto; padding: 56px 32px; display: grid; grid-template-columns: 260px 1fr 1fr 1fr; gap: 48px; }
+.footer-brand .logo { margin-bottom: 12px; display: flex; }
+.footer-brand p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); margin-bottom: 16px; }
+.footer-col p { font-size: 14px; margin-bottom: 4px; }
+.footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; display: block; margin-bottom: 8px; }
+.footer-col a:hover { color: var(--text); }
+.footer-phone-big { font-size: 22px; font-weight: 700; color: var(--teal); margin: 8px 0 4px; }
+.hours-row { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; border-bottom: 1px solid var(--border); }
+.footer-bottom { border-top: 1px solid var(--border); }
+.footer-bottom-inner { max-width: 1280px; margin: 0 auto; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>Serving Metairie · New Orleans · Kenner · Jefferson Parish · Greater New Orleans</span>
+    <span>3833 Airline Drive, Metairie · Mon–Fri 9:30–6 · Sat 10–3 · <a href="tel:5048312734">(504) 831-2734</a></span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="images/barto-logo.png" alt="Barto Appliance" style="height:44px; width:auto; display:block;">
+      <span class="logo-tagline">Since 1947</span>
+    </a>
+    <nav>
+      <a href="#">Products ▾</a>
+      <a href="#">Brands</a>
+      <a href="#">Rebates</a>
+      <a href="#">Financing</a>
+      <a href="#">Reviews</a>
+    </nav>
+    <a href="tel:5048312734" class="header-phone">(504) 831-2734</a>
+    <a href="#" class="clearance-btn">Clearance</a>
+  </div>
+</header>
+
+<!-- HERO: EDITORIAL / NEWSPAPER -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-dateline">Metairie, Louisiana · Greater New Orleans · Est. 1947</div>
+      <h1>Major<br>appliances<br>for <span>greater<br>New Orleans.</span></h1>
+      <p class="hero-deck">
+        2,000+ appliances in stock at 3833 Airline Drive.
+        <em>They don't make 'em like they used to. We do.</em>
+      </p>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-row">
+        <div class="hero-meta-num">
+          <div class="n">2,000+</div>
+          <div class="l">In-stock appliances</div>
+        </div>
+        <div class="hero-meta-sep"></div>
+        <div class="hero-meta-num">
+          <div class="n">1947</div>
+          <div class="l">In business since</div>
+        </div>
+        <div class="hero-meta-sep"></div>
+        <div class="hero-meta-num">
+          <div class="n">15</div>
+          <div class="l">Major brands</div>
+        </div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-ctas">
+        <a href="#" class="btn-forest">Shop In-Stock Appliances</a>
+        <a href="#" class="btn-outline">Browse by Category</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-call-block">
+        <div class="label">Price by phone</div>
+        <div class="phone">(504) 831-2734</div>
+        <div class="hours">Mon–Fri 9:30 AM–6:00 PM · Sat 10–3</div>
+        <a href="tel:5048312734">Call Now for Price →</a>
+      </div>
+      <div class="hero-quote-block">
+        <blockquote>"After a terrible experience at a big box store, I called Barto and Terri took care of it all."</blockquote>
+        <cite>— Louis David, March 2024 · Google Review</cite>
+      </div>
+      <div class="hero-address-row">
+        <strong>Barto Appliance</strong><br>
+        3833 Airline Drive<br>
+        Metairie, LA 70001<br>
+        <a href="#" style="color:var(--teal); font-weight:600; font-size:13px;">Get Directions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES: EDITORIAL LIST -->
+<section class="categories">
+  <div class="categories-inner">
+    <div class="cat-sidebar">
+      <h2>Shop by appliance</h2>
+      <p>204 refrigerators. Washers. Dryers. Ranges. Dishwashers. Room A/C units. All in stock at Airline Drive.</p>
+      <a href="#">View all categories →</a>
+    </div>
+    <div class="cat-list">
+      <div class="cat-item">
+        <div class="cat-item-left">
+          <div class="cat-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="19" rx="1"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
+          </div>
+          <div class="cat-item-text">
+            <h3>Refrigerators</h3>
+            <p>Top freezer · French door · Side-by-side · Compact · Counter-depth</p>
+          </div>
+        </div>
+        <div class="cat-item-right">
+          <span class="cat-count">204 models</span>
+          <a href="#" class="cat-arrow-link">Browse →</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item-left">
+          <div class="cat-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="2" width="8" height="20" rx="1"/><rect x="13" y="2" width="8" height="20" rx="1"/></svg>
+          </div>
+          <div class="cat-item-text">
+            <h3>Washers &amp; Dryers</h3>
+            <p>Top load · Front load · Stackable pairs · Speed Queen commercial</p>
+          </div>
+        </div>
+        <div class="cat-item-right">
+          <span class="cat-count">Models in stock</span>
+          <a href="#" class="cat-arrow-link">Browse →</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item-left">
+          <div class="cat-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="16" rx="1"/><line x1="2" y1="12" x2="22" y2="12"/><circle cx="8" cy="9" r="1"/></svg>
+          </div>
+          <div class="cat-item-text">
+            <h3>Ranges &amp; Ovens</h3>
+            <p>Gas · Electric · Dual fuel · Wall ovens · Cooktops</p>
+          </div>
+        </div>
+        <div class="cat-item-right">
+          <span class="cat-count">Models in stock</span>
+          <a href="#" class="cat-arrow-link">Browse →</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item-left">
+          <div class="cat-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="16" height="14" rx="1"/><path d="M9 6V4M15 6V4"/></svg>
+          </div>
+          <div class="cat-item-text">
+            <h3>Room Air Conditioners</h3>
+            <p>Window · Wall · Portable · Heat pumps</p>
+          </div>
+        </div>
+        <div class="cat-item-right">
+          <span class="cat-count">Models in stock</span>
+          <a href="#" class="cat-arrow-link">Browse →</a>
+        </div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-item-left">
+          <div class="cat-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </div>
+          <div class="cat-item-text">
+            <h3>Dishwashers</h3>
+            <p>Built-in · Portable · Drawer</p>
+          </div>
+        </div>
+        <div class="cat-item-right">
+          <span class="cat-count">Models in stock</span>
+          <a href="#" class="cat-arrow-link">Browse →</a>
+        </div>
+      </div>
+      <div class="cat-item clearance">
+        <div class="cat-item-left">
+          <div class="cat-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C8321E" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          </div>
+          <div class="cat-item-text">
+            <h3>Clearance &amp; Scratch-Dent</h3>
+            <p>Floor models · Liquidation units · One available</p>
+          </div>
+        </div>
+        <div class="cat-item-right">
+          <span class="cat-count" style="color:var(--red);">Limited qty</span>
+          <a href="#" class="cat-arrow-link">Shop Now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BARTO (alternating rows) -->
+<section class="why">
+  <div class="why-inner">
+    <div class="why-header">
+      <h2>Why Barto?</h2>
+      <p>Three reasons this is the last appliance call you'll need to make.</p>
+    </div>
+    <div class="why-row">
+      <div class="why-row-num">
+        <div class="n">01</div>
+        <h3>We know New Orleans homes.</h3>
+      </div>
+      <div class="why-row-content">
+        <p>In business since 1947 — we've been delivering appliances into older kitchens, tight staircases, shotgun layouts, and upstairs laundry rooms longer than most big-box stores have existed. We coordinate specialty installation when standard delivery won't work.</p>
+      </div>
+    </div>
+    <div class="why-row flipped">
+      <div class="why-row-num">
+        <div class="n">02</div>
+        <h3>2,000+ appliances in stock, now.</h3>
+      </div>
+      <div class="why-row-content">
+        <p>Not a showroom. A real warehouse at 3833 Airline Drive, Metairie. Refrigerators, washers, dryers, ranges, dishwashers, and room air conditioners ready to take home or schedule same-week delivery.</p>
+      </div>
+    </div>
+    <div class="why-row">
+      <div class="why-row-num">
+        <div class="n">03</div>
+        <h3>A real person answers the phone.</h3>
+      </div>
+      <div class="why-row-content">
+        <p>Call (504) 831-2734. No hold menus. No bots. Someone who knows appliances picks up during store hours. Prices quoted by phone — we tell you what it costs, you decide. No pressure, no games.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP BY NEED -->
+<section class="needs">
+  <div class="needs-inner">
+    <div class="needs-left">
+      <h2>Shop by need, not by category.</h2>
+      <p>These are the real searches that bring people to Barto.</p>
+    </div>
+    <div class="need-list">
+      <a href="#" class="need-item" style="text-decoration:none; color:inherit;">
+        <span class="need-item-text">Apartment-size refrigerators</span>
+        <span class="need-item-arrow">→</span>
+      </a>
+      <a href="#" class="need-item" style="text-decoration:none; color:inherit;">
+        <span class="need-item-text">Washer &amp; dryer install — older New Orleans home</span>
+        <span class="need-item-arrow">→</span>
+      </a>
+      <a href="#" class="need-item" style="text-decoration:none; color:inherit;">
+        <span class="need-item-text">Rental property appliance replacement</span>
+        <span class="need-item-arrow">→</span>
+      </a>
+      <a href="#" class="need-item" style="text-decoration:none; color:inherit;">
+        <span class="need-item-text">Same-week delivery &amp; installation</span>
+        <span class="need-item-arrow">→</span>
+      </a>
+      <a href="#" class="need-item" style="text-decoration:none; color:inherit;">
+        <span class="need-item-text">Full kitchen packages — refrigerator, range, dishwasher</span>
+        <span class="need-item-arrow">→</span>
+      </a>
+      <a href="#" class="need-item" style="text-decoration:none; color:inherit;">
+        <span class="need-item-text">Clearance &amp; budget deals</span>
+        <span class="need-item-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="products-inner">
+    <div class="products-top">
+      <h2>In-stock now.</h2>
+      <p>Call to confirm availability. Prices quoted by phone — we don't hide behind a cart.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="card-img" style="background-image:url('images/product-french-door.jpg');">
+          <div class="card-badge">REBATE</div>
+          Product Image
+        </div>
+        <div class="card-body">
+          <div class="card-brand">Frigidaire Professional</div>
+          <div class="card-model">PRMC2285AF</div>
+          <div class="card-desc">Refrigerators — French 4-Door</div>
+          <div class="card-chips">
+            <span class="chip">35.8" wide</span>
+            <span class="chip">22.5 cu. ft.</span>
+            <span class="chip">Stainless</span>
+            <span class="chip avail">In stock</span>
+          </div>
+          <div class="card-rebate">Up to $2,500 rebate available ↗</div>
+          <a href="tel:5048312734" class="card-cta">(504) 831-2734 — Call for Price</a>
+          <a href="#" class="card-cta2">Request Availability →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" style="background-image:url('images/product-topload-washer.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Speed Queen</div>
+          <div class="card-model">AWN432SP</div>
+          <div class="card-desc">Washers — Top Load Commercial</div>
+          <div class="card-chips">
+            <span class="chip">27" wide</span>
+            <span class="chip">3.2 cu. ft.</span>
+            <span class="chip">White</span>
+            <span class="chip avail">In stock</span>
+          </div>
+          <a href="tel:5048312734" class="card-cta">(504) 831-2734 — Call for Price</a>
+          <a href="#" class="card-cta2">Request Availability →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-img" style="background-image:url('images/product-washer.jpg');">
+          <div class="card-badge">REBATE</div>
+          Product Image
+        </div>
+        <div class="card-body">
+          <div class="card-brand">KitchenAid</div>
+          <div class="card-model">KRMF706EBS</div>
+          <div class="card-desc">Refrigerators — French 5-Door</div>
+          <div class="card-chips">
+            <span class="chip">35.8" wide</span>
+            <span class="chip">25.8 cu. ft.</span>
+            <span class="chip">Black SS</span>
+            <span class="chip avail">In stock</span>
+          </div>
+          <div class="card-rebate">Up to $4,000 rebate available ↗</div>
+          <a href="tel:5048312734" class="card-cta">(504) 831-2734 — Call for Price</a>
+          <a href="#" class="card-cta2">Request Availability →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><strong>3833 Airline Drive</strong>, Metairie, LA 70001</div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item"><strong>(504) 831-2734</strong></div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item">Mon–Fri <strong>9:30 AM–6:00 PM</strong></div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item">Sat <strong>10:00 AM–3:00 PM</strong></div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item">Serving greater New Orleans</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:12px; display:flex;">
+        <img src="images/barto-logo.png" alt="Barto Appliance" style="height:36px; width:auto; display:block;">
+      </a>
+      <p>"Major appliances for greater New Orleans since 1947."</p>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <p style="color:var(--text); font-weight:600;">Barto Appliance</p>
+      <p>3833 Airline Drive</p>
+      <p>Metairie, LA 70001</p>
+      <div class="footer-phone-big">(504) 831-2734</div>
+      <div class="hours-row"><span>Mon–Thu</span><span>9:30 AM – 6:00 PM</span></div>
+      <div class="hours-row"><span>Friday</span><span>9:30 AM – 5:30 PM</span></div>
+      <div class="hours-row"><span>Saturday</span><span>10:00 AM – 3:00 PM</span></div>
+      <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+    </div>
+    <div class="footer-col">
+      <h4>Appliances</h4>
+      <a href="#">Refrigerators</a>
+      <a href="#">Washers &amp; Dryers</a>
+      <a href="#">Ranges &amp; Ovens</a>
+      <a href="#">Dishwashers</a>
+      <a href="#">Room Air Conditioners</a>
+      <a href="#">Clearance Center</a>
+    </div>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <a href="#">About Barto</a>
+      <a href="#">Brands We Carry</a>
+      <a href="#">Current Rebates</a>
+      <a href="#">Financing</a>
+      <a href="#">Customer Reviews</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span>© 2026 Barto Appliance. All rights reserved.</span>
+      <span>Serving Metairie · New Orleans · Kenner · Jefferson Parish · Greater New Orleans</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

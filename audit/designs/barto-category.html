@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refrigerators — Barto Appliance</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+  --teal:        #004A6E;
+  --teal-dark:   #003256;
+  --teal-mid:    #005F8C;
+  --teal-light:  #EAF3F8;
+  --orange:      #E8871A;
+  --orange-dark: #C96F10;
+  --amber:       #FFC20E;
+  --amber-dark:  #E0A800;
+  --red:         #C8321E;
+  --red-bg:      #FFF0EE;
+  --cream:       #FAF7F2;
+  --white:       #FFFFFF;
+  --text:        #1A1A1A;
+  --muted:       #6B7280;
+  --border:      #E5E7EB;
+  --border-dk:   #C8CDD4;
+}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+  a { color: inherit; text-decoration: none; }
+
+  /* HEADER */
+/* ── BRAND-ALIGNED HEADER (Barto teal) ── */
+  .site-header { background: #004A6E; border-bottom: none; }
+  .logo { color: white; }
+  .logo-mark { background: white; color: #004A6E; }
+  .nav a { color: rgba(255,255,255,0.85); }
+  .nav a:hover { border-bottom-color: #FFC20E; color: white; }
+  .ph { color: #FFC20E; font-weight: 700; }
+  .btn-clear { background: #E8871A; color: white; }
+  .btn-clear:hover { background: #C96F10; }
+  .site-header { background: var(--cream); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; max-width: 1400px; margin: 0 auto; }
+  .logo { font-size: 18px; font-weight: 700; color: var(--teal); display: flex; align-items: center; gap: 8px; }
+  .logo-mark { width: 26px; height: 26px; background: var(--teal); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: var(--cream); font-size: 12px; font-weight: 700; }
+  .nav { display: flex; gap: 28px; }
+  .nav a { font-size: 14px; font-weight: 500; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav a:hover { border-bottom-color: var(--teal); }
+  .header-right { display: flex; align-items: center; gap: 14px; }
+  .ph { font-size: 14px; font-weight: 600; color: var(--teal); }
+  .btn-clear { background: var(--red); color: white; padding: 7px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* BREADCRUMB */
+  .breadcrumb { max-width: 1400px; margin: 0 auto; padding: 14px 48px; font-size: 12px; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+  .breadcrumb a { color: var(--muted); } .breadcrumb a:hover { color: var(--teal); }
+  .breadcrumb .sep { color: var(--border); }
+
+  /* PAGE TITLE BAND */
+  .page-title-band { background: var(--white); border-bottom: 1px solid var(--border); padding: 28px 48px; max-width: 1400px; margin: 0 auto; }
+  .page-title-band h1 { font-size: 32px; font-weight: 700; color: var(--teal); letter-spacing: -0.5px; }
+  .page-title-band .count { font-size: 15px; color: var(--muted); margin-top: 4px; }
+  .page-title-band .local-callout { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: var(--muted); margin-top: 8px; }
+  .page-title-band .local-callout a { color: var(--teal); font-weight: 600; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 14px; }
+
+  /* MAIN LAYOUT */
+  .main-layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; max-width: 1400px; margin: 0 auto; min-height: 80vh; }
+
+  /* SIDEBAR */
+  .sidebar { border-right: 1px solid var(--border); padding: 24px; position: sticky; top: 60px; align-self: start; height: calc(100vh - 60px); overflow-y: auto; background: var(--cream); }
+  .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .sidebar-title { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text); }
+  .clear-all { font-size: 12px; color: var(--muted); text-decoration: underline; cursor: pointer; }
+  .filter-group { border-top: 1px solid var(--border); padding: 16px 0; }
+  .filter-group-title { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 10px; }
+  .filter-options { display: flex; flex-direction: column; gap: 6px; }
+  .filter-opt { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .filter-opt input[type=checkbox] { width: 14px; height: 14px; accent-color: var(--teal); cursor: pointer; }
+  .filter-opt label { font-size: 13px; color: var(--text); cursor: pointer; flex: 1; }
+  .filter-opt .count-badge { font-size: 11px; color: var(--muted); }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; }
+  .toggle-label { font-size: 13px; color: var(--text); }
+  .toggle { width: 36px; height: 20px; background: var(--border); border-radius: 10px; position: relative; cursor: pointer; transition: background 0.2s; }
+  .toggle.on { background: var(--teal); }
+  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; background: white; border-radius: 50%; transition: left 0.2s; }
+  .toggle.on::after { left: 19px; }
+  .toggle-rebate { width: 36px; height: 20px; background: var(--border); border-radius: 10px; position: relative; cursor: pointer; }
+  .toggle-rebate.on { background: var(--red); }
+  .toggle-rebate::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; background: white; border-radius: 50%; }
+  .color-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+  .swatch { width: 28px; height: 28px; border: 2px solid var(--border); cursor: pointer; position: relative; }
+  .swatch.selected { border-color: var(--teal); }
+  .swatch.ss { background: linear-gradient(135deg, #b0b0b0, #e0e0e0); }
+  .swatch.wh { background: #f8f8f8; }
+  .swatch.bk { background: #1a1a1a; }
+  .swatch.bks { background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border: 2px solid #444; }
+  .swatch.pr { background: repeating-linear-gradient(45deg, #ddd, #ddd 3px, #f5f5f5 3px, #f5f5f5 6px); }
+  .swatch-label { font-size: 10px; color: var(--muted); text-align: center; margin-top: 3px; width: 28px; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+  .swatch-item { display: flex; flex-direction: column; align-items: center; }
+  .needs-links { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+  .need-link { font-size: 12px; color: var(--teal); padding: 6px 10px; border: 1px solid var(--border); display: block; transition: background 0.15s; }
+  .need-link:hover { background: var(--teal); color: white; }
+
+  /* PRODUCT AREA */
+  .product-area { padding: 20px 28px; background: var(--cream); }
+  .product-area-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .showing { font-size: 13px; color: var(--muted); }
+  .sort-row { display: flex; align-items: center; gap: 12px; }
+  .sort-label { font-size: 13px; color: var(--muted); }
+  .sort-select { font-size: 13px; border: 1px solid var(--border); padding: 6px 10px; background: var(--white); font-family: inherit; color: var(--text); cursor: pointer; }
+  .view-toggle { display: flex; }
+  .view-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: var(--white); cursor: pointer; font-size: 14px; }
+  .view-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
+
+  /* PRODUCT GRID */
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .product-card { background: var(--white); border: 1px solid var(--border); display: flex; flex-direction: column; position: relative; transition: box-shadow 0.2s, border-color 0.2s; }
+  .product-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-color: #C0B8A8; }
+  .card-badges { position: absolute; top: 0; left: 0; display: flex; flex-direction: column; gap: 0; z-index: 1; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; }
+  .badge-rebate { background: var(--red); color: white; }
+  .badge-clearance { background: var(--red); color: white; }
+  .card-compare-box { position: absolute; top: 10px; right: 10px; z-index: 1; }
+  .compare-cb { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); cursor: pointer; }
+  .compare-cb input { width: 14px; height: 14px; accent-color: var(--teal); }
+  .card-img { height: 180px; background: #EDE8DF center/cover no-repeat; display: flex; align-items: center; justify-content: center; color: transparent; font-size: 12px; }
+  .card-body { padding: 16px 16px 0; flex: 1; }
+  .card-brand { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 3px; }
+  .card-model { font-size: 16px; font-weight: 700; color: var(--teal); letter-spacing: -0.2px; margin-bottom: 4px; }
+  .card-cat { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .card-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+  .chip { font-size: 10px; font-weight: 600; padding: 3px 7px; background: var(--cream); border: 1px solid var(--border); color: var(--muted); }
+  .chip-avail { font-size: 10px; font-weight: 600; padding: 3px 7px; background: var(--blue-light); border: 1px solid var(--blue); color: #3A6A67; }
+  .chip-rebate-text { font-size: 10px; font-weight: 600; color: var(--red); }
+  .card-actions { padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 7px; }
+  .btn-call { display: block; background: #E8871A; color: white; padding: 10px; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; cursor: pointer; transition: background 0.15s; }
+  .btn-call:hover { background: var(--green-light); }
+  .btn-request { display: block; background: transparent; color: var(--teal); padding: 9px; text-align: center; font-size: 13px; font-weight: 600; border: 1.5px solid var(--teal); cursor: pointer; transition: background 0.15s; }
+  .btn-request:hover { background: #EEF4F1; }
+
+  /* PAGINATION */
+  .pagination { display: flex; align-items: center; gap: 6px; margin-top: 32px; justify-content: center; }
+  .page-btn { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); font-size: 13px; font-weight: 500; cursor: pointer; background: var(--white); }
+  .page-btn.active { background: var(--teal); color: white; border-color: var(--teal); }
+  .page-btn:hover:not(.active) { border-color: var(--teal); }
+  .page-btn.dots { border: none; background: none; cursor: default; }
+
+  /* TRUST BAR */
+  .trust-bar { background: var(--green-light); padding: 14px 48px; display: flex; align-items: center; justify-content: center; gap: 32px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); border-top: 1px solid rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo"><img src="images/barto-logo.png" alt="Barto Appliance" style="height:44px; width:auto; display:block;"></div>
+    <nav class="nav">
+      <a href="#">Products ▾</a><a href="#">Brands</a><a href="#">Rebates</a><a href="#">Financing</a><a href="#">Reviews</a>
+    </nav>
+    <div class="header-right">
+      <a href="tel:5048312734" class="ph">(504) 831-2734</a>
+      <a href="#" class="btn-clear">Clearance Center</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div style="border-bottom:1px solid var(--border);">
+  <div class="breadcrumb">
+    <a href="#">Home</a><span class="sep">/</span>
+    <a href="#">Products</a><span class="sep">/</span>
+    <a href="#">Kitchen</a><span class="sep">/</span>
+    <span>Refrigerators</span>
+  </div>
+</div>
+
+<!-- PAGE TITLE -->
+<div style="border-bottom:1px solid var(--border);">
+  <div class="page-title-band">
+    <h1>Refrigerators</h1>
+    <div class="count">204 products · Showing 1–12</div>
+    <div class="local-callout">
+      Need help choosing? Call <a href="tel:5048312734">(504) 831-2734</a> — we answer.
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Filters</span>
+      <span class="clear-all">Clear all</span>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Type</div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Top Freezer</span> <span class="count-badge">(82)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Bottom Freezer</span> <span class="count-badge">(28)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">French 3-Door</span> <span class="count-badge">(44)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">French 4-Door</span> <span class="count-badge">(21)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Side-by-Side</span> <span class="count-badge">(18)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Compact</span> <span class="count-badge">(11)</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Brand</div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Frigidaire</span> <span class="count-badge">(94)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Frigidaire Gallery</span> <span class="count-badge">(31)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Frigidaire Professional</span> <span class="count-badge">(18)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Whirlpool</span> <span class="count-badge">(27)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">KitchenAid</span> <span class="count-badge">(14)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Maytag</span> <span class="count-badge">(12)</span></label>
+        <label class="filter-opt"><input type="checkbox"> <span class="label">Vitara</span> <span class="count-badge">(8)</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Width</div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="radio" name="width"> <span class="label">22" or less (apartment)</span></label>
+        <label class="filter-opt"><input type="radio" name="width"> <span class="label">23"–28"</span></label>
+        <label class="filter-opt"><input type="radio" name="width"> <span class="label">29"–31"</span></label>
+        <label class="filter-opt"><input type="radio" name="width"> <span class="label">32"–34"</span></label>
+        <label class="filter-opt"><input type="radio" name="width"> <span class="label">35"–37"</span></label>
+        <label class="filter-opt"><input type="radio" name="width"> <span class="label">38" or more</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Color</div>
+      <div class="color-swatches">
+        <div class="swatch-item"><div class="swatch ss"></div><div class="swatch-label">Stainless</div></div>
+        <div class="swatch-item"><div class="swatch wh" style="border:1px solid #ddd;"></div><div class="swatch-label">White</div></div>
+        <div class="swatch-item"><div class="swatch bk"></div><div class="swatch-label">Black</div></div>
+        <div class="swatch-item"><div class="swatch bks"></div><div class="swatch-label">Blk SS</div></div>
+        <div class="swatch-item"><div class="swatch pr"></div><div class="swatch-label">Panel</div></div>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Installation</div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox"> Freestanding</label>
+        <label class="filter-opt"><input type="checkbox"> Built-In</label>
+        <label class="filter-opt"><input type="checkbox"> Counter-Depth</label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Features</div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox"> Energy Star</label>
+        <label class="filter-opt"><input type="checkbox"> Wi-Fi Connected</label>
+        <label class="filter-opt"><input type="checkbox"> Ice Maker</label>
+        <label class="filter-opt"><input type="checkbox"> Water Dispenser</label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Availability</div>
+      <div class="filter-options" style="gap:10px;">
+        <div class="toggle-row">
+          <span class="toggle-label">In Stock Only</span>
+          <div class="toggle on"></div>
+        </div>
+        <div class="toggle-row">
+          <span class="toggle-label" style="color:var(--red);font-weight:600;">Rebate Available</span>
+          <div class="toggle-rebate"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title" style="margin-bottom:10px;">Shop by Need</div>
+      <div class="needs-links">
+        <a href="#" class="need-link">Apartment-size (23" or less)</a>
+        <a href="#" class="need-link">Counter-depth</a>
+        <a href="#" class="need-link">Older home install</a>
+        <a href="#" class="need-link">Rental replacement</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- PRODUCT AREA -->
+  <div class="product-area">
+    <div class="product-area-top">
+      <div class="showing">Showing <strong>1–12</strong> of <strong>204</strong> refrigerators</div>
+      <div class="sort-row">
+        <span class="sort-label">Sort:</span>
+        <select class="sort-select"><option>Default</option><option>Brand A–Z</option><option>Width: Narrow first</option></select>
+        <div class="view-toggle">
+          <div class="view-btn active" title="Grid">⊞</div>
+          <div class="view-btn" title="List">☰</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- Cards 1–6 with rebate badges -->
+      <div class="product-card">
+        <div class="card-badges"><span class="badge badge-rebate">Rebate</span></div>
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-french-door.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Frigidaire</div>
+          <div class="card-model">FFHT1822UB</div>
+          <div class="card-cat">Top Freezer · 18 cu. ft. · Black</div>
+          <div class="card-chips">
+            <span class="chip">28" wide</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+          <div class="chip-rebate-text">Rebate available ↗</div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/hero-kitchen-wide.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Frigidaire</div>
+          <div class="card-model">FFET1022UB</div>
+          <div class="card-cat">Top Freezer · 10.1 cu. ft. · Black · Apartment</div>
+          <div class="card-chips">
+            <span class="chip">23.75" wide</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-badges"><span class="badge badge-rebate">Rebate</span></div>
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-french-door.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Frigidaire Gallery</div>
+          <div class="card-model">GRFS2853AF</div>
+          <div class="card-cat">French 3-Door · 28.2 cu. ft. · Stainless</div>
+          <div class="card-chips">
+            <span class="chip">36" wide</span>
+            <span class="chip">Counter-depth</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+          <div class="chip-rebate-text">Rebate available ↗</div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/hero-kitchen-light.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Whirlpool</div>
+          <div class="card-model">WRT134TFDW</div>
+          <div class="card-cat">Top Freezer · 14 cu. ft. · White</div>
+          <div class="card-chips">
+            <span class="chip">24" wide</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-washer.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">KitchenAid</div>
+          <div class="card-model">KRFF507HPS</div>
+          <div class="card-cat">French 3-Door · 26.8 cu. ft. · Stainless</div>
+          <div class="card-chips">
+            <span class="chip">36" wide</span>
+            <span class="chip">Energy Star</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-badges"><span class="badge badge-rebate">Rebate</span></div>
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-french-door.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Frigidaire Professional</div>
+          <div class="card-model">PRMC2285AF</div>
+          <div class="card-cat">French 4-Door · 22.5 cu. ft. · Stainless</div>
+          <div class="card-chips">
+            <span class="chip">35.8" wide</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+          <div class="chip-rebate-text">Up to $2,500 rebate ↗</div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/hero-kitchen-wide.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Maytag</div>
+          <div class="card-model">MRT118FFFZ</div>
+          <div class="card-cat">Top Freezer · 18.1 cu. ft. · Stainless</div>
+          <div class="card-chips">
+            <span class="chip">30" wide</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-french-door.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Frigidaire</div>
+          <div class="card-model">FFSS2615TS</div>
+          <div class="card-cat">Side-by-Side · 25.5 cu. ft. · Stainless</div>
+          <div class="card-chips">
+            <span class="chip">36" wide</span>
+            <span class="chip">Ice + Water</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/hero-kitchen-light.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Vitara</div>
+          <div class="card-model">VTFR1800EWE</div>
+          <div class="card-cat">Top Freezer · 17.6 cu. ft. · White</div>
+          <div class="card-chips">
+            <span class="chip">28" wide</span>
+            <span class="chip" style="color:var(--red);border-color:var(--red);">Special order</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-washer.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Whirlpool</div>
+          <div class="card-model">WRB322DMBW</div>
+          <div class="card-cat">Bottom Freezer · 22 cu. ft. · White</div>
+          <div class="card-chips">
+            <span class="chip">33" wide</span>
+            <span class="chip">Energy Star</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-badges"><span class="badge badge-rebate">Rebate</span></div>
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-topload-washer.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">KitchenAid</div>
+          <div class="card-model">KRMF706EBS</div>
+          <div class="card-cat">French 5-Door · 25.8 cu. ft. · Black Stainless</div>
+          <div class="card-chips">
+            <span class="chip">35.8" wide</span>
+            <span class="chip">Counter-depth</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+          <div class="chip-rebate-text">Up to $4,000 rebate ↗</div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="card-compare-box"><label class="compare-cb"><input type="checkbox"> Compare</label></div>
+        <div class="card-img" style="background-image:url('images/product-french-door.jpg');"></div>
+        <div class="card-body">
+          <div class="card-brand">Frigidaire</div>
+          <div class="card-model">FFHI1835VS</div>
+          <div class="card-cat">Top Freezer · 18.3 cu. ft. · Silver Mist</div>
+          <div class="card-chips">
+            <span class="chip">28" wide</span>
+            <span class="chip">Energy Star</span>
+            <span class="chip-avail">In stock</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="tel:5048312734" class="btn-call">(504) 831-2734</a>
+          <a href="#" class="btn-request">Request Availability →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <div class="page-btn active">1</div>
+      <div class="page-btn">2</div>
+      <div class="page-btn">3</div>
+      <div class="page-btn dots">…</div>
+      <div class="page-btn">16</div>
+      <div class="page-btn">17</div>
+      <div class="page-btn">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span>3833 Airline Drive, Metairie, LA 70001</span>
+  <span style="opacity:.3">·</span>
+  <span>(504) 831-2734</span>
+  <span style="opacity:.3">·</span>
+  <span>Mon–Fri 9:30–6 &nbsp;·&nbsp; Sat 10–3</span>
+  <span style="opacity:.3">·</span>
+  <span>Serving greater New Orleans</span>
+</div>
+
+</body>
+</html>

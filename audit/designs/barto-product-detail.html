@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frigidaire FFET1022UB — Barto Appliance</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+  --teal:        #004A6E;
+  --teal-dark:   #003256;
+  --teal-mid:    #005F8C;
+  --teal-light:  #EAF3F8;
+  --orange:      #E8871A;
+  --orange-dark: #C96F10;
+  --amber:       #FFC20E;
+  --amber-dark:  #E0A800;
+  --red:         #C8321E;
+  --red-bg:      #FFF0EE;
+  --cream:       #FAF7F2;
+  --white:       #FFFFFF;
+  --text:        #1A1A1A;
+  --muted:       #6B7280;
+  --border:      #E5E7EB;
+  --border-dk:   #C8CDD4;
+}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+  a { color: inherit; text-decoration: none; }
+
+  /* HEADER */
+/* ── BRAND-ALIGNED HEADER (Barto teal) ── */
+  .site-header { background: #004A6E; border-bottom: none; }
+  .logo { color: white; }
+  .logo-mark { background: white; color: #004A6E; }
+  .nav a { color: rgba(255,255,255,0.85); }
+  .nav a:hover { border-bottom-color: #FFC20E; color: white; }
+  .ph { color: #FFC20E; font-weight: 700; }
+  .btn-clear { background: #E8871A; color: white; }
+  .btn-clear:hover { background: #C96F10; }
+  .site-header { background: var(--cream); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; max-width: 1400px; margin: 0 auto; }
+  .logo { font-size: 18px; font-weight: 700; color: var(--teal); display: flex; align-items: center; gap: 8px; }
+  .logo-mark { width: 26px; height: 26px; background: var(--teal); border-radius: 2px; display: flex; align-items: center; justify-content: center; color: var(--cream); font-size: 12px; font-weight: 700; }
+  .nav { display: flex; gap: 28px; }
+  .nav a { font-size: 14px; font-weight: 500; border-bottom: 2px solid transparent; padding: 4px 0; }
+  .nav a:hover { border-bottom-color: var(--teal); }
+  .header-right { display: flex; align-items: center; gap: 14px; }
+  .ph { font-size: 14px; font-weight: 600; color: var(--teal); }
+  .btn-clear { background: var(--red); color: white; padding: 7px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* BREADCRUMB */
+  .breadcrumb { max-width: 1400px; margin: 0 auto; padding: 14px 48px; font-size: 12px; color: var(--muted); display: flex; gap: 6px; align-items: center; border-bottom: 1px solid var(--border); }
+  .breadcrumb a { color: var(--muted); } .breadcrumb a:hover { color: var(--teal); }
+  .breadcrumb .sep { color: var(--border); }
+
+  /* PRODUCT MAIN */
+  .product-main { max-width: 1400px; margin: 0 auto; padding: 40px 48px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: start; }
+
+  /* LEFT: IMAGE */
+  .img-gallery {}
+  .img-main { background: #EDE8DF url('images/product-french-door.jpg') center/cover no-repeat; height: 420px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; border: 1px solid var(--border); position: relative; }
+  .img-main-label { display: none; }
+  .img-hint { font-size: 11px; color: var(--border); margin-top: 6px; }
+  .img-thumbs { display: flex; gap: 8px; margin-top: 12px; }
+  .thumb { width: 72px; height: 72px; background: #EDE8DF; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--muted); cursor: pointer; }
+  .thumb.active { border-color: var(--teal); border-width: 2px; }
+  .docs-section { margin-top: 28px; }
+  .docs-title { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .doc-links { display: flex; flex-direction: column; gap: 8px; }
+  .doc-link { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--teal); font-weight: 500; }
+  .doc-link:hover { text-decoration: underline; }
+  .doc-icon { font-size: 14px; }
+
+  /* RIGHT: PURCHASE */
+  .purchase-block {}
+  .product-brand-line { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .brand-name { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); }
+  .brand-logo-placeholder { height: 24px; background: var(--border); width: 72px; opacity: 0.5; }
+  .product-model { font-size: 36px; font-weight: 700; color: var(--teal); letter-spacing: -0.5px; margin-bottom: 8px; }
+  .product-category { font-size: 14px; color: var(--muted); margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .product-desc { font-size: 15px; line-height: 1.65; color: var(--text); margin-bottom: 20px; }
+  .spec-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .spec-chip { font-size: 12px; font-weight: 600; padding: 5px 12px; background: var(--cream); border: 1px solid var(--border); color: var(--muted); }
+  .avail-chip { display: flex; align-items: center; gap: 8px; background: var(--blue-light); border: 1.5px solid var(--blue); padding: 10px 16px; margin-bottom: 10px; }
+  .avail-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; }
+  .avail-text { font-size: 13px; font-weight: 600; color: #3A6A67; }
+  .delivery-note { font-size: 12px; color: var(--muted); margin-bottom: 24px; padding-left: 2px; line-height: 1.7; }
+  .delivery-note span { color: var(--teal); font-weight: 500; }
+
+  /* PRICING BLOCK */
+  .pricing-block { background: var(--teal); padding: 24px; margin-bottom: 16px; }
+  .pricing-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+  .pricing-phone { font-size: 28px; font-weight: 700; color: white; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .pricing-hours { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+  .btn-call-main { display: block; width: 100%; background: var(--cream); color: var(--teal); padding: 14px; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; margin-bottom: 10px; transition: background 0.15s; }
+  .btn-call-main:hover { background: white; }
+  .btn-email { display: block; width: 100%; background: transparent; color: rgba(255,255,255,0.8); padding: 13px; text-align: center; font-size: 14px; font-weight: 600; border: 1.5px solid rgba(255,255,255,0.3); cursor: pointer; transition: border-color 0.15s; }
+  .btn-email:hover { border-color: rgba(255,255,255,0.7); }
+
+  .ask-link { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 16px; display: block; }
+  .ask-link a { color: var(--teal); text-decoration: underline; }
+  .rebate-notice { font-size: 13px; color: var(--red); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .rebate-notice a { text-decoration: underline; }
+  .financing-note { font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 12px; }
+  .compare-row { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--muted); }
+  .compare-row input { accent-color: var(--teal); }
+
+  /* SPEC TABLE */
+  .spec-section { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .spec-inner { max-width: 1400px; margin: 0 auto; padding: 48px 48px; }
+  .spec-h2 { font-size: 22px; font-weight: 700; color: var(--teal); margin-bottom: 28px; letter-spacing: -0.3px; }
+  .spec-table { width: 100%; border-collapse: collapse; }
+  .spec-group-header { background: var(--cream); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 10px 16px; border-top: 2px solid var(--border); }
+  .spec-row td { padding: 10px 16px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .spec-row:nth-child(even) td { background: #FAF7F2; }
+  .spec-key { color: var(--muted); font-weight: 500; width: 40%; }
+  .spec-val { color: var(--text); font-weight: 400; }
+
+  /* LOCAL TRUST SECTION */
+  .trust-section { background: var(--green-tint); border-top: 1px solid #C8DDD5; border-bottom: 1px solid #C8DDD5; }
+  .trust-inner { max-width: 1400px; margin: 0 auto; padding: 48px 48px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+  .trust-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .trust-col-body { font-size: 14px; color: var(--text); line-height: 1.65; }
+  .trust-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; line-height: 1.65; color: var(--text); }
+  .trust-cite { font-size: 12px; color: var(--muted); margin-top: 10px; font-style: normal; display: block; }
+  .trust-contact a { color: var(--teal); font-weight: 600; font-size: 20px; display: block; margin-bottom: 6px; }
+
+  /* RELATED */
+  .related-section { max-width: 1400px; margin: 0 auto; padding: 48px 48px; }
+  .related-h2 { font-size: 22px; font-weight: 700; color: var(--teal); margin-bottom: 24px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .r-card { background: var(--white); border: 1px solid var(--border); }
+  .r-img { height: 160px; background: #EDE8DF; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
+  .r-body { padding: 14px; }
+  .r-brand { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 3px; }
+  .r-model { font-size: 15px; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+  .r-cat { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .r-chips { display: flex; gap: 5px; margin-bottom: 12px; }
+  .r-chip { font-size: 10px; padding: 2px 6px; background: var(--cream); border: 1px solid var(--border); color: var(--muted); }
+  .r-ctas { display: flex; flex-direction: column; gap: 6px; padding: 0 14px 14px; }
+  .r-btn-call { background: var(--teal); color: white; padding: 9px; text-align: center; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+  .r-btn-req { background: transparent; color: var(--teal); padding: 8px; text-align: center; font-size: 12px; font-weight: 600; border: 1.5px solid var(--teal); }
+
+  /* TRUST BAR */
+  .trust-bar { background: var(--green-light); padding: 14px 48px; display: flex; align-items: center; justify-content: center; gap: 32px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo"><img src="images/barto-logo.png" alt="Barto Appliance" style="height:44px; width:auto; display:block;"></div>
+    <nav class="nav">
+      <a href="#">Products ▾</a><a href="#">Brands</a><a href="#">Rebates</a><a href="#">Financing</a><a href="#">Reviews</a>
+    </nav>
+    <div class="header-right">
+      <a href="tel:5048312734" class="ph">(504) 831-2734</a>
+      <a href="#" class="btn-clear">Clearance Center</a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Home</a><span class="sep">/</span>
+  <a href="#">Refrigerators</a><span class="sep">/</span>
+  <a href="#">Top Freezer</a><span class="sep">/</span>
+  <span>Frigidaire FFET1022UB</span>
+</div>
+
+<!-- PRODUCT MAIN -->
+<div class="product-main">
+
+  <!-- LEFT: Images + Docs -->
+  <div class="img-gallery">
+    <div class="img-main">
+      <div class="img-main-label">
+        <div style="font-size:40px;color:var(--border);">📷</div>
+        <div>Frigidaire FFET1022UB</div>
+        <div class="img-hint">Click to enlarge</div>
+      </div>
+    </div>
+    <div class="img-thumbs">
+      <div class="thumb active">1</div>
+      <div class="thumb">2</div>
+      <div class="thumb">3</div>
+      <div class="thumb">4</div>
+      <div class="thumb">5</div>
+      <div class="thumb">6</div>
+    </div>
+    <div class="docs-section">
+      <div class="docs-title">Product Documents</div>
+      <div class="doc-links">
+        <a href="#" class="doc-link"><span class="doc-icon">📄</span> Product Specification Sheet</a>
+        <a href="#" class="doc-link"><span class="doc-icon">📐</span> Dimension Sheet</a>
+        <a href="#" class="doc-link"><span class="doc-icon">🛡️</span> Warranty Details</a>
+        <a href="#" class="doc-link"><span class="doc-icon">📖</span> Owner's Manual</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Purchase -->
+  <div class="purchase-block">
+    <div class="product-brand-line">
+      <div class="brand-name">Frigidaire</div>
+      <div class="brand-logo-placeholder"></div>
+    </div>
+    <div class="product-model">FFET1022UB</div>
+    <div class="product-category">Refrigerators — Top Freezer · Apartment Size</div>
+    <p class="product-desc">
+      10.1 cu. ft. top freezer apartment-size refrigerator with SpaceWise® adjustable glass shelving and humidity-controlled crisper drawers. Ready-Select® controls, frost-free operation, LED lighting, ADA compliant. Reversible door. Energy Star certified.
+    </p>
+
+    <div class="spec-chips">
+      <span class="spec-chip">23.75" wide</span>
+      <span class="spec-chip">59.87" tall</span>
+      <span class="spec-chip">10.1 cu. ft.</span>
+      <span class="spec-chip">Black</span>
+      <span class="spec-chip">Energy Star</span>
+      <span class="spec-chip">ADA Compliant</span>
+    </div>
+
+    <div class="avail-chip">
+      <div class="avail-dot"></div>
+      <div class="avail-text">In stock — call to confirm availability</div>
+    </div>
+    <div class="delivery-note">
+      <span>Local delivery available</span> · Installation coordination ·
+      Haul-away by request · We know New Orleans houses.
+    </div>
+
+    <div class="pricing-block">
+      <div class="pricing-label">Price by phone</div>
+      <div class="pricing-phone">(504) 831-2734</div>
+      <div class="pricing-hours">Mon–Fri 9:30 AM – 6:00 PM &nbsp;·&nbsp; Sat 10:00 AM – 3:00 PM</div>
+      <a href="tel:5048312734" class="btn-call-main">Call Now for Price</a>
+      <a href="#" class="btn-email">Request Availability by Email →</a>
+    </div>
+
+    <div class="ask-link">Or <a href="#">ask about this model</a> — we'll send details by text or email</div>
+
+    <div class="rebate-notice">
+      📋 <a href="#">Rebate available on this model</a>
+    </div>
+    <div class="financing-note">
+      Wells Fargo: 12 months 0% interest on purchases over $499.
+      <a href="#" style="color:var(--teal);font-weight:600;"> View financing options →</a>
+    </div>
+
+    <div class="compare-row">
+      <input type="checkbox" id="compare"> <label for="compare">Add to comparison</label>
+    </div>
+  </div>
+</div>
+
+<!-- SPEC TABLE -->
+<div class="spec-section">
+  <div class="spec-inner">
+    <div class="spec-h2">Full specifications</div>
+    <table class="spec-table">
+      <tr><td colspan="2" class="spec-group-header">General</td></tr>
+      <tr class="spec-row"><td class="spec-key">Refrigerator Type</td><td class="spec-val">Top Freezer</td></tr>
+      <tr class="spec-row"><td class="spec-key">Installation Type</td><td class="spec-val">Freestanding</td></tr>
+      <tr class="spec-row"><td class="spec-key">Counter-Depth</td><td class="spec-val">No</td></tr>
+      <tr class="spec-row"><td class="spec-key">Door Hinge</td><td class="spec-val">Right (reversible)</td></tr>
+      <tr class="spec-row"><td class="spec-key">Color</td><td class="spec-val">Black</td></tr>
+
+      <tr><td colspan="2" class="spec-group-header">Capacity</td></tr>
+      <tr class="spec-row"><td class="spec-key">Total Capacity</td><td class="spec-val">10.1 cu. ft.</td></tr>
+      <tr class="spec-row"><td class="spec-key">Refrigerator</td><td class="spec-val">7.4 cu. ft.</td></tr>
+      <tr class="spec-row"><td class="spec-key">Freezer</td><td class="spec-val">2.7 cu. ft.</td></tr>
+
+      <tr><td colspan="2" class="spec-group-header">Refrigerator Features</td></tr>
+      <tr class="spec-row"><td class="spec-key">Shelving</td><td class="spec-val">2 SpaceWise® adjustable glass shelves + 1 fixed glass</td></tr>
+      <tr class="spec-row"><td class="spec-key">Crisper Drawers</td><td class="spec-val">2 clear Store-More™ with humidity control</td></tr>
+      <tr class="spec-row"><td class="spec-key">Door Bins</td><td class="spec-val">1 full-width fixed + 1 full-width gallon door bin</td></tr>
+      <tr class="spec-row"><td class="spec-key">Lighting</td><td class="spec-val">LED</td></tr>
+      <tr class="spec-row"><td class="spec-key">Controls</td><td class="spec-val">Ready-Select®</td></tr>
+      <tr class="spec-row"><td class="spec-key">Frost Free</td><td class="spec-val">Yes</td></tr>
+      <tr class="spec-row"><td class="spec-key">Wi-Fi</td><td class="spec-val">No</td></tr>
+
+      <tr><td colspan="2" class="spec-group-header">Ice & Water</td></tr>
+      <tr class="spec-row"><td class="spec-key">Ice System</td><td class="spec-val">None</td></tr>
+      <tr class="spec-row"><td class="spec-key">Water System</td><td class="spec-val">None</td></tr>
+
+      <tr><td colspan="2" class="spec-group-header">Certifications</td></tr>
+      <tr class="spec-row"><td class="spec-key">Energy Star</td><td class="spec-val">Yes</td></tr>
+      <tr class="spec-row"><td class="spec-key">ADA Compliant</td><td class="spec-val">Yes</td></tr>
+
+      <tr><td colspan="2" class="spec-group-header">Dimensions</td></tr>
+      <tr class="spec-row"><td class="spec-key">Width</td><td class="spec-val">23.75"</td></tr>
+      <tr class="spec-row"><td class="spec-key">Height (with hinge)</td><td class="spec-val">59.87"</td></tr>
+      <tr class="spec-row"><td class="spec-key">Depth (with handles)</td><td class="spec-val">26"</td></tr>
+      <tr class="spec-row"><td class="spec-key">Depth (door open 90°)</td><td class="spec-val">48"</td></tr>
+      <tr class="spec-row"><td class="spec-key">Weight</td><td class="spec-val">132 lbs</td></tr>
+
+      <tr><td colspan="2" class="spec-group-header">Electrical</td></tr>
+      <tr class="spec-row"><td class="spec-key">Voltage / Hz / Amps</td><td class="spec-val">115V / 60Hz / 15A</td></tr>
+
+      <tr><td colspan="2" class="spec-group-header">Warranty</td></tr>
+      <tr class="spec-row"><td class="spec-key">Warranty</td><td class="spec-val">Limited 1-year parts and labor</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- LOCAL TRUST SECTION -->
+<div class="trust-section">
+  <div class="trust-inner">
+    <div>
+      <div class="trust-col-title">Why buy from Barto</div>
+      <p class="trust-col-body">
+        In business since 1947. We know New Orleans houses — older kitchens, tight stairs, shotgun layouts, upstairs laundry. We coordinate specialty installation when standard delivery won't work. 2,000+ appliances and air conditioners in stock at 3833 Airline Drive, Metairie.
+      </p>
+    </div>
+    <div>
+      <div class="trust-col-title">What our customers say</div>
+      <blockquote class="trust-quote">
+        "After a terrible experience at a big box store, I called Barto and Terri took care of it all. I bought the washer and dryer over the phone, and she connected me with a specialty installer who handled our older home perfectly."
+      </blockquote>
+      <cite class="trust-cite">— Louis David, March 2024 · Google Review</cite>
+    </div>
+    <div>
+      <div class="trust-col-title">Have a question?</div>
+      <div class="trust-contact">
+        <a href="tel:5048312734">(504) 831-2734</a>
+        Mon–Fri 9:30 AM – 6:00 PM<br>
+        Saturday 10:00 AM – 3:00 PM<br><br>
+        <a href="#" style="color:var(--teal);font-weight:600;font-size:14px;">Ask an expert by email →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related-section">
+  <div class="related-h2">Other top freezer refrigerators</div>
+  <div class="related-grid">
+    <div class="r-card">
+      <div class="r-img">Product Image</div>
+      <div class="r-body">
+        <div class="r-brand">Frigidaire</div>
+        <div class="r-model">FFET1222UW</div>
+        <div class="r-cat">Top Freezer · 11.6 cu. ft. · White</div>
+        <div class="r-chips"><span class="r-chip">23.75" wide</span><span class="r-chip" style="background:var(--blue-light);border-color:var(--blue);color:#3A6A67;">In stock</span></div>
+      </div>
+      <div class="r-ctas">
+        <a href="tel:5048312734" class="r-btn-call">(504) 831-2734</a>
+        <a href="#" class="r-btn-req">Request Availability →</a>
+      </div>
+    </div>
+    <div class="r-card">
+      <div class="r-img">Product Image</div>
+      <div class="r-body">
+        <div class="r-brand">Frigidaire</div>
+        <div class="r-model">FFHT1425VW</div>
+        <div class="r-cat">Top Freezer · 13.9 cu. ft. · White</div>
+        <div class="r-chips"><span class="r-chip">28" wide</span><span class="r-chip" style="background:var(--blue-light);border-color:var(--blue);color:#3A6A67;">In stock</span></div>
+      </div>
+      <div class="r-ctas">
+        <a href="tel:5048312734" class="r-btn-call">(504) 831-2734</a>
+        <a href="#" class="r-btn-req">Request Availability →</a>
+      </div>
+    </div>
+    <div class="r-card">
+      <div class="r-img">Product Image</div>
+      <div class="r-body">
+        <div class="r-brand">Whirlpool</div>
+        <div class="r-model">WRT134TFDW</div>
+        <div class="r-cat">Top Freezer · 14 cu. ft. · White</div>
+        <div class="r-chips"><span class="r-chip">24" wide</span><span class="r-chip" style="background:var(--blue-light);border-color:var(--blue);color:#3A6A67;">In stock</span></div>
+      </div>
+      <div class="r-ctas">
+        <a href="tel:5048312734" class="r-btn-call">(504) 831-2734</a>
+        <a href="#" class="r-btn-req">Request Availability →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span>3833 Airline Drive, Metairie, LA 70001</span>
+  <span style="opacity:.3">·</span>
+  <span>(504) 831-2734</span>
+  <span style="opacity:.3">·</span>
+  <span>Mon–Fri 9:30–6 · Sat 10–3</span>
+  <span style="opacity:.3">·</span>
+  <span>Serving greater New Orleans</span>
+</div>
+
+</body>
+</html>
