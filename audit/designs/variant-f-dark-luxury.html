@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barto Appliance — Variant F: Dark Showroom Luxury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<style>
+
+/* ══ DESIGN TOKENS — VARIANT F: DARK SHOWROOM LUXURY ══
+   Concept: Luxury appliance showroom after dark.
+   A high-end retailer's website, not a catalog platform.
+   Think Restoration Hardware meets a premium local institution.
+   --
+   Charcoal:   #141414  page body
+   Panel dark: #1C1C1C  alternate sections
+   Amber gold: #C8860A  primary accent, headings on dark
+   Amber lite: #E8A520  hover state, highlights
+   Teal cool:  #004A6E  structural, ghost button borders
+   Teal mid:   #005F8C  secondary elements
+   Cream text: #F0EBE3  primary text on dark
+   Muted text: #9A8E82  secondary text on dark
+*/
+
+:root {
+  --dark:         #141414;
+  --dark-panel:   #1C1C1C;
+  --dark-card:    #232323;
+  --dark-border:  #2E2E2E;
+  --dark-subtle:  #383838;
+
+  --amber:        #C8860A;
+  --amber-light:  #E8A520;
+  --amber-glow:   rgba(200,134,10,0.15);
+
+  --teal:         #004A6E;
+  --teal-dark:    #003256;
+  --teal-light:   #005F8C;
+  --teal-panel:   #003A56;
+
+  --orange:       #E8871A;
+  --orange-dark:  #C96F10;
+
+  --cream:        #F0EBE3;
+  --cream-dim:    #C4B8AA;
+  --text-muted:   #9A8E82;
+  --text-faint:   #6B6057;
+
+  --red:          #C8321E;
+
+  --font-ui:       'DM Sans', system-ui, sans-serif;
+  --font-heritage: 'Playfair Display', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--dark);
+  color: var(--cream);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   TOP BAR
+═══════════════════════════════════════════ */
+.topbar {
+  background: var(--teal-dark);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 7px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbar a { color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+.topbar a:hover { color: var(--amber-light); }
+.topbar-left { display: flex; gap: 24px; }
+.topbar-right { display: flex; gap: 24px; align-items: center; }
+.topbar-phone { color: var(--amber-light) !important; font-weight: 700; font-size: 13px; }
+.topbar-sep { opacity: 0.25; }
+
+/* ═══════════════════════════════════════════
+   HEADER — glass-dark sticky bar
+═══════════════════════════════════════════ */
+.header {
+  background: rgba(20,20,20,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--dark-border);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+  /* logo on dark — apply a brightness/invert filter so the dark logo becomes white */
+  filter: brightness(0) invert(1);
+}
+.logo-fallback {
+  width: 44px;
+  height: 44px;
+  background: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: -1px;
+  flex-shrink: 0;
+}
+.logo-text { line-height: 1.1; }
+.logo-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: block;
+}
+.logo-sub {
+  font-family: var(--font-heritage);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--amber);
+  display: block;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+}
+.nav-link {
+  color: rgba(240,235,227,0.72);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0 18px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nav-link:hover { color: var(--amber-light); border-bottom-color: var(--amber); }
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header-phone {
+  color: var(--amber);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.15s;
+}
+.header-phone:hover { color: var(--amber-light); }
+.btn-clearance {
+  background: var(--amber);
+  color: var(--dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+  border-radius: 2px;
+}
+.btn-clearance:hover { background: var(--amber-light); }
+
+/* ═══════════════════════════════════════════
+   HERO — full-bleed dark split
+═══════════════════════════════════════════ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 580px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left — copy panel */
+.hero-left {
+  background: var(--dark);
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+/* Ambient amber glow behind text */
+.hero-left::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle at 30% 50%, rgba(200,134,10,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+/* Diagonal edge into photo */
+.hero-left::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: var(--dark);
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+  z-index: 3;
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+
+.hero-headline {
+  font-family: var(--font-heritage);
+  font-style: italic;
+  font-size: 62px;
+  font-weight: 600;
+  line-height: 1.06;
+  color: var(--cream);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+}
+.hero-headline .accent { color: var(--amber); }
+
+.hero-location {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-location-dot { color: var(--amber); }
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.btn-primary {
+  background: var(--amber);
+  color: var(--dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.15s, transform 0.1s;
+  border-radius: 2px;
+}
+.btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--cream-dim);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  border: 1px solid rgba(240,235,227,0.25);
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.15s, color 0.15s;
+  border-radius: 2px;
+}
+.btn-ghost:hover { border-color: var(--teal-light); color: var(--cream); }
+
+/* Right — photo panel */
+.hero-right {
+  position: relative;
+  background: var(--teal-dark) url('images/hero-kitchen-wide.jpg') center/cover no-repeat;
+}
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(20,20,20,0.35) 0%, rgba(0,50,86,0.25) 100%);
+}
+
+/* Stats overlay at bottom of photo */
+.hero-stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10,10,10,0.82);
+  backdrop-filter: blur(8px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--dark-border);
+}
+.hero-stat {
+  text-align: center;
+  padding: 22px 16px;
+  border-right: 1px solid var(--dark-border);
+}
+.hero-stat:last-child { border-right: none; }
+.stat-num {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  display: block;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 5px;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   TRUST BAND — dark teal strip
+═══════════════════════════════════════════ */
+.trust-band {
+  background: var(--teal-panel);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.trust-item {
+  padding: 40px 36px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.trust-item:last-child { border-right: none; }
+.trust-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--amber-glow);
+  border: 1px solid rgba(200,134,10,0.3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--amber);
+  font-size: 18px;
+}
+.trust-body { flex: 1; }
+.trust-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: block;
+}
+.trust-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-top: 4px;
+  display: block;
+}
+.trust-desc { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+
+/* ═══════════════════════════════════════════
+   CATEGORIES — dark card grid
+═══════════════════════════════════════════ */
+.section {
+  padding: 72px 48px;
+}
+.section-alt {
+  background: var(--dark-panel);
+}
+.section-header { margin-bottom: 40px; }
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+.section-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.section-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.cat-card {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--dark-card);
+  display: block;
+}
+.cat-card:hover .cat-overlay { background: rgba(0,0,0,0.4); }
+.cat-card:hover .cat-arrow { transform: translateX(4px); }
+.cat-card:hover .cat-border-glow { opacity: 1; }
+.cat-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  filter: brightness(0.75) saturate(0.9);
+}
+.cat-card:hover .cat-photo { transform: scale(1.04); filter: brightness(0.65) saturate(1); }
+
+.cat-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%);
+  transition: background 0.3s;
+}
+.cat-border-glow {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--amber);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.cat-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 22px;
+  z-index: 2;
+}
+.cat-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--cream);
+  display: block;
+  letter-spacing: 0.01em;
+}
+.cat-count { font-size: 11px; color: rgba(240,235,227,0.55); margin-top: 3px; display: block; }
+.cat-arrow {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  color: var(--amber);
+  font-size: 18px;
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+
+/* Clearance card — special styling */
+.cat-card.clearance .cat-overlay {
+  background: linear-gradient(to top, rgba(200,50,30,0.7) 0%, rgba(0,0,0,0.15) 60%);
+}
+.cat-card.clearance .cat-border-glow { border-color: var(--red); }
+.cat-card.clearance:hover .cat-border-glow { opacity: 1; }
+.cat-card.clearance .cat-arrow { color: #FF6B55; }
+.clearance-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--red);
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  z-index: 3;
+}
+
+/* ═══════════════════════════════════════════
+   BRANDS — dark marquee feel
+═══════════════════════════════════════════ */
+.brands-section {
+  background: var(--dark-panel);
+  padding: 56px 48px;
+  border-top: 1px solid var(--dark-border);
+  border-bottom: 1px solid var(--dark-border);
+}
+.brands-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 36px;
+  border: 1px solid var(--dark-border);
+}
+.brand-item {
+  flex: 1;
+  min-width: 160px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--dark-border);
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.brand-item:last-child { border-right: none; }
+.brand-item:hover { background: var(--dark-card); }
+.brand-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.brand-item:hover .brand-name { color: var(--amber-light); }
+.brand-sub { font-size: 10px; color: var(--text-faint); margin-top: 4px; }
+
+/* Speed Queen featured */
+.brand-item.featured {
+  background: var(--teal-panel);
+  flex: 2;
+}
+.brand-item.featured .brand-name { color: var(--cream); font-size: 16px; }
+.brand-item.featured .brand-sub { color: var(--cream-dim); font-size: 11px; max-width: 200px; text-align: center; line-height: 1.5; }
+
+/* ═══════════════════════════════════════════
+   REVIEW — glassmorphism on dark
+═══════════════════════════════════════════ */
+.review-section {
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.review-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(200,134,10,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.review-card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(35,35,35,0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(200,134,10,0.2);
+  border-radius: 6px;
+  padding: 48px 52px;
+  position: relative;
+  z-index: 1;
+}
+.review-card::before {
+  content: '\201C';
+  font-family: var(--font-heritage);
+  font-size: 120px;
+  color: var(--amber);
+  opacity: 0.15;
+  position: absolute;
+  top: -20px;
+  left: 32px;
+  line-height: 1;
+  pointer-events: none;
+}
+.review-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.star { color: var(--amber); }
+.review-text {
+  font-family: var(--font-heritage);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.65;
+  color: var(--cream);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.review-attr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--teal);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cream);
+  flex-shrink: 0;
+}
+.review-name { font-size: 14px; font-weight: 700; color: var(--cream); }
+.review-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.review-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(200,134,10,0.4);
+  padding: 5px 12px;
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   REBATES BAND
+═══════════════════════════════════════════ */
+.rebates-section {
+  background: var(--dark-panel);
+  padding: 64px 48px;
+  border-top: 1px solid var(--dark-border);
+}
+.rebate-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.rebate-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 4px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+.rebate-card:hover { border-color: var(--amber); }
+.rebate-brand {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.rebate-amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.rebate-desc { font-size: 13px; color: var(--cream-dim); line-height: 1.5; }
+.rebate-expires { font-size: 11px; color: var(--text-faint); }
+.rebate-link {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  text-decoration: none;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+.rebate-link:hover { color: var(--amber-light); }
+
+/* ═══════════════════════════════════════════
+   FINANCING BAND
+═══════════════════════════════════════════ */
+.financing-band {
+  background: var(--teal-panel);
+  padding: 56px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.financing-headline {
+  font-family: var(--font-heritage);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--cream);
+  line-height: 1.2;
+}
+.financing-headline .accent { color: var(--amber); }
+.financing-sub { font-size: 15px; color: rgba(240,235,227,0.65); margin-top: 8px; max-width: 520px; }
+.financing-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.financing-chip {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cream-dim);
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+}
+.financing-chip .highlight { color: var(--amber); }
+.financing-ctas { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   FOOTER — very dark
+═══════════════════════════════════════════ */
+.footer {
+  background: #0D0D0D;
+  padding: 64px 48px 32px;
+  border-top: 2px solid var(--amber);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand .logo-name { font-size: 18px; letter-spacing: 0.06em; color: var(--cream); }
+.footer-brand .logo-sub { color: var(--amber); }
+.footer-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 16px;
+  max-width: 280px;
+}
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.social-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.social-btn:hover { border-color: var(--amber); color: var(--amber); }
+
+.footer-col-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dark-border);
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-link {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: var(--cream); }
+
+.footer-address { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+.footer-address strong { color: var(--cream); font-weight: 600; }
+.footer-address a { color: var(--amber); text-decoration: none; }
+.footer-address a:hover { color: var(--amber-light); }
+.footer-hours-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.footer-hours-grid .day { font-weight: 600; color: var(--cream-dim); }
+
+.footer-bottom {
+  border-top: 1px solid var(--dark-border);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy { font-size: 12px; color: var(--text-faint); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 12px; color: var(--text-faint); text-decoration: none; }
+.footer-legal a:hover { color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════
+   ANNOUNCEMENT BANNER
+═══════════════════════════════════════════ */
+.promo-band {
+  background: var(--amber);
+  color: var(--dark);
+  text-align: center;
+  padding: 12px 48px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.promo-sep { opacity: 0.4; }
+.promo-link {
+  text-decoration: underline;
+  color: var(--dark);
+  font-weight: 800;
+  transition: opacity 0.15s;
+}
+.promo-link:hover { opacity: 0.7; }
+
+/* ═══════════════════════════════════════════
+   "SHOP BY NEED" TAGS
+═══════════════════════════════════════════ */
+.needs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 36px;
+}
+.need-chip {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  color: var(--cream-dim);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.need-chip:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: var(--amber-glow);
+}
+.need-chip-arrow { color: var(--amber); font-size: 12px; transition: transform 0.15s; }
+.need-chip:hover .need-chip-arrow { transform: translateX(3px); }
+
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span>3833 Airline Drive, Metairie, LA 70001</span>
+    <span class="topbar-sep">|</span>
+    <span>Mon–Fri 9:30–6 &nbsp;·&nbsp; Sat 10–3 &nbsp;·&nbsp; Sun Closed</span>
+  </div>
+  <div class="topbar-right">
+    <a href="/about">About Us</a>
+    <span class="topbar-sep">|</span>
+    <a href="/reviews">Reviews</a>
+    <span class="topbar-sep">|</span>
+    <a href="tel:5048312734" class="topbar-phone">(504) 831-2734</a>
+  </div>
+</div>
+
+<!-- PROMO BAND -->
+<div class="promo-band">
+  <span>Memorial Day Savings: Up to $750 off Whirlpool &amp; Frigidaire</span>
+  <span class="promo-sep">·</span>
+  <span>KitchenAid Exclusive Rebates: Up to $4,000 off &mdash; <a href="/rebates" class="promo-link">View All Rebates</a></span>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="/" class="logo">
+    <img src="images/logo-variant-f.png" alt="Barto Appliance" style="height:44px; width:auto; display:block;">
+    <div class="logo-fallback" style="display:none">B</div>
+    <div class="logo-text">
+      <span class="logo-name">Barto Appliance</span>
+      <span class="logo-sub">Metairie, Louisiana · Est. 1947</span>
+    </div>
+  </a>
+
+  <nav class="header-nav">
+    <a href="/products" class="nav-link">Products</a>
+    <a href="/brands" class="nav-link">Brands</a>
+    <a href="/rebates" class="nav-link">Rebates</a>
+    <a href="/financing" class="nav-link">Financing</a>
+    <a href="/reviews" class="nav-link">Reviews</a>
+  </nav>
+
+  <div class="header-right">
+    <a href="tel:5048312734" class="header-phone">(504) 831-2734</a>
+    <a href="/clearance" class="btn-clearance">🏷 Clearance</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Metairie, Louisiana · Est. 1947</div>
+    <h1 class="hero-headline">
+      The Finest<br>
+      Appliances in<br>
+      <span class="accent">New Orleans.</span>
+    </h1>
+    <p class="hero-location">
+      <span class="hero-location-dot">◆</span>
+      3833 Airline Drive &nbsp;·&nbsp; 2,000+ In Stock &nbsp;·&nbsp; Same-Day Delivery
+    </p>
+    <div class="hero-ctas">
+      <a href="/products" class="btn-primary">Shop Appliances</a>
+      <a href="/contact" class="btn-ghost">Visit Showroom</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-num">2,000+</span>
+        <span class="stat-label">In Stock Now</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">Same Day</span>
+        <span class="stat-label">Delivery Available</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">Since 1947</span>
+        <span class="stat-label">Greater New Orleans</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust-band">
+  <div class="trust-item">
+    <div class="trust-icon">🏠</div>
+    <div class="trust-body">
+      <span class="trust-num">77</span>
+      <span class="trust-label">Years Serving New Orleans</span>
+      <span class="trust-desc">Independent, local, family-trusted since 1947.</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">📦</div>
+    <div class="trust-body">
+      <span class="trust-num">2,000+</span>
+      <span class="trust-label">Appliances In Stock</span>
+      <span class="trust-desc">Largest dealer in the Greater New Orleans area.</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">🚚</div>
+    <div class="trust-body">
+      <span class="trust-num">Same Day</span>
+      <span class="trust-label">Delivery Available</span>
+      <span class="trust-desc">Take it home today or schedule rapid delivery.</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">📞</div>
+    <div class="trust-body">
+      <span class="trust-num">Call Us</span>
+      <span class="trust-label">Real Experts Answer</span>
+      <span class="trust-desc">Buy by phone — no showroom visit required.</span>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Browse Our Showroom</div>
+    <h2 class="section-title">Shop by Category</h2>
+    <p class="section-sub">From refrigerators to room air conditioners — everything for the Louisiana home, in stock now.</p>
+  </div>
+
+  <div class="cat-grid">
+    <a href="/categories/refrigerators" class="cat-card">
+      <img src="images/product-stainless-fridge.jpg" alt="Refrigerators" class="cat-photo">
+      <div class="cat-overlay"></div>
+      <div class="cat-border-glow"></div>
+      <div class="cat-content">
+        <span class="cat-name">Refrigerators</span>
+        <span class="cat-count">204 models · French Door, Side-by-Side &amp; More</span>
+      </div>
+      <span class="cat-arrow">→</span>
+    </a>
+    <a href="/categories/laundry" class="cat-card">
+      <img src="images/product-washer.jpg" alt="Laundry" class="cat-photo">
+      <div class="cat-overlay"></div>
+      <div class="cat-border-glow"></div>
+      <div class="cat-content">
+        <span class="cat-name">Washers &amp; Dryers</span>
+        <span class="cat-count">Top Load, Front Load · Speed Queen available</span>
+      </div>
+      <span class="cat-arrow">→</span>
+    </a>
+    <a href="/categories/kitchen" class="cat-card">
+      <img src="images/product-kitchen-range.jpg" alt="Ranges &amp; Cooking" class="cat-photo">
+      <div class="cat-overlay"></div>
+      <div class="cat-border-glow"></div>
+      <div class="cat-content">
+        <span class="cat-name">Ranges &amp; Cooking</span>
+        <span class="cat-count">Gas, Electric, Induction · Wall Ovens &amp; More</span>
+      </div>
+      <span class="cat-arrow">→</span>
+    </a>
+    <a href="/clearance" class="cat-card clearance">
+      <img src="images/hero-showroom.jpg" alt="Clearance Center" class="cat-photo">
+      <div class="cat-overlay"></div>
+      <div class="cat-border-glow"></div>
+      <div class="clearance-badge">Live Deals</div>
+      <div class="cat-content">
+        <span class="cat-name">Clearance Center</span>
+        <span class="cat-count">Scratch &amp; Dent · Floor Models · Liquidation</span>
+      </div>
+      <span class="cat-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- SHOP BY NEED -->
+<section class="section section-alt">
+  <div class="section-header">
+    <div class="section-eyebrow">Find What You Need</div>
+    <h2 class="section-title">Shop by Situation</h2>
+    <p class="section-sub">New Orleans homes have unique needs. We know them all.</p>
+  </div>
+  <div class="needs-grid">
+    <a href="/older-homes" class="need-chip">Older Home Installation <span class="need-chip-arrow">→</span></a>
+    <a href="/room-ac" class="need-chip">Room Air Conditioners <span class="need-chip-arrow">→</span></a>
+    <a href="/same-week-delivery" class="need-chip">Same-Week Delivery <span class="need-chip-arrow">→</span></a>
+    <a href="/clearance" class="need-chip">Scratch &amp; Dent Deals <span class="need-chip-arrow">→</span></a>
+    <a href="/financing" class="need-chip">Flexible Financing <span class="need-chip-arrow">→</span></a>
+    <a href="/rental-property" class="need-chip">Rental Property Replacements <span class="need-chip-arrow">→</span></a>
+    <a href="/brands/speed-queen" class="need-chip">Speed Queen (Long-Life Laundry) <span class="need-chip-arrow">→</span></a>
+    <a href="/categories/kitchen-packages" class="need-chip">Full Kitchen Packages <span class="need-chip-arrow">→</span></a>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Curated Brands</div>
+    <h2 class="section-title">Brands We Carry</h2>
+    <p class="section-sub">We carry only brands we trust — and some, like Speed Queen, you can only get at an independent dealer like us.</p>
+  </div>
+  <div class="brands-grid">
+    <a href="/brands/speed-queen" class="brand-item featured">
+      <span class="brand-name">Speed Queen</span>
+      <span class="brand-sub">Professional-grade laundry. Built to last 25 years. Exclusive to independent dealers — you won't find this at Home Depot.</span>
+    </a>
+    <a href="/brands/kitchenaid" class="brand-item">
+      <span class="brand-name">KitchenAid</span>
+      <span class="brand-sub">Up to $4,000 rebate</span>
+    </a>
+    <a href="/brands/frigidaire" class="brand-item">
+      <span class="brand-name">Frigidaire</span>
+      <span class="brand-sub">Professional &amp; Gallery</span>
+    </a>
+    <a href="/brands/whirlpool" class="brand-item">
+      <span class="brand-name">Whirlpool</span>
+      <span class="brand-sub">Memorial Day rebates</span>
+    </a>
+    <a href="/brands/maytag" class="brand-item">
+      <span class="brand-name">Maytag</span>
+      <span class="brand-sub">Commercial laundry</span>
+    </a>
+    <a href="/brands/electrolux" class="brand-item">
+      <span class="brand-name">Electrolux</span>
+      <span class="brand-sub">Up to $750 off</span>
+    </a>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section class="review-section">
+  <div class="section-header" style="text-align:center;margin-bottom:40px;">
+    <div class="section-eyebrow" style="justify-content:center">What Our Customers Say</div>
+    <h2 class="section-title">The Barto Difference</h2>
+  </div>
+  <div class="review-card">
+    <div class="review-stars">
+      <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    </div>
+    <p class="review-text">
+      "After a terrible experience with an unnamed big box store to install a washer/dryer upstairs in an older home, I called Barto and Terri took care of it all. I bought the washer dryer over the phone, and she connected me with a specialty installer who was able to take care of getting everything working and the old unit out. Highly recommended."
+    </p>
+    <div class="review-attr">
+      <div class="review-avatar">LD</div>
+      <div>
+        <div class="review-name">Louis David</div>
+        <div class="review-meta">March 2024 · Google Review · New Orleans, LA</div>
+      </div>
+      <div class="review-badge">Google ★★★★★</div>
+    </div>
+  </div>
+</section>
+
+<!-- REBATES -->
+<section class="rebates-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Active Manufacturer Offers</div>
+    <h2 class="section-title">Current Rebates</h2>
+    <p class="section-sub">Our NMG buying group membership unlocks rebates you won't find at big-box stores. Updated regularly.</p>
+  </div>
+  <div class="rebate-cards">
+    <div class="rebate-card">
+      <div class="rebate-brand">KitchenAid · NMG Exclusive</div>
+      <div class="rebate-amount">$4,000</div>
+      <div class="rebate-desc">Maximum savings on qualifying KitchenAid appliance package purchase.</div>
+      <div class="rebate-expires">Valid through July 8, 2026</div>
+      <a href="/rebates" class="rebate-link">View Rebate Details →</a>
+    </div>
+    <div class="rebate-card">
+      <div class="rebate-brand">Frigidaire Professional · NMG</div>
+      <div class="rebate-amount">$2,500</div>
+      <div class="rebate-desc">Buy More Save More — exclusive independent dealer offer.</div>
+      <div class="rebate-expires">Valid through July 8, 2026</div>
+      <a href="/rebates" class="rebate-link">View Rebate Details →</a>
+    </div>
+    <div class="rebate-card">
+      <div class="rebate-brand">Electrolux + Frigidaire</div>
+      <div class="rebate-amount">$750</div>
+      <div class="rebate-desc">Memorial Day savings on qualifying Electrolux and Frigidaire appliances.</div>
+      <div class="rebate-expires">Valid through June 3, 2026</div>
+      <a href="/rebates" class="rebate-link">View Rebate Details →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCING -->
+<div class="financing-band">
+  <div>
+    <h2 class="financing-headline">Flexible financing<br>for every <span class="accent">Louisiana home.</span></h2>
+    <p class="financing-sub">Whether you're replacing a refrigerator or outfitting a full kitchen, we have financing options to make it work.</p>
+    <div class="financing-options">
+      <div class="financing-chip"><span class="highlight">12 Months</span> No Interest — Wells Fargo</div>
+      <div class="financing-chip">Lease-to-Own — Acima</div>
+      <div class="financing-chip">Min. purchase $499</div>
+    </div>
+  </div>
+  <div class="financing-ctas">
+    <a href="/financing" class="btn-primary">Learn About Financing</a>
+    <a href="/contact" class="btn-ghost">Talk to a Specialist</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-text">
+          <span class="logo-name">Barto Appliance</span>
+          <span class="logo-sub" style="font-family:'Playfair Display',serif;font-style:italic;font-size:11px;color:var(--amber);">Metairie, Louisiana · Est. 1947</span>
+        </div>
+      </div>
+      <p class="footer-desc">Greater New Orleans' most trusted independent appliance dealer. Over 2,000 appliances in stock. Same-day delivery available across Jefferson Parish and beyond.</p>
+      <div class="footer-social">
+        <a href="https://facebook.com/Barto-Appliance-326384047514670" class="social-btn">f</a>
+        <a href="https://twitter.com/bartoappliance" class="social-btn">𝕏</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Products</div>
+      <div class="footer-links">
+        <a href="/categories/refrigerators" class="footer-link">Refrigerators</a>
+        <a href="/categories/washers" class="footer-link">Washers &amp; Dryers</a>
+        <a href="/categories/ranges" class="footer-link">Ranges &amp; Cooking</a>
+        <a href="/categories/dishwashers" class="footer-link">Dishwashers</a>
+        <a href="/categories/air-conditioners" class="footer-link">Air Conditioners</a>
+        <a href="/clearance" class="footer-link">Clearance Center</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="/about" class="footer-link">About Barto</a>
+        <a href="/brands" class="footer-link">Our Brands</a>
+        <a href="/rebates" class="footer-link">Rebates</a>
+        <a href="/financing" class="footer-link">Financing</a>
+        <a href="/reviews" class="footer-link">Customer Reviews</a>
+        <a href="/contact" class="footer-link">Contact Us</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Visit Our Showroom</div>
+      <div class="footer-address">
+        <strong>3833 Airline Drive</strong><br>
+        Metairie, LA 70001<br><br>
+        <a href="tel:5048312734">(504) 831-2734</a><br><br>
+        <div class="footer-hours-grid">
+          <span class="day">Mon–Thu</span><span>9:30 AM – 6:00 PM</span>
+          <span class="day">Friday</span><span>9:30 AM – 5:30 PM</span>
+          <span class="day">Saturday</span><span>10:00 AM – 3:00 PM</span>
+          <span class="day">Sunday</span><span>Closed</span>
+        </div>
+        <br>
+        <strong>Service Areas:</strong><br>
+        Metairie · New Orleans · Kenner<br>
+        Jefferson Parish · Greater New Orleans
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Barto Appliance. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="/terms">Terms &amp; Policies</a>
+      <a href="/privacy">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══ VARIANT NAVIGATOR ═══ -->
+<style>
+#vnav {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: #003256; border-radius: 100px;
+  padding: 10px 20px; display: flex; align-items: center; gap: 16px;
+  box-shadow: 0 8px 40px rgba(0,50,86,0.55); z-index: 99999;
+  font-family: 'DM Sans', system-ui, sans-serif; white-space: nowrap;
+  user-select: none;
+}
+#vnav button {
+  background: none; border: none; color: #FFC20E;
+  font-size: 20px; cursor: pointer; padding: 0; line-height: 1;
+  transition: transform 0.1s;
+}
+#vnav button:hover { transform: scale(1.2); }
+#vnav-label {
+  color: #ffffff; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  min-width: 180px; text-align: center;
+}
+#vnav-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #FFC20E; flex-shrink: 0;
+}
+#vnav a {
+  color: rgba(255,255,255,0.45); font-size: 11px; font-weight: 600;
+  text-decoration: none; letter-spacing: 0.06em;
+  border-left: 1px solid rgba(255,255,255,0.18); padding-left: 16px;
+  transition: color 0.15s;
+}
+#vnav a:hover { color: rgba(255,255,255,0.9); }
+</style>
+<div id="vnav">
+  <button id="vnav-prev" title="Previous variant">&#8592;</button>
+  <div id="vnav-dot"></div>
+  <span id="vnav-label">Loading...</span>
+  <div id="vnav-dot"></div>
+  <button id="vnav-next" title="Next variant">&#8594;</button>
+  <a href="design-system-docs.html">DOCS</a>
+</div>
+<script>
+(function(){
+  var V=[
+    {f:'barto-homepage.html',l:'A — Teal Split'},
+    {f:'variant-b-navy-brass.html',l:'B — Full-Width'},
+    {f:'variant-c-slate-rust.html',l:'C — Inverted Split'},
+    {f:'variant-d-editorial-white.html',l:'D — Editorial'},
+    {f:'variant-e-brand-true.html',l:'E — Brand True'},
+    {f:'variant-f-dark-luxury.html',l:'F — Dark Luxury'},
+    {f:'variant-g-heritage-editorial.html',l:'G — Heritage'},
+    {f:'variant-h-bento-modern.html',l:'H — Bento Modern'},
+    {f:'variant-i-bold-signage.html',l:'I — Bold Signage'},
+    {f:'variant-j-coastal-premium.html',l:'J — Coastal Premium'}
+  ];
+  var cur=window.location.pathname.split('/').pop()||V[0].f;
+  var idx=V.findIndex(function(v){return v.f===cur;});
+  if(idx<0)idx=0;
+  document.getElementById('vnav-label').textContent=V[idx].l;
+  document.getElementById('vnav-prev').onclick=function(){
+    window.location.href=V[(idx-1+V.length)%V.length].f;
+  };
+  document.getElementById('vnav-next').onclick=function(){
+    window.location.href=V[(idx+1)%V.length].f;
+  };
+})();
+</script>
+<!-- ═══ END VARIANT NAVIGATOR ═══ -->
+
+</body>
+</html>

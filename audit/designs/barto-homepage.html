@@ -366,7 +366,7 @@
 <header class="site-header">
   <div class="header-top">
     <div class="logo">
-      <img src="images/barto-logo.png" alt="Barto Appliance" style="height:44px; width:auto; display:block;">
+      <img src="images/logo-variant-a.png" alt="Barto Appliance" style="height:44px; width:auto; display:block;">
     </div>
     <nav class="header-nav">
       <a href="#">Products ▾</a>
@@ -644,7 +644,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-logo">
-        <img src="images/barto-logo.png" alt="Barto Appliance" style="height:36px; width:auto; display:block;">
+        <img src="images/logo-variant-a.png" alt="Barto Appliance" style="height:36px; width:auto; display:block;">
       </div>
       <p class="footer-tagline">"Major appliances for greater New Orleans since 1947."</p>
       <div class="footer-socials">
@@ -698,6 +698,76 @@
     <span class="footer-service-areas">Serving Metairie · New Orleans · Kenner · Jefferson Parish · Greater New Orleans</span>
   </div>
 </footer>
+
+
+<!-- ═══ VARIANT NAVIGATOR ═══ -->
+<style>
+#vnav {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: #003256; border-radius: 100px;
+  padding: 10px 20px; display: flex; align-items: center; gap: 16px;
+  box-shadow: 0 8px 40px rgba(0,50,86,0.55); z-index: 99999;
+  font-family: 'DM Sans', system-ui, sans-serif; white-space: nowrap;
+  user-select: none;
+}
+#vnav button {
+  background: none; border: none; color: #FFC20E;
+  font-size: 20px; cursor: pointer; padding: 0; line-height: 1;
+  transition: transform 0.1s;
+}
+#vnav button:hover { transform: scale(1.2); }
+#vnav-label {
+  color: #ffffff; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  min-width: 180px; text-align: center;
+}
+#vnav-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #FFC20E; flex-shrink: 0;
+}
+#vnav a {
+  color: rgba(255,255,255,0.45); font-size: 11px; font-weight: 600;
+  text-decoration: none; letter-spacing: 0.06em;
+  border-left: 1px solid rgba(255,255,255,0.18); padding-left: 16px;
+  transition: color 0.15s;
+}
+#vnav a:hover { color: rgba(255,255,255,0.9); }
+</style>
+<div id="vnav">
+  <button id="vnav-prev" title="Previous variant">&#8592;</button>
+  <div id="vnav-dot"></div>
+  <span id="vnav-label">Loading...</span>
+  <div id="vnav-dot"></div>
+  <button id="vnav-next" title="Next variant">&#8594;</button>
+  <a href="design-system-docs.html">DOCS</a>
+</div>
+<script>
+(function(){
+  var V=[
+    {f:'barto-homepage.html',l:'A — Teal Split'},
+    {f:'variant-b-navy-brass.html',l:'B — Full-Width'},
+    {f:'variant-c-slate-rust.html',l:'C — Inverted Split'},
+    {f:'variant-d-editorial-white.html',l:'D — Editorial'},
+    {f:'variant-e-brand-true.html',l:'E — Brand True'},
+    {f:'variant-f-dark-luxury.html',l:'F — Dark Luxury'},
+    {f:'variant-g-heritage-editorial.html',l:'G — Heritage'},
+    {f:'variant-h-bento-modern.html',l:'H — Bento Modern'},
+    {f:'variant-i-bold-signage.html',l:'I — Bold Signage'},
+    {f:'variant-j-coastal-premium.html',l:'J — Coastal Premium'}
+  ];
+  var cur=window.location.pathname.split('/').pop()||V[0].f;
+  var idx=V.findIndex(function(v){return v.f===cur;});
+  if(idx<0)idx=0;
+  document.getElementById('vnav-label').textContent=V[idx].l;
+  document.getElementById('vnav-prev').onclick=function(){
+    window.location.href=V[(idx-1+V.length)%V.length].f;
+  };
+  document.getElementById('vnav-next').onclick=function(){
+    window.location.href=V[(idx+1)%V.length].f;
+  };
+})();
+</script>
+<!-- ═══ END VARIANT NAVIGATOR ═══ -->
 
 </body>
 </html>

@@ -62,12 +62,21 @@ barto-rebuild/
 
 **Variants** (all in `audit/designs/`):
 - `barto-homepage.html` — Variant A: Teal Split Hero
-- `variant-b-navy-brass.html` — Variant B: Teal Full-Width Hero
+- `variant-b-navy-brass.html` — Variant B: Teal Full-Width + Amber
 - `variant-c-slate-rust.html` — Variant C: Teal Inverted Split
 - `variant-d-editorial-white.html` — Variant D: Editorial White + Teal
 - `variant-e-brand-true.html` — Variant E: Brand True (most expressive)
+- `variant-f-dark-luxury.html` — Variant F: Dark Showroom Luxury
+- `variant-g-heritage-editorial.html` — Variant G: New Orleans Heritage Editorial
+- `variant-h-bento-modern.html` — Variant H: Bento Grid Modern
+- `variant-i-bold-signage.html` — Variant I: Bold American Signage
+- `variant-j-coastal-premium.html` — Variant J: Gulf Coast Coastal Premium
 - `barto-category.html` — Category listing page
 - `barto-product-detail.html` — Product detail page
+
+**Logo variants** (all in `audit/designs/images/`):
+- `logo-variant-[a-j].png` — gpt-image-2 generated logo for each variant's aesthetic
+- `barto-logo.png` — original real logo (reference only)
 
 **Typography (locked):**
 - UI/body: DM Sans

@@ -54,6 +54,10 @@ Full audit of the live site before any design work began.
 
 ## Phase 2 — Design System (Complete)
 
+**10 production-ready HTML variants.** Every variant shares the Barto brand palette and real logo — they differ in layout composition, typographic scale, border-radius system, and how the palette is applied. A floating navigator bar in every file lets you cycle through all 10 with ← → arrows without leaving the browser.
+
+**Custom logo variants:** Each design has a unique logo treatment generated with gpt-image-2 (OpenAI's newest image model), matched to that variant's aesthetic — dark gold glow for Dark Luxury, rounded pill for Coastal Premium, bold block for Signage, etc.
+
 **Brand palette (locked):**
 
 | Token | Value | Role |
@@ -120,6 +124,51 @@ Newspaper-editorial layout: 80px headline on the left, phone call block + Louis 
 The brand palette applied at full intensity: teal split hero with diagonal chevron cut, amber stat strip, orange delivery band. Closest to Barto's existing identity, fully modernized.
 
 ![Variant E — Brand True](audit/designs/screenshots/variant-e-brand-true.png)
+
+---
+
+#### Variant F — Dark Showroom Luxury
+`audit/designs/variant-f-dark-luxury.html`
+
+Charcoal `#141414` body. Amber/gold logo on dark box with glow. Glassmorphism card treatments. Premium appliance showroom energy — for a client who wants to signal high-end positioning.
+
+![Variant F — Dark Luxury](audit/designs/screenshots/variant-f-dark-luxury.png)
+
+---
+
+#### Variant G — New Orleans Heritage Editorial
+`audit/designs/variant-g-heritage-editorial.html`
+
+Cream body, ink-teal structural color, Playfair Display dominant. Newspaper masthead header with centered ornamental rule. Leans into Barto's 1947 heritage and New Orleans identity — the most locally rooted of all variants.
+
+![Variant G — Heritage Editorial](audit/designs/screenshots/variant-g-heritage-editorial.png)
+
+---
+
+#### Variant H — Bento Grid Modern
+`audit/designs/variant-h-bento-modern.html`
+
+Pure white, asymmetric bento grid layout, DM Sans 900 weight oversized numbers. No Playfair at all. The most forward-looking and contemporary — signals a business that's been around since 1947 but thinks like a modern retailer.
+
+![Variant H — Bento Modern](audit/designs/screenshots/variant-h-bento-modern.png)
+
+---
+
+#### Variant I — Bold American Signage
+`audit/designs/variant-i-bold-signage.html`
+
+Inter Black 900 weight, all-caps, no gradients, zero decoration. Cream body, teal structural blocks, amber phone. Feels like a physical storefront sign translated to web — authoritative, zero ambiguity.
+
+![Variant I — Bold Signage](audit/designs/screenshots/variant-i-bold-signage.png)
+
+---
+
+#### Variant J — Gulf Coast Coastal Premium
+`audit/designs/variant-j-coastal-premium.html`
+
+Warm linen `#F5EDD8` body with subtle grain texture. Rounded pill trust chips. Playfair Display italic for section callouts, DM Sans for everything else. The warmest and most approachable — right for customers who value relationship over transaction.
+
+![Variant J — Coastal Premium](audit/designs/screenshots/variant-j-coastal-premium.png)
 
 ---
 

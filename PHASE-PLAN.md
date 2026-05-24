@@ -3,7 +3,7 @@
 **Site:** bartoappliances.com  
 **Stack:** Next.js · Drizzle · Postgres · Tailwind  
 **Hosting target:** Replit Reserved VM → custom domain  
-**Last updated:** 2026-05-22
+**Last updated:** 2026-05-23
 
 ---
 
@@ -28,9 +28,11 @@ Full audit of the live site (Tailbase/ColdFusion platform).
 
 ---
 
-## Phase 2 — Design System ✅ COMPLETE
+## Phase 2 — Design System ✅ COMPLETE (Expanded 2026-05-23)
 
-4 visual variants + documentation package.
+10 visual variants + comprehensive design directory + documentation package.
+
+### Phase 2 Original — 5 Variants + Supporting Pages
 
 | Task | Status |
 |------|--------|
@@ -43,15 +45,35 @@ Full audit of the live site (Tailbase/ColdFusion platform).
 | Product detail page design | ✅ Done → `audit/designs/barto-product-detail.html` |
 | Stock photo integration (Unsplash CDN) | ✅ Done → `audit/designs/images/` |
 | Real logo download + integration into all 7 designs | ✅ Done → `audit/designs/images/barto-logo.png` |
-| Brand alignment across all 7 designs (teal `#004A6E` header, orange `#E8871A` CTAs, amber `#FFC20E` phone) | ✅ Done → `audit/scripts/brand_align.py` |
-| Design system documentation (5 variants, logo, palettes, tokens) | ✅ Done → `audit/designs/design-system-docs.html` |
+| Brand alignment across all 7 designs | ✅ Done → `audit/scripts/brand_align.py` |
+| Design system documentation | ✅ Done → `audit/designs/design-system-docs.html` |
+
+### Phase 2 Expansion — 5 New Variants + Design Directory
+
+| Task | Status |
+|------|--------|
+| **Variant F: Dark Showroom Luxury** — charcoal body, amber glow, glassmorphism | ✅ Done → `audit/designs/variant-f-dark-luxury.html` |
+| **Variant G: New Orleans Heritage Editorial** — Playfair dominant, newspaper masthead, ink-teal | ✅ Done → `audit/designs/variant-g-heritage-editorial.html` |
+| **Variant H: Bento Grid Modern** — pure white, asymmetric bento grid, oversized DM Sans 900 | ✅ Done → `audit/designs/variant-h-bento-modern.html` |
+| **Variant I: Bold American Signage** — Inter Black 900 UPPERCASE, no gradients, sharp storefront feel | ✅ Done → `audit/designs/variant-i-bold-signage.html` |
+| **Variant J: Gulf Coast Coastal Premium** — warm linen, pill trust chips, rounded cards, Playfair | ✅ Done → `audit/designs/variant-j-coastal-premium.html` |
+| Comprehensive design directory (full element inventory, logo brief, modernization guide) | ✅ Done → `audit/design-directory.md` |
+| Industry sector research & competitive analysis | ✅ Done → session context |
 
 **Design decisions locked:**
 - Typography: DM Sans (all UI) + Playfair Display italic (heritage callouts only)
-- **All 5 variants share the Barto brand palette**: Teal `#004A6E` · Orange `#E8871A` · Amber `#FFC20E` · Red `#C8321E`
-- Variants differ by layout structure and accent application, not by palette
-- Layout: Variant A (split hero) recommended baseline · Variant D (editorial) most differentiated
-- All 5 variants are production-ready HTML mockups with real logo and stock photos
+- **All 10 variants share the Barto brand palette**: Teal `#004A6E` · Orange `#E8871A` · Amber `#FFC20E` · Red `#C8321E`
+- Variants differ by: body color, layout structure, typographic scale, border radius system, section divider style
+- Layout: Variant A (safe/polished) · Variant F (premium) · Variant H (modern 2026) · Variant I (boldest) · Variant J (warmest)
+- All 10 variants are production-ready HTML mockups with real logo and stock photos
+
+**Variant selection guide:**
+- Premium/luxury positioning → **F: Dark Luxury**
+- Heritage/New Orleans identity lead → **G: Heritage Editorial**
+- Modern/forward-thinking → **H: Bento Modern**
+- Bold/authoritative → **I: Bold Signage**
+- Warm/local/approachable → **J: Coastal Premium**
+- Safe client presentation → **E: Brand True** or **A: Teal Split**
 
 **Images available** (`audit/designs/images/`):
 - `hero-kitchen-wide.jpg` — primary dark hero (New Orleans kitchen feel)
