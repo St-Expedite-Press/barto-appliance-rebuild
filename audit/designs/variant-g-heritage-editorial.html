@@ -59,41 +59,11 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   MASTHEAD TOP BAR — newspaper-dateline style
-═══════════════════════════════════════════ */
-.masthead {
-  background: var(--ink);
-  color: rgba(255,255,255,0.65);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  padding: 8px 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.masthead-text {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-.masthead-seg {
-  padding: 0 18px;
-  border-right: 1px solid rgba(255,255,255,0.2);
-}
-.masthead-seg:last-child { border-right: none; }
-.masthead-seg.highlight { color: var(--amber); font-weight: 700; }
-
-/* ═══════════════════════════════════════════
    HEADER — cream editorial header
 ═══════════════════════════════════════════ */
 .header {
-  background: var(--cream);
-  border-bottom: 2px solid var(--ink);
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   padding: 0 48px;
   display: flex;
   align-items: center;
@@ -152,7 +122,7 @@ body {
   height: 100%;
 }
 .nav-link {
-  color: var(--ink);
+  color: rgba(255,255,255,0.85);
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
@@ -166,7 +136,7 @@ body {
   margin-bottom: -2px;
   transition: border-color 0.15s, color 0.15s;
 }
-.nav-link:hover { border-bottom-color: var(--orange); color: var(--orange); }
+.nav-link:hover { border-bottom-color: var(--amber); color: var(--amber); }
 
 .header-right {
   display: flex;
@@ -174,7 +144,7 @@ body {
   gap: 20px;
 }
 .header-phone {
-  color: var(--amber-dark);
+  color: var(--amber);
   font-size: 17px;
   font-weight: 700;
   text-decoration: none;
@@ -184,7 +154,7 @@ body {
 }
 .header-phone:hover { color: var(--orange); }
 .btn-clearance {
-  background: var(--ink);
+  background: var(--orange);
   color: var(--cream);
   font-size: 11px;
   font-weight: 800;
@@ -812,18 +782,6 @@ body {
 </head>
 <body>
 
-<!-- MASTHEAD BAND -->
-<div class="masthead">
-  <div class="masthead-text">
-    <span class="masthead-seg strong">Barto Appliance</span>
-    <span class="masthead-seg">Est. 1947</span>
-    <span class="masthead-seg">Metairie, Louisiana</span>
-    <span class="masthead-seg">2,000+ Appliances In Stock</span>
-    <span class="masthead-seg">Mon–Fri 9:30–6 · Sat 10–3</span>
-    <span class="masthead-seg highlight">(504) 831-2734</span>
-  </div>
-</div>
-
 <!-- HEADER -->
 <header class="header">
   <a href="/" class="logo">
@@ -855,14 +813,10 @@ body {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-rule">
-      <div class="rule-line"></div>
-      <div class="rule-diamond">◆</div>
-      <div class="rule-line"></div>
-    </div>
     <div class="hero-eyebrow">Greater New Orleans · Independent Since 1947</div>
     <h1 class="hero-headline">The South's<br>Appliance<br>Authority.</h1>
     <span class="hero-headline-accent">Since 1947.</span>
+    <p style="font-size:14px; color:var(--warm-dark); margin:10px 0 0; letter-spacing:0.02em;">› 3833 Airline Drive, Metairie, LA &nbsp;·&nbsp; Mon–Fri 9:30–6 &nbsp;·&nbsp; Sat 10–3</p>
     <p class="hero-sub">Serving metro New Orleans from our Metairie showroom. Over 2,000 appliances in stock. Real people answer the phone.</p>
     <div class="hero-ctas">
       <a href="/products" class="btn-primary">Browse Products</a>
@@ -873,6 +827,10 @@ body {
     <div class="hero-stat-card">
       <span class="hero-stat-num">2,000+</span>
       <span class="hero-stat-label">Appliances in stock</span>
+    </div>
+    <div style="margin-top:24px; border-left:3px solid var(--warm-border); padding:16px 20px; background:var(--paper);">
+      <blockquote style="font-family:'Playfair Display',serif; font-style:italic; font-size:17px; color:var(--warm-dark); line-height:1.6; margin:0;">"After a terrible experience with a big box store, I called Barto and Terri took care of it all!"</blockquote>
+      <cite style="display:block; font-family:'DM Sans',sans-serif; font-style:normal; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--warm-gray); margin-top:10px;">— Louis David · Google Review · March 2024</cite>
     </div>
   </div>
 </section>

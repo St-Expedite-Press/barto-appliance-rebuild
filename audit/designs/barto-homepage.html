@@ -30,24 +30,6 @@
   a { color: inherit; text-decoration: none; }
 
   /* ─── HEADER ─── */
-/* ── BRAND-ALIGNED HEADER (Barto teal) ── */
-  .site-header { background: #004A6E; border-bottom: none; }
-  .logo { color: white; }
-  .logo-mark { background: white; color: #004A6E; }
-  .nav a { color: rgba(255,255,255,0.85); }
-  .nav a:hover { border-bottom-color: #FFC20E; color: white; }
-  .ph { color: #FFC20E; font-weight: 700; }
-  .btn-clear { background: #E8871A; color: white; }
-  .btn-clear:hover { background: #C96F10; }
-/* ── BRAND-ALIGNED HEADER (Barto teal) ── */
-  .site-header { background: #004A6E; border-bottom: none; }
-  .logo { color: white; }
-  .logo-mark { background: white; color: #004A6E; }
-  .nav a { color: rgba(255,255,255,0.85); }
-  .nav a:hover { border-bottom-color: #FFC20E; color: white; }
-  .ph { color: #FFC20E; font-weight: 700; }
-  .btn-clear { background: #E8871A; color: white; }
-  .btn-clear:hover { background: #C96F10; }
   .site-header {
     background: var(--cream);
     border-bottom: 1px solid var(--border);
@@ -101,7 +83,22 @@
   }
   .hero-eyebrow {
     font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--teal-mid); margin-bottom: 20px;
+    text-transform: uppercase; color: var(--teal-mid); margin-bottom: 12px;
+  }
+  .hero-est {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 16px;
+  }
+  .hero-louis {
+    font-style: italic; font-size: 13px; color: rgba(255,255,255,0.7);
+    line-height: 1.5; margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.12); max-width: 380px;
+  }
+  .hero-delivery-badge {
+    position: absolute; bottom: 24px; right: 24px; z-index: 2;
+    background: var(--amber); color: var(--teal-dark);
+    padding: 7px 14px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
   }
   .hero-headline {
     font-size: 64px; font-weight: 700; line-height: 1.05;
@@ -389,6 +386,7 @@
 <section class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">Metairie, Louisiana · Greater New Orleans</div>
+    <div class="hero-est">Est. 1947</div>
     <h1 class="hero-headline">Major appliances for greater New Orleans.</h1>
     <div class="hero-subline">Since 1947.</div>
     <div class="hero-phone">
@@ -408,6 +406,7 @@
       <span>·</span>
       Sat 10–3
     </div>
+    <div class="hero-louis">"After a terrible experience with a big box store, I called Barto and Terri took care of it all." — Louis David, Google Review</div>
   </div>
   <div class="hero-photo">
     <div class="hero-photo-inner">
@@ -415,6 +414,7 @@
       <p>Showroom photography<br>3833 Airline Drive</p>
     </div>
     <div class="hero-photo-badge">Scratch &amp; Dent Available</div>
+    <div class="hero-delivery-badge">Same-Week Delivery</div>
   </div>
 </section>
 

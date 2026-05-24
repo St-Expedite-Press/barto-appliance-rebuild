@@ -42,13 +42,13 @@ nav a:hover { opacity: 1; }
 
 /* ── HERO ── */
 .hero { background: var(--teal) url('images/hero-kitchen-wide.jpg') center/cover no-repeat; padding: 96px 32px; text-align: center; position: relative; }
-.hero::before { content: ''; position: absolute; inset: 0; background: rgba(26,44,74,0.88); }
+.hero::before { content: ''; position: absolute; inset: 0; background: rgba(26,44,74,0.78); }
 .hero-inner { position: relative; z-index: 1; }
 .hero-inner { max-width: 780px; margin: 0 auto; }
 .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 24px; }
 .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 68px; font-weight: 700; color: var(--white); line-height: 1.05; margin-bottom: 8px; }
 .hero h1 em { font-style: italic; color: var(--amber); }
-.hero-since { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 22px; color: var(--amber); margin-bottom: 36px; }
+.hero-since { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 18px; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 36px; }
 .hero-divider { width: 60px; height: 2px; background: var(--amber); margin: 0 auto 36px; }
 .hero-sub { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 48px; max-width: 480px; margin-left: auto; margin-right: auto; }
 .hero-ctas { display: flex; gap: 16px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
@@ -76,7 +76,7 @@ nav a:hover { opacity: 1; }
 .stat-block { padding: 0 32px; border-right: 1px solid var(--border); }
 .stat-block:first-child { padding-left: 0; }
 .stat-block:last-child { border-right: none; }
-.stat-num { font-size: 56px; font-weight: 700; color: var(--teal); line-height: 1; }
+.stat-num { font-size: 80px; font-weight: 700; color: var(--teal); line-height: 1; }
 .stat-num span { color: var(--amber); }
 .stat-label { font-size: 15px; font-weight: 600; color: var(--teal); margin-top: 8px; margin-bottom: 4px; }
 .stat-desc { font-size: 13px; color: var(--muted); }
@@ -185,11 +185,15 @@ footer { background: var(--teal); color: rgba(255,255,255,0.7); }
     <div class="hero-eyebrow">Metairie, Louisiana · Greater New Orleans</div>
     <h1>Major appliances<br>for <em>greater</em><br>New Orleans.</h1>
     <div class="hero-divider"></div>
-    <div class="hero-since">In business since 1947.</div>
+    <div class="hero-since">They don't make 'em like they used to. We do.</div>
     <p class="hero-sub">2,000+ appliances in stock at 3833 Airline Drive, Metairie. Call us — someone answers.</p>
     <div class="hero-ctas">
       <a href="#" class="btn-brass">Shop In-Stock Appliances</a>
       <a href="tel:5048312734" class="btn-outline-white">Call for Price →</a>
+    </div>
+    <div style="margin-top:24px; padding:14px 18px; border-left:3px solid var(--amber); background:rgba(255,255,255,0.06);">
+      <div style="font-style:italic; font-size:13px; color:rgba(255,255,255,0.85); line-height:1.5;">"After a terrible experience with a big box store, I called Barto and Terri took care of it all."</div>
+      <div style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:8px;">— Louis David · Google Review · March 2024</div>
     </div>
     <div class="hero-meta">
       <div class="hero-meta-item">

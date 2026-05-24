@@ -91,10 +91,8 @@ body {
    HEADER — glass-dark sticky bar
 ═══════════════════════════════════════════ */
 .header {
-  background: rgba(20,20,20,0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--dark-border);
+  background: var(--teal-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   padding: 0 48px;
   display: flex;
   align-items: center;
@@ -347,8 +345,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(10,10,10,0.82);
-  backdrop-filter: blur(8px);
+  background: rgba(10,10,10,0.9);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--dark-border);
@@ -629,10 +626,9 @@ body {
 .review-card {
   max-width: 760px;
   margin: 0 auto;
-  background: rgba(35,35,35,0.8);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(200,134,10,0.2);
-  border-radius: 6px;
+  background: var(--dark-panel);
+  border: 1px solid #004A6E;
+  border-radius: 0;
   padding: 48px 52px;
   position: relative;
   z-index: 1;
@@ -995,9 +991,9 @@ body {
   <div class="hero-left">
     <div class="hero-eyebrow">Metairie, Louisiana · Est. 1947</div>
     <h1 class="hero-headline">
-      The Finest<br>
-      Appliances in<br>
-      <span class="accent">New Orleans.</span>
+      The South's<br>
+      Appliance Authority.<br>
+      <span class="accent">Since 1947.</span>
     </h1>
     <p class="hero-location">
       <span class="hero-location-dot">◆</span>
@@ -1025,6 +1021,14 @@ body {
     </div>
   </div>
 </section>
+
+<!-- LOUIS DAVID QUOTE -->
+<div style="background:#1C1C1C; border-left:3px solid #FFC20E; padding:36px 48px;">
+  <blockquote style="font-family:'Playfair Display',serif; font-style:italic; font-size:17px; color:#F0EBE3; line-height:1.6; margin:0;">
+    "After a terrible experience with a big box store, I called Barto and Terri took care of it all."
+  </blockquote>
+  <cite style="display:block; font-family:'DM Sans',sans-serif; font-style:normal; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#9A8E82; margin-top:12px;">— Louis David · Google Review · March 2024</cite>
+</div>
 
 <!-- TRUST BAND -->
 <div class="trust-band">

@@ -55,24 +55,6 @@ body {
   line-height: 1.5;
 }
 
-/* ── TOP BAR ── */
-.topbar {
-  background: var(--teal-dark);
-  color: rgba(255,255,255,0.75);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  padding: 7px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.topbar a { color: rgba(255,255,255,0.75); text-decoration: none; }
-.topbar a:hover { color: var(--amber); }
-.topbar-left { display: flex; gap: 20px; }
-.topbar-right { display: flex; gap: 20px; align-items: center; }
-.topbar-sep { opacity: 0.3; }
-
 /* ── HEADER ── */
 .header {
   background: var(--teal);
@@ -168,22 +150,6 @@ body {
 }
 .btn-clearance:hover { background: var(--amber-dark); }
 
-/* ── ANNOUNCEMENT BAND ── */
-.announcement {
-  background: var(--orange);
-  color: var(--white);
-  text-align: center;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 10px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-.announce-divider { opacity: 0.5; }
-
 /* ── HERO ── */
 .hero {
   display: grid;
@@ -203,10 +169,10 @@ body {
 .hero-copy::after {
   content: '';
   position: absolute;
-  right: -32px;
+  right: -52px;
   top: 0;
   bottom: 0;
-  width: 64px;
+  width: 104px;
   background: var(--teal);
   clip-path: polygon(0 0, 0 100%, 100% 50%);
   z-index: 2;
@@ -837,20 +803,6 @@ body {
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <span>Serving Metairie · New Orleans · Kenner · Jefferson Parish</span>
-    <span class="topbar-sep">|</span>
-    <span>3833 Airline Drive, Metairie · <a href="https://maps.google.com/?q=3833+Airline+Drive+Metairie+LA">Get Directions →</a></span>
-  </div>
-  <div class="topbar-right">
-    <span>Mon–Fri 9:30–6 · Sat 10–3 · Sun Closed</span>
-    <span class="topbar-sep">|</span>
-    <a href="tel:5048312734">(504) 831-2734</a>
-  </div>
-</div>
-
 <!-- HEADER -->
 <header class="header">
   <a href="/" class="logo">
@@ -872,24 +824,15 @@ body {
   </div>
 </header>
 
-<!-- ANNOUNCEMENT -->
-<div class="announcement">
-  <span>Memorial Day Sale — Up to $750 off Electrolux &amp; Frigidaire</span>
-  <span class="announce-divider">·</span>
-  <span>KitchenAid packages up to $4,000 rebate through July 8</span>
-  <span class="announce-divider">·</span>
-  <a href="#" style="color:var(--amber); font-weight:800; text-decoration:none;">View Rebates →</a>
-</div>
-
 <!-- HERO -->
 <section class="hero">
   <!-- Copy panel -->
   <div class="hero-copy">
     <div class="hero-eyebrow">Metairie, Louisiana · Greater New Orleans · Est. 1947</div>
     <h1 class="hero-headline">
-      Major appliances<br>for <span class="accent">greater</span><br>New Orleans.
+      They don't make 'em<br>like they used to.<br><span class="accent">We do.</span>
     </h1>
-    <p class="hero-sub">They don't make 'em like they used to. We do.</p>
+    <p class="hero-sub">Major appliances for greater New Orleans.</p>
     <div class="hero-meta">
       <div class="hero-meta-row">
         <div class="hero-meta-dot"></div>
@@ -908,6 +851,7 @@ body {
       <a href="#" class="btn-primary">Shop In-Stock Appliances</a>
       <a href="tel:5048312734" class="btn-secondary">Call for Price →</a>
     </div>
+    <div style="margin-top:16px; display:inline-block; background:var(--amber); color:var(--teal-dark); font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 14px;">Same-Week Delivery Available</div>
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
       Scratch &amp; Dent Available
