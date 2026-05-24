@@ -2,6 +2,152 @@
 
 Each entry defines a named, repeatable process used in this workspace. Entries include: trigger, inputs, steps, outputs, and which tools or personas are involved.
 
+**Process index:**
+- [Session Lifecycle](#process-session-lifecycle)
+- [Orchestration](#process-orchestration)
+- [Change Logging](#process-change-logging)
+- [Workspace Maintenance](#process-workspace-maintenance)
+- [Project Onboarding](#process-project-onboarding)
+- [Site Audit](#process-site-audit)
+- [Design Variant Generation](#process-design-variant-generation)
+- [Screenshot Workflow](#process-screenshot-workflow)
+- [Sandbatch Critique Cycle](#process-sandbatch-critique-cycle)
+- [Variant Improvement](#process-variant-improvement)
+- [Phase Transition](#process-phase-transition)
+- [Live Page Audit](#process-live-page-audit)
+- [Design System Extraction](#process-design-system-extraction)
+- [Build Scaffold](#process-build-scaffold-phase-3)
+
+---
+
+## Process: Session Lifecycle
+
+**When:** Every work session, automatically.  
+**Trigger:** User sends the first message of a session.  
+**Role:** Orchestrator (main agent only — no subagent delegation for the lifecycle itself)
+
+**Start of session:**
+1. Identify the active project from user context or first message
+2. Read `projects/[slug]/CLAUDE.md` for project-specific instructions and constraints
+3. Read the last 30 lines of `projects/[slug]/MEMORY.md` to load recent work context
+4. Run a workspace sync check (see Workspace Maintenance process) — are CLAUDE.md tables, ONTOLOGY, and PROCESSES current?
+5. Confirm the current phase from `projects/[slug]/PHASE-PLAN.md`
+6. State the active project, current phase, and last logged action before proceeding
+
+**Per task (repeat for each user request):**
+1. Decompose using ONTOLOGY (entity type) + PROCESSES (process name)
+2. Route to the appropriate subagent (see Orchestration process)
+3. Review subagent result for correctness
+4. Log to `projects/[slug]/MEMORY.md` immediately
+5. Update `PHASE-PLAN.md` if phase status changed
+
+**End of session:**
+1. Write a session summary entry to `projects/[slug]/MEMORY.md`
+2. If workspace docs drifted during the session, run Workspace Maintenance
+3. State the next concrete action so the next session has a clear entry point
+
+**Outputs:** Populated MEMORY.md, up-to-date PHASE-PLAN.md
+
+---
+
+## Process: Orchestration
+
+**When:** Any time a task is assigned.  
+**Trigger:** User request or subtask from decomposition.  
+**Role:** Main agent only — does not execute, only routes.
+
+**Steps:**
+1. Identify the entity type from ONTOLOGY that is being acted on
+2. Identify the named process from PROCESSES that applies
+3. Select the subagent type based on work category:
+
+| Work category | Subagent | Notes |
+|---------------|----------|-------|
+| File/codebase exploration, symbol lookup | `Explore` | Read-only; fast |
+| Architecture, design decisions, trade-off analysis | `Plan` | Returns a plan; main agent reviews before delegating execution |
+| Code writing, file editing, browser automation, multi-step execution | `claude` | Worktree isolation for risky edits |
+| Independent parallel research | `claude` (background) | Multiple simultaneous lookups |
+
+4. Write a self-contained subagent prompt:
+   - State the goal and why it matters
+   - Include relevant file paths, entity types, process constraints
+   - Specify whether the subagent should research only or also write/edit
+   - Do NOT write "based on your findings, do X" — decompose fully before delegating
+5. Launch subagent and wait for result
+6. Review result: did the subagent do what was asked? Are changed files actually changed?
+7. If the result is incorrect or incomplete, diagnose and re-delegate (do not patch inline)
+8. Log the outcome via Change Logging process
+
+**Anti-patterns to avoid:**
+- Delegating understanding ("figure out what to do")
+- Doing execution work inline instead of delegating
+- Delegating without specifying entity type and process
+- Accepting a subagent result without verifying actual file changes
+
+**Outputs:** Completed task with logged result
+
+---
+
+## Process: Change Logging
+
+**When:** After every completed task that modifies any project artifact.  
+**Trigger:** Subagent returns a result; main agent reviews it.  
+**Role:** Orchestrator (main agent writes the log entry directly)
+
+**Steps:**
+1. Verify the subagent result — check that files exist and contain expected changes
+2. Write a log entry to `projects/[slug]/MEMORY.md` in the standard format:
+
+```
+## [YYYY-MM-DD] — Phase [N] — [Brief title]
+
+**Entity:** [entity type from ONTOLOGY]
+**Process:** [process name from PROCESSES]
+**Subagent:** [Explore / Plan / claude / direct]
+**Changes:** [Specific files created/modified/deleted; key edits made]
+**Outcome:** [Result, decisions made, what's now unblocked, next action]
+```
+
+3. If a phase task was completed, also update `projects/[slug]/PHASE-PLAN.md` — change `⏳ Pending` to `✅ Done`
+4. If a key decision was made (palette locked, variant selected, stack chosen), call it out explicitly in the Outcome field
+
+**Rules:**
+- Log immediately — do not batch entries at session end
+- Be specific about files changed — "edited 3 files" is not a log entry
+- One entry per discrete task, not per subagent call
+- If a task failed or was abandoned, log that too with the reason
+
+**Outputs:** New entry in `projects/[slug]/MEMORY.md`
+
+---
+
+## Process: Workspace Maintenance
+
+**When:** Start of session, or any time workspace structure may have changed.  
+**Trigger:** `/workspace-sync` command, or session start check.  
+**Role:** Orchestrator decomposes; delegates individual checks to `Explore` or `claude` subagents.
+
+**Checks to run:**
+1. **Skills table** (in root CLAUDE.md) vs. actual `.claude/commands/` files
+   - List files in `.claude/commands/`; compare against the table in CLAUDE.md
+   - Add rows for new commands; remove rows for deleted commands
+2. **MCP servers table** (in root CLAUDE.md) vs. `.mcp.json`
+   - Parse `.mcp.json` server keys; compare against the table
+   - Add/remove rows as needed
+3. **Projects table** (in root `README.md`) vs. actual `projects/` directories
+   - List `projects/` subdirectories; compare against the README table
+   - Add rows for new projects with status "pending"
+4. **ONTOLOGY.md** entity list vs. entity types referenced in the workspace
+   - If a new entity type has been introduced and isn't in ONTOLOGY, add it
+5. **PROCESSES.md** process list vs. slash commands and actual workflow patterns
+   - If a new repeatable pattern has emerged that isn't named, add it
+
+**Delegation:**
+- Use `Explore` subagent to read current file states
+- Use `claude` subagent to write any updates to CLAUDE.md, README.md, ONTOLOGY.md, PROCESSES.md
+
+**Outputs:** Up-to-date CLAUDE.md, README.md, ONTOLOGY.md, PROCESSES.md. Log entry in the active project's MEMORY.md (or root-level if no active project).
+
 ---
 
 ## Process: Project Onboarding

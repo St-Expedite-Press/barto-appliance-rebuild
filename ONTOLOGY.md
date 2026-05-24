@@ -113,6 +113,37 @@ A named editorial voice used for critique, copy, and voice-led work.
 
 ---
 
+### ProjectMemory
+A chronological change log for a specific project. Records every substantive change — design edits, phase transitions, audits, critique sessions, file moves — with entity type, process name, subagent used, changes made, and outcome.
+
+**File:** `projects/[slug]/MEMORY.md`  
+**Attributes:** slug, entries (date, phase, entity, process, subagent, changes, outcome)  
+**Updated by:** The orchestrating agent immediately after each task completes  
+**Gitignored:** Yes — MEMORY.md is local context, not version-controlled artifact
+
+**Entry format:**
+```
+## [YYYY-MM-DD] — Phase [N] — [Brief title]
+**Entity:** ...
+**Process:** ...
+**Subagent:** ...
+**Changes:** ...
+**Outcome:** ...
+```
+
+---
+
+### ProjectPersona
+A project-specific extension of the base Sandbatch persona. Grounds the base voice and doctrine in a specific client's identity, geography, content assets, and critical positions.
+
+**File:** `projects/[slug]/[SLUG]_SANDBATCH.md`  
+**Attributes:** extends (base persona path), client identity, brand claim, geographic coordinates, content asset inventory, critique records  
+**Relation:** `extends → SANDBATCH.md` at workspace root  
+**Gitignored:** No — project persona is version-controlled  
+**Read order:** Base persona first, project overlay second
+
+---
+
 ### Slash Command
 A reusable Claude Code instruction registered in `.claude/commands/[name].md`.
 
@@ -141,14 +172,18 @@ Workspace
   │     │     └── Artifact (0..n)
   │     │           └── Design Variant → Screenshot
   │     │                             → Logo Variant
+  │     ├── ProjectMemory → MEMORY.md (gitignored)
+  │     ├── ProjectPersona → [SLUG]_SANDBATCH.md
+  │     │     └── extends → Persona (workspace root)
   │     └── CLAUDE.md · PHASE-PLAN.md · README.md
   ├── Tool (shared)
   │     ├── MCP server (local) → tools/
   │     └── MCP server (remote) → .mcp.json
   ├── Persona (shared) → SANDBATCH.md
+  │     └── extended-by → ProjectPersona (per project)
   ├── Python env (shared) → .venv/
   └── Slash Commands → .claude/commands/
-        └── scoped-to → Project
+        └── scoped-to → Project or Workspace
 ```
 
 ---

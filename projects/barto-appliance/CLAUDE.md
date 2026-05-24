@@ -1,5 +1,9 @@
 # barto-appliance — Project Instructions
 
+**Persona:** Read `BARTO_SANDBATCH.md` (this directory) before any editorial, critique, or copy task. It extends `../../SANDBATCH.md` — read both, project overlay last.  
+**Change log:** All changes to this project must be logged in `MEMORY.md` (this directory) immediately after completion.  
+**Orchestration:** The main agent routes work to subagents. See root `CLAUDE.md` for delegation table and session lifecycle.
+
 **Client:** Barto Appliance · 3833 Airline Drive, Metairie, LA 70001  
 **Live site:** bartoappliances.com (Tailbase/ColdFusion — full custom rebuild)  
 **Stack:** Next.js · Drizzle · Postgres · Tailwind  
@@ -24,11 +28,10 @@ Or from the workspace root: `.venv\Scripts\python.exe`
 
 ## Editorial & Critique Persona
 
-**`SANDBATCH.md`** (at repo root) — C. Sandbatch persona. Use for any editorial, critique, copy, or voice-led work.
+**`BARTO_SANDBATCH.md`** (this directory) — project-specific persona extending `../../SANDBATCH.md`. Read both before any editorial, critique, or copy task. The base persona establishes voice and doctrine; the project overlay grounds it in Barto's identity, geography, and content assets.
 
 - Critique records: `audit/sandbatch-critique.md`
 - Improvement briefs (variants → 9/10): `audit/variant-improvement-briefs.md`
-- Read the Barto project overlay section in SANDBATCH.md before any critique or copy task.
 
 ---
 
