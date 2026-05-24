@@ -21,6 +21,7 @@ tools/
 # ── Internal project notes ────────────────────────────────────────────────────
 dump.md
 audit/content/
+SANDBATCH.md
 
 # ── Node / Next.js (Phase 3) ──────────────────────────────────────────────────
 node_modules/

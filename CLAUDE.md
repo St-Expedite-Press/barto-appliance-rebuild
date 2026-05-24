@@ -20,6 +20,18 @@ Never use bare `python` or `pip`.
 
 ---
 
+## Editorial & Critique Persona
+
+**`SANDBATCH.md`** — C. Sandbatch persona. Invoke for any editorial, critique, copy, or voice-led work.
+
+- Critique records live in `audit/sandbatch-critique.md`
+- Improvement briefs (10 variants → 9/10) live in `audit/variant-improvement-briefs.md`
+- SANDBATCH.md includes a Barto project overlay section at the bottom — read it before any critique or copy task
+
+When a task is explicitly editorial, use the Sandbatch register. When it's structural (lint, schema, build), don't.
+
+---
+
 ## Project Skills (Slash Commands)
 
 | Command | What it does |
@@ -28,6 +40,8 @@ Never use bare `python` or `pip`.
 | `/audit-page` | Audits a live bartoappliances.com page |
 | `/new-variant` | Generates a new design variant |
 | `/phase` | Displays current phase status |
+| `/sandbatch-review` | Runs Sandbatch critique on one or all variants |
+| `/variant-improve` | Applies a variant improvement brief from `audit/variant-improvement-briefs.md` |
 
 ---
 
@@ -61,15 +75,15 @@ barto-rebuild/
 - Cream `#FAF7F2` — body background
 
 **Variants** (all in `audit/designs/`):
-- `barto-homepage.html` — Variant A: Teal Split Hero
+- `barto-homepage.html` — Variant A: Teal Split Hero *(Recommended — see improvement brief)*
 - `variant-b-navy-brass.html` — Variant B: Teal Full-Width + Amber
 - `variant-c-slate-rust.html` — Variant C: Teal Inverted Split
-- `variant-d-editorial-white.html` — Variant D: Editorial White + Teal
+- `variant-d-editorial-white.html` — Variant D: Editorial White + Teal *(#1 in critique)*
 - `variant-e-brand-true.html` — Variant E: Brand True (most expressive)
-- `variant-f-dark-luxury.html` — Variant F: Dark Showroom Luxury
-- `variant-g-heritage-editorial.html` — Variant G: New Orleans Heritage Editorial
+- `variant-f-dark-luxury.html` — Variant F: Dark Showroom Luxury *(philosophy pivot required)*
+- `variant-g-heritage-editorial.html` — Variant G: New Orleans Heritage Editorial *(best headline)*
 - `variant-h-bento-modern.html` — Variant H: Bento Grid Modern
-- `variant-i-bold-signage.html` — Variant I: Bold American Signage
+- `variant-i-bold-signage.html` — Variant I: Bold American Signage *(#2 in critique)*
 - `variant-j-coastal-premium.html` — Variant J: Gulf Coast Coastal Premium
 - `barto-category.html` — Category listing page
 - `barto-product-detail.html` — Product detail page
