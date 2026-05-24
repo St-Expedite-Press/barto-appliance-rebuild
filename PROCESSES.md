@@ -117,7 +117,13 @@ Each entry defines a named, repeatable process used in this workspace. Entries i
 - One entry per discrete task, not per subagent call
 - If a task failed or was abandoned, log that too with the reason
 
-**Outputs:** New entry in `projects/[slug]/MEMORY.md`
+**After each log entry, check:**
+- Is the entity type used in `**Entity:**` present in `ONTOLOGY.md`? If not, add it now.
+- Is the process name used in `**Process:**` present as a `## Process:` heading in `PROCESSES.md`? If not, add a stub entry now.
+
+This keeps ONTOLOGY.md and PROCESSES.md in sync with actual work as it happens — not just at `/workspace-sync` time.
+
+**Outputs:** New entry in `projects/[slug]/MEMORY.md`; ONTOLOGY.md and PROCESSES.md updated if new types or patterns were used.
 
 ---
 

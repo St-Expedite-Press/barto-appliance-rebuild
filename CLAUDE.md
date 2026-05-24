@@ -110,6 +110,12 @@ Every change to a project must be logged in `projects/[slug]/MEMORY.md`. Log for
 
 Log entries should be written immediately after a task completes, not batched at session end. The MEMORY.md is the authoritative record of what has been done and why.
 
+**After logging, check:**
+- Is the entity type in the `**Entity:**` field present in `ONTOLOGY.md`? If not, add it before the next task.
+- Is the process name in the `**Process:**` field present in `PROCESSES.md`? If not, add a stub entry before the next task.
+
+This keeps ONTOLOGY.md and PROCESSES.md current as work happens — not just at `/workspace-sync` time.
+
 ---
 
 ## Default Persona
