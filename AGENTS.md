@@ -47,13 +47,12 @@ Multi-project web design and branding workspace. All orchestration, routing, and
 
 Before starting any work, decompose through two lenses:
 
-**1. ONTOLOGY lens** — what entity type is affected?
-- Workspace · Project · ExternalProject · Phase · Artifact · Design Variant · Tool · Persona · Slash Command · ProjectMemory · ProjectPersona
+**1. ONTOLOGY lens** — read `projects/[slug]/ONTOLOGY.md` to identify the entity type being acted on.  
+**2. PROCESSES lens** — read `projects/[slug]/PROCESSES.md` to identify the named process that applies.
 
-**2. PROCESSES lens** — which named process applies?
-- Project Onboarding · Site Audit · Design Variant Generation · Screenshot Workflow · Sandbatch Critique Cycle · Variant Improvement · Phase Transition · Live Page Audit · Design System Extraction · Build Scaffold · Live Site Fix Cycle · Orchestration · Change Logging · Session Lifecycle · Workspace Maintenance
+For workspace-level work (maintenance, onboarding, cross-project), use root `ONTOLOGY.md` and root `PROCESSES.md`.
 
-If no exact match: decompose into sub-tasks that match, or identify a gap in `PROCESSES.md` and add it. State entity type and process name before delegating.
+If no exact match: add a stub to the project's `PROCESSES.md`. State entity type and process name before delegating.
 
 ---
 
@@ -137,19 +136,21 @@ Delegate updates to a `claude` subagent. Log the change.
   README.md           # Workspace overview + projects table
   SANDBATCH.md        # Base editorial persona (gitignored)
   projects/
-    _template/        # Standard project scaffold
-    barto-appliance/  # Tracking only (CLAUDE.md, MEMORY.md, PHASE-PLAN.md, audit/, assets/)
-    dixie-mag/        # Tracking only
-    ogc/              # Tracking only
-    st-expedite-press/  # Full codebase (nested git repo) + tracking merged
-      AGENTS.md       # Repo-internal agent doctrine — defer here for repo work
-      CLAUDE.md       # Claude-specific shim
-      PHASE-PLAN.md   # Phase tracking
-      MEMORY.md       # Change log (gitignored in repo)
+    _template/        # Standard project scaffold (copy to start a new project)
+    [slug]/           # Each project is self-contained:
+      CLAUDE.md       # Project instructions (thin shim or full)
+      AGENTS.md       # Agent routing, subagent policy, session checklist
+      ONTOLOGY.md     # Entity taxonomy for this project
+      PROCESSES.md    # Named workflows for this project
+      PHASE-PLAN.md   # Phase and task tracking
+      MEMORY.md       # Change log (gitignored)
+      [SLUG]_SANDBATCH.md  # Project persona (gitignored)
+    st-expedite-press/  # Full codebase (nested git repo) — same structure plus:
+      agent/AGENT.md  # Deep repo-internal doctrine (source of truth for repo work)
+      docs/ontology/  # Detailed project ontology JSON + markdown
       apps/           # Astro frontend + Cloudflare Worker
       branding/       # Brand package
       audit/          # Workspace audit reports
-      docs/           # Infrastructure, ontology, press reference docs
   tools/              # Shared MCP server implementations (gitignored)
   .venv/              # Shared Python environment (gitignored)
   .claude/

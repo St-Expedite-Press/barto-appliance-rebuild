@@ -2,7 +2,7 @@
 
 **Persona:** Read `[SLUG]_SANDBATCH.md` (this directory) before any editorial, critique, or copy task. It extends `../../SANDBATCH.md` — read both, project overlay last.  
 **Change log:** All changes to this project must be logged in `MEMORY.md` (this directory) immediately after completion.  
-**Orchestration:** The main agent routes work to subagents. See root `CLAUDE.md` for delegation table and session lifecycle.
+**Agent system:** Read `AGENTS.md` (session checklist, subagent routing), `ONTOLOGY.md` (entity types), `PROCESSES.md` (named workflows). Workspace-level doctrine is in root `AGENTS.md`.
 
 **Client:** [Client name · Address]  
 **Live site:** [URL or "Not yet launched"]  

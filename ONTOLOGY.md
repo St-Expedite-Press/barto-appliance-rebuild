@@ -1,12 +1,10 @@
 # Workspace Ontology
 
-This document defines the entity types, their attributes, and their relationships within this web design workspace. It is the authoritative reference for how work is organized.
+Workspace-level entity taxonomy. Project-specific entities live in each project's own `ONTOLOGY.md`.
 
 ---
 
-## Entity Types
-
-### Workspace
+## Workspace
 The root git repository. Contains all projects, shared tooling, and shared personas.
 
 **Attributes:** root path, agency name, git remote  
@@ -14,83 +12,21 @@ The root git repository. Contains all projects, shared tooling, and shared perso
 
 ---
 
-### Project
-A discrete client engagement with its own audit trail, design system, and build target.
+## Project
+A discrete client engagement with its own git repo and self-contained agent system.
 
-**Slug format:** `[client-kebab-case]` (e.g., `barto-appliance`)  
+**Slug format:** `[client-kebab-case]`  
 **Directory:** `projects/[slug]/`  
-**Attributes:** client name, live URL, tech stack, current phase  
-**Contains:** Phases, Artifacts, CLAUDE.md, PHASE-PLAN.md, README.md
+**Own agent docs:** `AGENTS.md` · `ONTOLOGY.md` · `PROCESSES.md` · `CLAUDE.md`  
+**Own tracking:** `PHASE-PLAN.md` · `MEMORY.md`
 
-**Key files:**
-```
-projects/[slug]/
-  CLAUDE.md           # Project-specific Claude Code instructions
-  PHASE-PLAN.md       # Authoritative phase and task tracker
-  README.md           # Client-facing project showcase
-  dump.md             # Raw discovery/brief notes (gitignored)
-  audit/              # All audit-phase and design-phase artifacts
-```
+For entity taxonomy within a project, read `projects/[slug]/ONTOLOGY.md`.
 
 ---
 
-### Phase
-A named, sequential stage of project work. Phases are tracked in `PHASE-PLAN.md`.
+## Tool
+A shared software component for automation, extraction, or generation. Workspace-scoped — serves any project.
 
-**Types:**
-| Phase | Name | Produces |
-|-------|------|----------|
-| 1 | Audit | Screens, content inventory, conversion gaps, design inventory |
-| 2 | Design System | HTML variants, design-system-docs, critique, improvement briefs |
-| 3 | Build | Production codebase (Next.js or equivalent) |
-| 4 | Launch / Post-Launch | Deployment, enhanced features, CRM, analytics |
-
-**Statuses:** `⏳ Pending` · `🔄 In Progress` · `✅ Complete` · `❌ Blocked`
-
----
-
-### Artifact
-A concrete output produced during a phase. Artifacts live in `projects/[slug]/audit/`.
-
-**Artifact types:**
-
-| Type | Directory | Description |
-|------|-----------|-------------|
-| `screen` | `audit/screens/[page]/` | Screenshot of a live site page (tiled PNGs) |
-| `design-variant` | `audit/designs/` | Standalone HTML mockup of a homepage or page |
-| `supporting-page` | `audit/designs/` | Category, product, or utility page mockup |
-| `design-system-doc` | `audit/designs/` | Full token/component documentation page |
-| `content-inventory` | `audit/` | Structured list of all content on the live site |
-| `conversion-gap` | `audit/` | Documented gap between current site and desired outcome |
-| `design-inventory` | `audit/` | Existing design tokens extracted from the live site |
-| `design-directory` | `audit/` | Full element inventory, logo brief, modernization guide |
-| `sandbatch-critique` | `audit/` | Ranked critique of all variants in Sandbatch register |
-| `improvement-brief` | `audit/` | Per-variant agent prompt to reach 9/10 quality |
-| `screenshot` | `audit/designs/screenshots/` | Captured screenshot of a local design variant |
-
----
-
-### Design Variant
-A specific homepage layout approach, implemented as a self-contained HTML file.
-
-**Attributes:** letter (a–j), palette, layout approach, critique rank, improvement-brief status  
-**File:** `audit/designs/[variant-filename].html`  
-**Screenshot:** `audit/designs/screenshots/variant-[letter]-[slug].png`  
-**Logo:** `audit/designs/images/logo-variant-[letter].png`
-
-**Variant identity is defined by three axes:**
-1. **Body color** — cream, white, dark, linen
-2. **Layout structure** — split hero, full-width, editorial, bento grid, signage
-3. **Typographic scale** — DM Sans dominant vs. Playfair Display callouts
-
-All variants share the brand palette and content structure. What differs is how those are applied.
-
----
-
-### Tool
-A shared software component used for automation, extraction, or generation. Not project-specific.
-
-**Types:**
 | Type | Location | Examples |
 |------|----------|---------|
 | MCP server (local) | `tools/` | `mcp-web-clone`, `design-copier`, `WEB-SCRAPING-MCP` |
@@ -98,81 +34,30 @@ A shared software component used for automation, extraction, or generation. Not 
 | Python package | `.venv/` | playwright, crawl4ai, http.server |
 | Script | `projects/[slug]/audit/scripts/` | `cleanup.py`, `gen_logos.py` |
 
-**Tools are workspace-scoped** — they serve any project, not one specific project.
+---
+
+## Persona
+A named editorial voice. Workspace-scoped base; extended per-project.
+
+**Base:** C. Sandbatch (`SANDBATCH.md` — gitignored at workspace root)  
+**Project overlays:** Each project has `[SLUG]_SANDBATCH.md` extending the base (gitignored in each project repo)  
+**Invoked for:** design critique, copy, editorial framing, improvement briefs  
+**Not invoked for:** structural tasks (lint, schema, indexing, admin)
 
 ---
 
-### Persona
-A named editorial voice used for critique, copy, and voice-led work.
+## Slash Command
+A Claude Code instruction registered in `.claude/commands/[name].md`. Some are workspace-scoped; most are scoped to a specific project.
 
-**Current persona:** C. Sandbatch (see `SANDBATCH.md`)  
-**Used for:** design critique, headline copy, editorial framing, improvement briefs  
-**Project overlay:** Each project's CLAUDE.md notes the relevant brand/identity context to apply over the base persona.
-
-**Persona is workspace-scoped** — it applies to any project's editorial work.
-
----
-
-### ProjectMemory
-A chronological change log for a specific project. Records every substantive change — design edits, phase transitions, audits, critique sessions, file moves — with entity type, process name, subagent used, changes made, and outcome.
-
-**File:** `projects/[slug]/MEMORY.md`  
-**Attributes:** slug, entries (date, phase, entity, process, subagent, changes, outcome)  
-**Updated by:** The orchestrating agent immediately after each task completes  
-**Gitignored:** Yes — MEMORY.md is local context, not version-controlled artifact
-
-**Entry format:**
-```
-## [YYYY-MM-DD] — Phase [N] — [Brief title]
-**Entity:** ...
-**Process:** ...
-**Subagent:** ...
-**Changes:** ...
-**Outcome:** ...
-```
-
----
-
-### ExternalProject
-A project that lives in a separate git repository and deployment pipeline, worked on from this workspace for reference or cross-project support. Has its own agent docs, CI/CD, and change log.
-
-**Examples:** Side builds or client repos maintained outside this workspace. Note: St. Expedite Press (`projects/st-expedite-press/`) was previously tracked as an ExternalProject but has since been fully onboarded — it is now a Project with a nested git repo and is NOT an ExternalProject.
-
-**Key rule:** External project work is NOT logged in client project `MEMORY.md`. Use the external project's own documentation system. Do not add external projects to the workspace `projects/` directory or `README.md` projects table.
-
-**Attributes:** repo path, live URL, external tracking system (its own AGENT.md / MEMORY.md)  
-**Relation:** Worked on from this workspace's tooling and MCP servers, but governed by the external project's own CLAUDE.md.
-
----
-
-### ProjectPersona
-A project-specific extension of the base Sandbatch persona. Grounds the base voice and doctrine in a specific client's identity, geography, content assets, and critical positions.
-
-**File:** `projects/[slug]/[SLUG]_SANDBATCH.md`  
-**Attributes:** extends (base persona path), client identity, brand claim, geographic coordinates, content asset inventory, critique records  
-**Relation:** `extends → SANDBATCH.md` at workspace root  
-**Gitignored:** Yes — private biographical content; each project's own repo `.gitignore` excludes `*_SANDBATCH.md`  
-**Read order:** Base persona first, project overlay second
-
----
-
-### Slash Command
-A reusable Claude Code instruction registered in `.claude/commands/[name].md`.
-
-**Attributes:** name, project scope, description, argument types  
-**Current commands:**
-
-| Command | Project scope | Arguments |
-|---------|--------------|-----------|
-| `/workspace-sync` | workspace | none |
-| `/audit-page` | barto-appliance | page path or keyword |
-| `/screenshot-variant` | barto-appliance | variant letter (a–j), page name, or blank |
-| `/new-variant` | barto-appliance | palette/mood description |
-| `/phase` | barto-appliance | phase number (optional) |
-| `/sandbatch-review` | barto-appliance | variant letter or blank |
-| `/variant-improve` | barto-appliance | variant letter |
-
-Commands scoped to a specific project use that project's artifact paths. Commands intended for reuse across projects are noted as workspace-scoped.
+| Command | Scope | What it does |
+|---------|-------|-------------|
+| `/workspace-sync` | workspace | Sync workspace docs against actual state |
+| `/screenshot-variant` | barto-appliance | Screenshots a local design variant |
+| `/audit-page` | barto-appliance | Audits a live bartoappliances.com page |
+| `/new-variant` | barto-appliance | Generates a new design variant |
+| `/phase` | barto-appliance | Displays current phase status |
+| `/sandbatch-review` | barto-appliance | Runs Sandbatch critique on variants |
+| `/variant-improve` | barto-appliance | Applies a variant improvement brief |
 
 ---
 
@@ -180,40 +65,12 @@ Commands scoped to a specific project use that project's artifact paths. Command
 
 ```
 Workspace
-  ├── Project (1..n)
-  │     ├── Phase (1..4)
-  │     │     └── Artifact (0..n)
-  │     │           └── Design Variant → Screenshot
-  │     │                             → Logo Variant
-  │     ├── ProjectMemory → MEMORY.md (gitignored)
-  │     ├── ProjectPersona → [SLUG]_SANDBATCH.md
-  │     │     └── extends → Persona (workspace root)
-  │     └── CLAUDE.md · PHASE-PLAN.md · README.md
-  ├── Tool (shared)
-  │     ├── MCP server (local) → tools/
-  │     └── MCP server (remote) → .mcp.json
-  ├── Persona (shared) → SANDBATCH.md
-  │     └── extended-by → ProjectPersona (per project)
-  ├── Python env (shared) → .venv/
-  └── Slash Commands → .claude/commands/
-        └── scoped-to → Project or Workspace
+  ├── Project (1..n)        → projects/[slug]/
+  │     └── AGENTS.md · ONTOLOGY.md · PROCESSES.md · CLAUDE.md
+  ├── Tool (shared)         → tools/ + .mcp.json
+  ├── Persona (shared)      → SANDBATCH.md
+  └── Slash Commands        → .claude/commands/
 ```
-
----
-
-## Directory Semantics
-
-| Path | What lives here |
-|------|----------------|
-| `projects/` | One subdirectory per client project |
-| `projects/[slug]/audit/designs/` | HTML mockups — all self-contained, no build step |
-| `projects/[slug]/audit/designs/images/` | Project brand assets + stock photos |
-| `projects/[slug]/audit/designs/screenshots/` | Captured screenshots of local mockups |
-| `projects/[slug]/audit/screens/` | Live-site screenshots organized by page |
-| `projects/[slug]/audit/scripts/` | Project-specific Python utility scripts |
-| `tools/` | MCP server source code (local servers only) |
-| `.venv/` | Shared Python environment for all tools and scripts |
-| `.claude/commands/` | Slash command definitions |
 
 ---
 
@@ -221,9 +78,6 @@ Workspace
 
 | Thing | Convention | Example |
 |-------|-----------|---------|
-| Project slug | kebab-case, client + disambiguator if needed | `barto-appliance` |
-| Design variant file | `variant-[letter]-[adjective-noun].html` | `variant-d-editorial-white.html` |
-| Screenshot | `variant-[letter]-[slug].png` | `variant-d-editorial.png` |
-| Logo variant | `logo-variant-[letter].png` | `logo-variant-d.png` |
-| Slash command | `[verb]-[noun]` | `screenshot-variant`, `audit-page` |
+| Project slug | kebab-case | `barto-appliance` |
+| Slash command | `[verb]-[noun]` | `screenshot-variant` |
 | Phase task status | emoji prefix | `✅ Done` · `⏳ Pending` · `🔄 In Progress` |
