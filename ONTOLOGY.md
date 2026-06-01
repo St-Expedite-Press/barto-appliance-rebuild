@@ -133,6 +133,18 @@ A chronological change log for a specific project. Records every substantive cha
 
 ---
 
+### ExternalProject
+A project that lives in a separate git repository and deployment pipeline, worked on from this workspace for reference or cross-project support. Has its own agent docs, CI/CD, and change log.
+
+**Examples:** The agency's own website (St. Expedite Press at `C:\Users\rberr\Desktop\PROJECTS\press-page`), side builds in their own repos.
+
+**Key rule:** External project work is NOT logged in client project `MEMORY.md`. Use the external project's own documentation system. Do not add external projects to the workspace `projects/` directory or `README.md` projects table.
+
+**Attributes:** repo path, live URL, external tracking system (its own AGENT.md / MEMORY.md)  
+**Relation:** Worked on from this workspace's tooling and MCP servers, but governed by the external project's own CLAUDE.md.
+
+---
+
 ### ProjectPersona
 A project-specific extension of the base Sandbatch persona. Grounds the base voice and doctrine in a specific client's identity, geography, content assets, and critical positions.
 

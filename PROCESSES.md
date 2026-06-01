@@ -17,6 +17,7 @@ Each entry defines a named, repeatable process used in this workspace. Entries i
 - [Live Page Audit](#process-live-page-audit)
 - [Design System Extraction](#process-design-system-extraction)
 - [Build Scaffold](#process-build-scaffold-phase-3)
+- [Live Site Fix Cycle](#process-live-site-fix-cycle)
 
 ---
 
@@ -384,3 +385,31 @@ This keeps ONTOLOGY.md and PROCESSES.md in sync with actual work as it happens �
 **Schema design rule:** Manufacturer data is refreshable via import and must never overwrite local judgment (stock status, clearance flags, pricing notes). Keep them in separate tables.
 
 **Outputs:** Production Next.js codebase in `projects/[slug]/[site-dir]/`
+
+---
+
+## Process: Live Site Fix Cycle
+
+**When:** A deployed site (client or external project) has identified bugs, UX issues, or infrastructure gaps that need targeted fixes — not a full redesign.  
+**Trigger:** User surfaces a bug list, audit report, or says "fix these" after a screenshot/MCP audit.  
+**Entity type:** ExternalProject (for the agency's own sites) or Project (for client sites post-launch)  
+**Tools:** `screenshot-fast`, `playwright`, `firecrawl`, the project's own check suite
+
+**Steps:**
+1. Read the project's agent doc (e.g., `agent/AGENT.md`) and recent MEMORY entries to understand known state
+2. Triage the issue list — classify by: visual/UX · copy · infrastructure · a11y · performance
+3. Fix in priority order: infrastructure first (broken functionality), then UX, then copy polish
+4. After each fix, run the narrowest test that covers it (unit test, build, or visual check)
+5. Run the full check suite before committing: `npm run check` or equivalent
+6. Commit with a descriptive message that references what was broken, not just what changed
+7. Push and confirm the deploy pipeline triggered
+8. Regenerate any manifests or generated artifacts affected by the edits (e.g., asset manifests)
+9. Update the project's agent doc with: new routes, resolved gaps moved to Closed/Resolved, any new known gaps discovered during fixing
+
+**Rules:**
+- Fix one logical unit per commit — don't bundle unrelated changes
+- Never gitignore files as a shortcut for "files that keep changing" — investigate why they change
+- External project work is logged in the external project's own docs, not in client MEMORY.md
+- After pushing, verify the deployed site if a staging or production URL is available
+
+**Outputs:** Fixed codebase, updated agent doc, new commit(s) on main, deploy triggered
