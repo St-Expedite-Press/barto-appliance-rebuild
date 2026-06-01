@@ -136,7 +136,7 @@ A chronological change log for a specific project. Records every substantive cha
 ### ExternalProject
 A project that lives in a separate git repository and deployment pipeline, worked on from this workspace for reference or cross-project support. Has its own agent docs, CI/CD, and change log.
 
-**Examples:** The agency's own website (St. Expedite Press at `C:\Users\rberr\Desktop\PROJECTS\press-page`), side builds in their own repos.
+**Examples:** Side builds or client repos maintained outside this workspace. Note: St. Expedite Press (`projects/st-expedite-press/`) was previously tracked as an ExternalProject but has since been fully onboarded — it is now a Project with a nested git repo and is NOT an ExternalProject.
 
 **Key rule:** External project work is NOT logged in client project `MEMORY.md`. Use the external project's own documentation system. Do not add external projects to the workspace `projects/` directory or `README.md` projects table.
 
@@ -151,7 +151,7 @@ A project-specific extension of the base Sandbatch persona. Grounds the base voi
 **File:** `projects/[slug]/[SLUG]_SANDBATCH.md`  
 **Attributes:** extends (base persona path), client identity, brand claim, geographic coordinates, content asset inventory, critique records  
 **Relation:** `extends → SANDBATCH.md` at workspace root  
-**Gitignored:** No — project persona is version-controlled  
+**Gitignored:** Yes — private biographical content; each project's own repo `.gitignore` excludes `*_SANDBATCH.md`  
 **Read order:** Base persona first, project overlay second
 
 ---
@@ -164,6 +164,7 @@ A reusable Claude Code instruction registered in `.claude/commands/[name].md`.
 
 | Command | Project scope | Arguments |
 |---------|--------------|-----------|
+| `/workspace-sync` | workspace | none |
 | `/audit-page` | barto-appliance | page path or keyword |
 | `/screenshot-variant` | barto-appliance | variant letter (a–j), page name, or blank |
 | `/new-variant` | barto-appliance | palette/mood description |

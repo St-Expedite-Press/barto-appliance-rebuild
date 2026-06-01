@@ -135,8 +135,8 @@ This keeps ONTOLOGY.md and PROCESSES.md in sync with actual work as it happens â
 **Role:** Orchestrator decomposes; delegates individual checks to `Explore` or `claude` subagents.
 
 **Checks to run:**
-1. **Skills table** (in root CLAUDE.md) vs. actual `.claude/commands/` files
-   - List files in `.claude/commands/`; compare against the table in CLAUDE.md
+1. **Skills table** (in root AGENTS.md) vs. actual `.claude/commands/` files
+   - List files in `.claude/commands/`; compare against the table in AGENTS.md
    - Add rows for new commands; remove rows for deleted commands
 2. **MCP servers table** (in root CLAUDE.md) vs. `.mcp.json`
    - Parse `.mcp.json` server keys; compare against the table
